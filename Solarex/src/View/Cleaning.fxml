@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar layoutY="1.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="174.0" layoutX="427.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="209.0" />
+      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="655.0">
         <menus>
           <Menu mnemonicParsing="false" text="Overview">
             <items>
@@ -67,12 +69,14 @@
             <TableColumn prefWidth="77.99998982747394" text="Type " />
          </columns>
       </TableView>
-      <Button layoutX="52.0" layoutY="250.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="132.0" layoutY="250.0" mnemonicParsing="false" text="Save/Add" />
-      <Button layoutX="51.0" layoutY="486.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="132.0" layoutY="486.0" mnemonicParsing="false" text="Save" />
-      <Text layoutX="472.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="35.26171875" />
-      <Text layoutX="465.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" wrappingWidth="35.26171875" />
-      <Button layoutX="481.0" layoutY="414.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="26.0" layoutY="250.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="98.0" layoutY="250.0" mnemonicParsing="false" text="Save/Add" />
+      <Button layoutX="26.0" layoutY="486.0" mnemonicParsing="false" text="Edit" />
+      <Button layoutX="98.0" layoutY="486.0" mnemonicParsing="false" text="Save" />
+      <Text layoutX="447.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="35.26171875" />
+      <Text layoutX="447.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" wrappingWidth="35.26171875" />
+      <Button layoutX="500.0" layoutY="423.0" mnemonicParsing="false" text="Apply" />
+      <TextField layoutX="501.0" layoutY="340.0" prefHeight="25.0" prefWidth="112.0" />
+      <TextField layoutX="501.0" layoutY="373.0" prefHeight="25.0" prefWidth="112.0" />
    </children>
 </AnchorPane>
