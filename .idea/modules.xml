@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SEP4.iml" filepath="$PROJECT_DIR$/.idea/SEP4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Solarex/Solarex.iml" filepath="$PROJECT_DIR$/Solarex/Solarex.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
     </modules>
   </component>
