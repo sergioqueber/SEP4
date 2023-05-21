@@ -3,25 +3,25 @@ package Solarex.src.model;
 public class Factory
 {
   private int id;
-  private int heatingConsumption;
-  private int electricityConsumption;
+  private double heatingConsumption;
+  private double electricityConsumption;
 
   public int getId()
   {
     return id;
   }
 
-  public int getHeatingConsumption()
+  public double getHeatingConsumption()
   {
     return heatingConsumption;
   }
 
-  public int getElectricityConsumption()
+  public double getElectricityConsumption()
   {
     return electricityConsumption;
   }
 
-  public Factory()
+  public Factory(int id, double heatingConsumption, double electricityConsumption)
   {
     this.id = id;
     this.heatingConsumption = heatingConsumption;

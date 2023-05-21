@@ -6,10 +6,10 @@ public class PhotovoltaicPanel extends SolarPanel
   private int voltage;
   private int power;
 
-  public PhotovoltaicPanel(int serial_number, String location, String installation_time, String cleaning_time,
-      boolean status, int ambient_temp, int solar_flux, int angle, int model_no, String timestamp)
+  public PhotovoltaicPanel(double serialNo, int location, String installationTime, String cleaningTime,
+      boolean status, int ambientTemp, int solarFlux, int angle, int modelNo, String timestamp)
   {
-    super(serial_number, location, installation_time, cleaning_time, status, ambient_temp, solar_flux, angle, model_no, timestamp);
+    super(serialNo, location, installationTime, cleaningTime, status, ambientTemp, solarFlux, angle, modelNo, timestamp);
     this.current = current;
     this.voltage = voltage;
     this.power = power;

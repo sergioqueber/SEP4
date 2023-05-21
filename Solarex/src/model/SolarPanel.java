@@ -1,46 +1,49 @@
 package Solarex.src.model;
 
+import java.time.*;
+
 public class SolarPanel
 {
-  private int serial_number;
-  private String location;
-  private String installation_time;
-  private String cleaning_time;
+  private double serialNo;
+  private int location;
+  private String installationTime;
+  private String cleaningTime;
   private boolean status;
-  private int ambient_temp;
-  private int solar_flux;
+  private double ambientTemp;
+  private double solarFlux;
   private int angle;
-  private int model_no;
+  private Model model;
   private String timestamp;
+  private Factory factory;
 
-  public SolarPanel(int serial_number, String location, String installation_time, String cleaning_time, boolean status, int ambient_temp, int solar_flux, int angle, int model_no, String timestamp)
+  public SolarPanel(double serialNo, int location, String installationTime, String cleaningTime, boolean status, double ambientTemp, int solarFlux, int angle, Model model, String timestamp, Factory factory)
   {
-    this.serial_number = serial_number;
+    this.serialNo = serialNo;
     this.location = location;
-    this.installation_time = installation_time;
-    this.cleaning_time = cleaning_time;
+    this.installationTime = installationTime;
+    this.cleaningTime = cleaningTime;
     this.status = status;
-    this.ambient_temp = ambient_temp;
-    this.solar_flux = solar_flux;
+    this.ambientTemp = ambientTemp;
+    this.solarFlux = solarFlux;
     this.angle = angle;
-    this.model_no = model_no;
+    this.model = model;
     this.timestamp = timestamp;
-
+    this.factory = factory;
   }
 
-  public int getSerial_number()
+  public double getSerial_number()
   {
-    return serial_number;
+    return serialNo;
   }
 
-  public void setSerial_number(int serial_number)
+  public void setSerial_number(double serialNo)
   {
-    this.serial_number = serial_number;
+    this.serialNo = serialNo;
   }
 
-  public String getInstallation_time()
+  public String getInstallationTime()
   {
-    return installation_time;
+    return installationTime;
   }
 
   public boolean isStatus()
@@ -53,49 +56,49 @@ public class SolarPanel
     this.status = status;
   }
 
-  public void setInstallation_time(String installation_time)
+  public void setInstallationTime(String installationTime)
   {
-    this.installation_time = installation_time;
+    this.installationTime = installationTime;
   }
 
-  public String getLocation()
+  public int getLocation()
   {
     return location;
   }
 
-  public void setLocation(String location)
+  public void setLocation(int location)
   {
     this.location = location;
   }
 
-  public String getCleaning_time()
+  public String getCleaningTime()
   {
-    return cleaning_time;
+    return cleaningTime;
   }
 
-  public void setCleaning_time(String cleaning_time)
+  public void setCleaningTime(String cleaningTime)
   {
-    this.cleaning_time = cleaning_time;
+    this.cleaningTime = cleaningTime;
   }
 
-  public int getAmbient_temp()
+  public double getAmbient_temp()
   {
-    return ambient_temp;
+    return ambientTemp;
   }
 
-  public void setAmbient_temp(int ambient_temp)
+  public void setAmbient_temp(int ambientTemp)
   {
-    this.ambient_temp = ambient_temp;
+    this.ambientTemp = ambientTemp;
   }
 
-  public int getSolar_flux()
+  public double getSolarFlux()
   {
-    return solar_flux;
+    return solarFlux;
   }
 
-  public void setSolar_flux(int solar_flux)
+  public void setSolarFlux(int solarFlux)
   {
-    this.solar_flux = solar_flux;
+    this.solarFlux = solarFlux;
   }
 
   public int getAngle()
@@ -108,14 +111,14 @@ public class SolarPanel
     this.angle = angle;
   }
 
-  public int getModel_no()
+  public Model getModel()
   {
-    return model_no;
+    return model;
   }
 
-  public void setModel_no(int model_no)
+  public void setModelNo(Model model)
   {
-    this.model_no = model_no;
+    this.model = model;
   }
 
   public String getTimestamp()
@@ -126,6 +129,11 @@ public class SolarPanel
   public void setTimestamp(String timestamp)
   {
     this.timestamp = timestamp;
+  }
+
+  public double getEnergy()
+  {
+    return model.getArea();
   }
 
 }
