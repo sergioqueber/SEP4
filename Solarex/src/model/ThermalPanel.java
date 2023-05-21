@@ -4,34 +4,34 @@ import Solarex.src.model.SolarPanel;
 
 public class ThermalPanel extends SolarPanel
 {
-  private int initial_temp;
-  private int final_temp;
-  private int ambient_temp;
+  private double initialTemp;
+  private double finalTemp;
+  private double ambientTemp;
 
-  public ThermalPanel(int serial_number, String location, String installation_time, String cleaning_time,
-      boolean status, int ambient_temp, int solar_flux, int angle, int model_no,
+  public ThermalPanel(double serialNo, int location, String installationTime, String cleaningTime,
+      boolean status, double ambientTemp, int solarFlux, int angle, int modelNo,
       String timestamp)
   {
-    super(serial_number, location, installation_time, cleaning_time, status,
-        ambient_temp, solar_flux, angle, model_no, timestamp);
-    this.initial_temp = initial_temp;
-    this.final_temp = final_temp;
-    this.ambient_temp = ambient_temp;
+    super(serialNo, location, installationTime, cleaningTime, status,
+        ambientTemp, solarFlux, angle, modelNo, timestamp);
+    this.initialTemp = initialTemp;
+    this.finalTemp = finalTemp;
+    this.ambientTemp = ambientTemp;
   }
 
-  public int getInitial_temp()
+  public double getInitialTemp()
   {
-    return initial_temp;
+    return initialTemp;
   }
 
-  public int getFinal_temp()
+  public double getFinalTemp()
   {
-    return final_temp;
+    return finalTemp;
   }
 
-  public int getAmbient_temp()
+  public double getAmbientTemp()
   {
-    return ambient_temp;
+    return ambientTemp;
   }
 
 }

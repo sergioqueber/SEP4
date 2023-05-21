@@ -1,14 +1,31 @@
 package Solarex.src.model;
 
+
 public class Employee
 {
   private int id;
-  private String f_name;
-  private String l_name;
+  private double CPR;
+  private String fName;
+  private String lName;
   private String type;
   private String email;
-  private String phoneNo;
+  private double phoneNo;
   private String employmentDate;
+  private Role role;
+  private Factory workPlace;
+
+  public Employee(int id, double CPR, String fName, String lNAme, String type, String email, double phoneNo, String employmentDate, Role role, Factory workPlace)
+  {
+    this.id = id;
+    this.CPR = CPR;
+    this.fName = fName;
+    this.lName = lNAme;
+    this.type = type;
+    this.email = email;
+    this.phoneNo = phoneNo;
+    this.employmentDate = employmentDate;
+
+  }
 
   public int getId()
   {
@@ -20,14 +37,14 @@ public class Employee
     return email;
   }
 
-  public String getF_name()
+  public String getFName()
   {
-    return f_name;
+    return fName;
   }
 
-  public String getL_name()
+  public String getLName()
   {
-    return l_name;
+    return lName;
   }
 
   public String getType()
@@ -35,7 +52,7 @@ public class Employee
     return type;
   }
 
-  public String getPhoneNo()
+  public double getPhoneNo()
   {
     return phoneNo;
   }
@@ -43,6 +60,11 @@ public class Employee
   public String getEmploymentDate()
   {
     return employmentDate;
+  }
+
+  public Role getRole()
+  {
+    return role;
   }
 
 
