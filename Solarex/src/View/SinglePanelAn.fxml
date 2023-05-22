@@ -14,10 +14,10 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="669.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
-      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="807.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="686.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <MenuBar layoutX="7.0" layoutY="1.0" prefHeight="25.0" prefWidth="811.0">
          <menus>
             <Menu mnemonicParsing="false" text="Overview">
                <items>
@@ -69,13 +69,13 @@
       </LineChart>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="14.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
       <Text layoutX="25.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Generation" />
-      <Text layoutX="683.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select time period" />
-      <Text layoutX="679.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" />
-      <Text layoutX="681.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
-      <TextField layoutX="717.0" layoutY="400.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="717.0" layoutY="356.0" prefHeight="25.0" prefWidth="62.0" />
-      <Button layoutX="708.0" layoutY="440.0" mnemonicParsing="false" text="Apply" />
-      <TableView layoutX="150.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
+      <Text layoutX="700.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select time period" />
+      <Text layoutX="696.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" />
+      <Text layoutX="698.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
+      <TextField layoutX="731.0" layoutY="400.0" prefHeight="25.0" prefWidth="62.0" />
+      <TextField layoutX="731.0" layoutY="356.0" prefHeight="25.0" prefWidth="62.0" />
+      <Button layoutX="725.0" layoutY="437.0" mnemonicParsing="false" text="Apply" />
+      <TableView layoutX="156.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
          <columns>
             <TableColumn prefWidth="58.66668701171875" text="Intensity " />
             <TableColumn prefWidth="48.66670227050781" text="Voltage" />
@@ -84,10 +84,15 @@
             <TableColumn prefWidth="68.66668701171875" text="Timestamp" />
          </columns>
       </TableView>
-      <TableView layoutX="432.0" layoutY="296.0" prefHeight="193.0" prefWidth="147.0">
+      <TableView layoutX="436.0" layoutY="296.0" prefHeight="193.0" prefWidth="147.0">
          <columns>
             <TableColumn prefWidth="34.0" text="Date" />
             <TableColumn prefWidth="111.99996948242188" text="Repair description" />
+         </columns>
+      </TableView>
+      <TableView layoutX="593.0" layoutY="296.0" prefHeight="193.0" prefWidth="85.0">
+         <columns>
+            <TableColumn prefWidth="83.3333740234375" text="Cleaning date" />
          </columns>
       </TableView>
    </children>
