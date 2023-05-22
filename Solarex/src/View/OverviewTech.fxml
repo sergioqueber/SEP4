@@ -91,5 +91,7 @@
             <TableColumn prefWidth="96.66665649414062" text="Ambient temp" />
          </columns>
       </TableView>
+      <Text layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solar panel type: Photovoltaic" />
+      <Text layoutX="259.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solar panel type: Thermal" />
    </children>
 </AnchorPane>
