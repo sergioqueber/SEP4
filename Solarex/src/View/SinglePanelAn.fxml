@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="669.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="807.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Overview">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Comparison">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Cleaning">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Repairs">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Weather">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Manage Panels">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <TableView layoutX="58.0" layoutY="67.0" prefHeight="200.0" prefWidth="320.0">
+         <columns>
+            <TableColumn prefWidth="98.66665649414062" text="Serial number" />
+            <TableColumn prefWidth="65.33334350585938" text="Location" />
+            <TableColumn prefWidth="51.99993896484375" text="Status" />
+            <TableColumn prefWidth="101.99998474121094" text="Type " />
+         </columns>
+      </TableView>
+      <LineChart layoutX="411.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="14.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <Text layoutX="25.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Generation" />
+      <Text layoutX="683.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select time period" />
+      <Text layoutX="679.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" />
+      <Text layoutX="681.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
+      <TextField layoutX="717.0" layoutY="400.0" prefHeight="25.0" prefWidth="62.0" />
+      <TextField layoutX="717.0" layoutY="356.0" prefHeight="25.0" prefWidth="62.0" />
+      <Button layoutX="708.0" layoutY="440.0" mnemonicParsing="false" text="Apply" />
+      <TableView layoutX="150.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
+         <columns>
+            <TableColumn prefWidth="58.66668701171875" text="Intensity " />
+            <TableColumn prefWidth="48.66670227050781" text="Voltage" />
+            <TableColumn prefWidth="42.0" text="Power" />
+            <TableColumn prefWidth="47.33331298828125" text="Angle " />
+            <TableColumn prefWidth="68.66668701171875" text="Timestamp" />
+         </columns>
+      </TableView>
+      <TableView layoutX="432.0" layoutY="296.0" prefHeight="193.0" prefWidth="147.0">
+         <columns>
+            <TableColumn prefWidth="34.0" text="Date" />
+            <TableColumn prefWidth="111.99996948242188" text="Repair description" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
