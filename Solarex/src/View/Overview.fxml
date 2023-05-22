@@ -3,6 +3,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -81,5 +82,8 @@
       <Text layoutX="594.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
       <TextField layoutX="626.0" layoutY="135.0" prefHeight="25.0" prefWidth="62.0" />
       <TextField layoutX="626.0" layoutY="87.0" prefHeight="25.0" prefWidth="62.0" />
+      <Button layoutX="617.0" layoutY="180.0" mnemonicParsing="false" text="Apply" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="276.0" layoutX="592.0" layoutY="232.0" stroke="BLACK" strokeType="INSIDE" width="96.0" />
+      <Text layoutX="618.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weather" />
    </children>
 </AnchorPane>
