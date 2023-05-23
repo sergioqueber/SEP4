@@ -1,4 +1,4 @@
-package Solarex.src.model;
+package Model;
 
 public class Model
 {
@@ -6,7 +6,7 @@ public class Model
   private double length;
   private double width;
   private double area;
-  private Manufacturer manufacturer;
+  private Manufacturer manufacturer ;
   private double efficiency;
 
   public Model(int modelNo, double length, double width, Manufacturer manufacturer, double efficiency)
@@ -14,8 +14,8 @@ public class Model
     this.modelNo = modelNo;
     this.length = length;
     this.width = width;
-    this.area = getArea(length, width);
-    this.manufacturer = manufacturer;
+    this.area = getArea();
+    //this.manufacturer = manufacturer;
     this.efficiency = efficiency;
   }
 

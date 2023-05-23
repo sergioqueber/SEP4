@@ -1,4 +1,4 @@
-package Solarex.src.model;
+package Model;
 
 import java.time.*;
 

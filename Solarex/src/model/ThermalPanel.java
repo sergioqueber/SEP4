@@ -1,6 +1,4 @@
-package Solarex.src.model;
-
-import Solarex.src.model.SolarPanel;
+package Model;
 
 public class ThermalPanel extends SolarPanel
 {
@@ -9,11 +7,10 @@ public class ThermalPanel extends SolarPanel
   private double ambientTemp;
 
   public ThermalPanel(double serialNo, int location, String installationTime, String cleaningTime,
-      boolean status, double ambientTemp, int solarFlux, int angle, int modelNo,
-      String timestamp)
+      boolean status, double ambientTemp, int solarFlux, int angle, Model model,
+      String timestamp,Factory factory )
   {
-    super(serialNo, location, installationTime, cleaningTime, status,
-        ambientTemp, solarFlux, angle, modelNo, timestamp);
+    super(serialNo,location,installationTime,cleaningTime,status,ambientTemp,solarFlux,angle,model,timestamp,factory);
     this.initialTemp = initialTemp;
     this.finalTemp = finalTemp;
     this.ambientTemp = ambientTemp;

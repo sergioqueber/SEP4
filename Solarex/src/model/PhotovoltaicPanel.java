@@ -1,4 +1,4 @@
-package Solarex.src.model;
+package Model;
 
 public class PhotovoltaicPanel extends SolarPanel
 {
@@ -7,9 +7,9 @@ public class PhotovoltaicPanel extends SolarPanel
   private int power;
 
   public PhotovoltaicPanel(double serialNo, int location, String installationTime, String cleaningTime,
-      boolean status, int ambientTemp, int solarFlux, int angle, int modelNo, String timestamp)
+      boolean status, int ambientTemp, int solarFlux, int angle, Model model, String timestamp, Factory factory)
   {
-    super(serialNo, location, installationTime, cleaningTime, status, ambientTemp, solarFlux, angle, modelNo, timestamp);
+    super(serialNo, location, installationTime, cleaningTime, status, ambientTemp, solarFlux, angle, model, timestamp,factory);
     this.current = current;
     this.voltage = voltage;
     this.power = power;

@@ -1,4 +1,4 @@
-package Solarex.src.model;
+package Model;
 
 public class CurrentTime
 {
