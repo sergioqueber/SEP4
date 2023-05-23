@@ -1,10 +1,10 @@
-package Model;
+package model;
 
 public class Manufacturer
 {
   private String name;
   private String email;
-  private String phoneNumber;
+  private double phoneNumber;
 
   public String getName()
   {
@@ -16,11 +16,15 @@ public class Manufacturer
     return email;
   }
 
-  public String getPhoneNumber()
+  public double getPhoneNumber()
   {
     return phoneNumber;
   }
 
-
+  public Manufacturer(String name, String email,double phoneNumber){
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.name = name;
+  }
 
 }

@@ -16,21 +16,21 @@ public class ViewHandler
     root = null;
     switch(window){
       case "Home Page":
-        root =
+        //root =
         break;
       case "Manage Factors":
-        root =
+        //root =
       case "Manage Countries":
-        root =
+        //root =
         break;
       case "Edit Country":
-        root =
+        //root =
       case "IMS Calculator":
-        root =
+        //root =
 
         break;
       case "Home Page 2":
-        root =
+        //root =
         break;
     }
     currentScene.setRoot(root);
