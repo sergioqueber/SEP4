@@ -16,18 +16,18 @@ public class SolarPanel
   private String timestamp;
   private Factory factory;
 
-  public SolarPanel(double serialNo, int location, String installationTime, String cleaningTime, boolean status, double ambientTemp, int solarFlux, int angle, Model model, String timestamp, Factory factory)
+  public SolarPanel(double serialNo, int location, boolean status, int angle, Model model, Factory factory)
   {
     this.serialNo = serialNo;
     this.location = location;
-    this.installationTime = installationTime;
-    this.cleaningTime = cleaningTime;
+    //this.installationTime = installationTime;
+    this.cleaningTime = null;
     this.status = status;
     this.ambientTemp = ambientTemp;
     this.solarFlux = solarFlux;
     this.angle = angle;
     this.model = model;
-    this.timestamp = timestamp;
+    this.timestamp = null;
     this.factory = factory;
   }
 
