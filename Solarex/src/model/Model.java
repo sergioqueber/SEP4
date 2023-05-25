@@ -19,6 +19,31 @@ public class Model
     this.efficiency = efficiency;
   }
 
+  public void setModelNo(int modelNo)
+  {
+    this.modelNo = modelNo;
+  }
+
+  public void setLength(double length)
+  {
+    this.length = length;
+  }
+
+  public void setWidth(double width)
+  {
+    this.width = width;
+  }
+
+  public void setEfficiency(double efficiency)
+  {
+    this.efficiency = efficiency;
+  }
+
+  public void setManufacturer(Manufacturer manufacturer)
+  {
+    this.manufacturer = manufacturer;
+  }
+
   public int getModelNo()
   {
     return modelNo;
