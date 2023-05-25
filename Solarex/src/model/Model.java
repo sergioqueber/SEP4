@@ -15,7 +15,7 @@ public class Model
     this.length = length;
     this.width = width;
     this.area = getArea();
-    //this.manufacturer = manufacturer;
+    this.manufacturer = manufacturer;
     this.efficiency = efficiency;
   }
 
@@ -50,4 +50,7 @@ public class Model
   }
 
 
+  public String toString(){
+    return "Area" + area;
+  };
 }
