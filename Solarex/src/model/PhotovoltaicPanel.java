@@ -15,6 +15,21 @@ public class PhotovoltaicPanel extends SolarPanel
     this.power = power;
   }
 
+  public void setCurrent()
+  {
+    this.current = current;
+  }
+
+  public void setVoltage()
+  {
+    this.voltage = voltage;
+  }
+
+  public void setPower()
+  {
+    this.power = power;
+  }
+
   public int getCurrent()
   {
     return current;
