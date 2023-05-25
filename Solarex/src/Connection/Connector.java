@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class Connector
 {
   //This is the class that will handle all interaction with the database.
-  private Connection connection;
+  /*private Connection connection;
 
   private Connector() throws SQLException
   {
@@ -34,5 +34,5 @@ public class Connector
   }
 
 
-  }
+  }*/
 }
