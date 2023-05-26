@@ -1,8 +1,10 @@
 import java.security.Principal;
 import java.util.Date;
 import  Connection.Connector;
+import Connection.Model;
 import model.PhotovoltaicPanel;
 import model.SolarPanel;
+
 
 import java.util.Random;
 
@@ -14,6 +16,7 @@ public class SolarPanelSimulator extends Thread
   //private double voltage;
   //private double solarFlux;
   private final int waitTime = 3000;
+  private Model model;
   Random random = new Random();
   public void run(){
     while (true){

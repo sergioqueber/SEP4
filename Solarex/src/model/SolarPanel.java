@@ -15,12 +15,13 @@ public class SolarPanel
   private Model model;
   private String timestamp;
   private Factory factory;
+  private String type;
 
-  public SolarPanel(double serialNo, int location, boolean status, int angle, Model model, Factory factory)
+  public SolarPanel(double serialNo, int location, String installationTime, boolean status, int angle, Model model, Factory factory, String type)
   {
     this.serialNo = serialNo;
     this.location = location;
-    //this.installationTime = installationTime;
+    this.installationTime = installationTime;
     this.cleaningTime = null;
     this.status = status;
     this.ambientTemp = ambientTemp;
@@ -29,6 +30,7 @@ public class SolarPanel
     this.model = model;
     this.timestamp = null;
     this.factory = factory;
+    this.type = type;
   }
 
   public double getSerial_number()
@@ -135,5 +137,7 @@ public class SolarPanel
   {
     return model.getArea();
   }
-
+  public String getType(){
+    return type;
+  }
 }

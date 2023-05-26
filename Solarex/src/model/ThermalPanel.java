@@ -6,11 +6,10 @@ public class ThermalPanel extends SolarPanel
   private double finalTemp;
   private double ambientTemp;
 
-  public ThermalPanel(double serialNo, int location, String installationTime, String cleaningTime,
-      boolean status, double ambientTemp, int solarFlux, int angle, Model model,
-      String timestamp,Factory factory )
+  public ThermalPanel(double serialNo, int location, String installationTime,
+      boolean status, int angle, Model model,Factory factory,String type )
   {
-    super(serialNo,location,installationTime,cleaningTime,status,ambientTemp,solarFlux,angle,model,timestamp,factory);
+    super(serialNo,location,installationTime, status,angle,model,factory,type);
     this.initialTemp = initialTemp;
     this.finalTemp = finalTemp;
     this.ambientTemp = ambientTemp;

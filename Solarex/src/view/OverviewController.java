@@ -14,7 +14,9 @@ import Connection.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import model.Notification;
+import model.SolarPanel;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class OverviewController
@@ -73,16 +75,16 @@ public class OverviewController
   private Label savingsLabel;
 
   @FXML
-  private TableColumn<?, ?> serialNumberColumn;
+  private TableColumn<SolarPanel, Double> serialNumberColumn;
 
   @FXML
-  private TableView<?> solarPanelTable;
+  private TableView<SolarPanel> solarPanelTable;
 
   @FXML
   private Label startLabel;
 
   @FXML
-  private TableColumn<?, ?> statusColumn;
+  private TableColumn<SolarPanel, Boolean> statusColumn;
 
   @FXML
   private TextField textFieldEnd;
@@ -94,10 +96,19 @@ public class OverviewController
   private Label timePeriodLabel;
 
   @FXML
-  private TableColumn<?, ?> typeColumn;
+  private TableColumn<SolarPanel, String> typeColumn;
 
   @FXML
   private Button updateButton;
+  @FXML
+  private CheckBox SNCheckBox;
+  @FXML
+  private CheckBox locationCheckBox;
+  @FXML
+  private TextField textFieldSeach;
+  @FXML
+  private Button searchButton;
+
   public OverviewController(){};
 
   public void init(ViewHandler viewHandler, Region root, Model model){
@@ -111,7 +122,48 @@ public class OverviewController
     return root;
   }
 
-  public void fillTable (){
-
+  public void search() throws SQLException
+  {
+    if(SNCheckBox.isSelected()){
+      int sn = Integer.parseInt(textFieldSeach.getText());
+      serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
+      statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+      locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+      typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+      solarPanelTable.getItems().clear();
+      for (int i = 0; i < model.getPanelsBySn(sn).size() ; i++)
+      {
+        //System.out.println(model.getAllPanels().get(i));
+        solarPanelTable.getItems().add(model.getPanelsBySn(sn).get(i));
+      }
+    }
+    else if (locationCheckBox.isSelected()){
+      int location = Integer.parseInt(textFieldSeach.getText());
+      serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
+      statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+      locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+      typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+      solarPanelTable.getItems().clear();
+      for (int i = 0; i < model.getPanelsByLocation(location).size() ; i++)
+      {
+        //System.out.println(model.getAllPanels().get(i));
+        solarPanelTable.getItems().add(model.getPanelsByLocation(location).get(i));
+      }
+    }
   }
+  public void fillTable () throws SQLException
+  {
+
+    serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
+    statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+    locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+    typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+    solarPanelTable.getItems().clear();
+    for (int i = 0; i < model.getAllPanels().size() ; i++)
+    {
+      System.out.println(model.getAllPanels().get(i));
+      solarPanelTable.getItems().add(model.getAllPanels().get(i));
+    }
+  }
+
 }

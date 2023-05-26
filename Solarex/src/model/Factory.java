@@ -28,5 +28,8 @@ public class Factory
     this.electricityConsumption = electricityConsumption;
   }
 
+  public Factory(int id){
+    this.id = id;
+  }
 
 }

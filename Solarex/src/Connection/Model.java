@@ -3,14 +3,32 @@ package Connection;
 import DAOTest.SolarPanelDAO;
 import model.Factory;
 import model.PhotovoltaicPanel;
+import model.SolarPanel;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Model
 {
-  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, boolean status, int angle, model.Model model, Factory factory) throws SQLException
+  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, model.Model model, Factory factory, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    return solarPanelDAO.create(serialNo,location,status,angle,model,factory);
+    return solarPanelDAO.createpv(serialNo,location, installationDate,status,angle,model,factory,type);
+  }
+
+  public ArrayList<SolarPanel> getAllPanels() throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.readAllPanels();
+  }
+
+  public ArrayList<SolarPanel> getPanelsBySn(int filter) throws SQLException{
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.readFilter("sn",filter);
+  }
+
+  public ArrayList<SolarPanel> getPanelsByLocation(int filter)throws SQLException{
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.readFilter("location",filter);
   }
 }

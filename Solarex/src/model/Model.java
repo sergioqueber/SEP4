@@ -18,6 +18,11 @@ public class Model
     this.manufacturer = manufacturer;
     this.efficiency = efficiency;
   }
+  public Model(int modelNo){
+    this.modelNo = modelNo;
+  }
+
+  public Model(){}
 
   public void setModelNo(int modelNo)
   {
