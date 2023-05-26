@@ -1,6 +1,8 @@
 package Connection;
 
+import DAOTest.FactoryDAO;
 import DAOTest.SolarPanelDAO;
+import DAOTest.FactoryDAO;
 import model.Factory;
 import model.PhotovoltaicPanel;
 import model.SolarPanel;
@@ -30,6 +32,12 @@ public class Model
   public ArrayList<SolarPanel> getPanelsByLocation(int filter)throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readFilter("location",filter);
+  }
+
+  public  getHeatingConsumption() throws SQLException
+  {
+    FactoryDAO factoryDAO = FactoryDAO.getInstance();
+    return factoryDAO;
   }
 
   public double getGeneration ()throws SQLException{

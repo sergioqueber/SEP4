@@ -108,6 +108,8 @@ public class OverviewController
   private TextField textFieldSeach;
   @FXML
   private Button searchButton;
+  @FXML
+  private Label generationValueLabel;
 
   public OverviewController(){};
 
@@ -119,7 +121,7 @@ public class OverviewController
     this.model = model;
     solarPanelTable.getItems().clear();
     fillTable();
-    generationLabel.setText(String.valueOf(model.getGeneration()));
+    generationValueLabel.setText(String.valueOf(model.getGeneration()));
   }
 
   public Region getRoot(){
