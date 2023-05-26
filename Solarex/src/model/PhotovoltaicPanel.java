@@ -2,25 +2,26 @@ package model;
 
 public class PhotovoltaicPanel extends SolarPanel
 {
-  private int current;
-  private int voltage;
-  private int power;
+  private double intensity;
+  private double voltage;
+  private double power;
 
   public PhotovoltaicPanel(double serialNo, int location, String installationTime,
       boolean status, int angle, Model model, Factory factory,String type)
   {
     super(serialNo, location, installationTime, status, angle, model,factory,type);
-    this.current = current;
-    this.voltage = voltage;
-    this.power = power;
+    this.power = intensity*voltage;
+  }
+  public PhotovoltaicPanel(SolarPanel pv){
+    super(pv.getSerial_number(),pv.getLocation(),pv.getInstallationTime(),pv.isStatus(),pv.getAngle(),pv.getModel(),pv.getFactory(),pv.getType());
   }
 
-  public void setCurrent()
+  public void setIntensity(double intensity)
   {
-    this.current = current;
+    this.intensity = intensity;
   }
 
-  public void setVoltage()
+  public void setVoltage(double voltage)
   {
     this.voltage = voltage;
   }
@@ -30,21 +31,19 @@ public class PhotovoltaicPanel extends SolarPanel
     this.power = power;
   }
 
-  public int getCurrent()
+  public double getIntensity()
   {
-    return current;
+    return intensity;
   }
 
-  public int getVoltage()
+  public double getVoltage()
   {
     return voltage;
   }
 
-  public int getPower()
+  public double getPower()
   {
-    return power;
+    return intensity*voltage;
   }
-
-
 
 }

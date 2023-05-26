@@ -31,4 +31,13 @@ public class Model
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readFilter("location",filter);
   }
-}
+
+  public double getGeneration ()throws SQLException{
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    double generation = 0;
+    for(int i = 0; i < solarPanelDAO.readPv().size(); i++){
+      generation = generation + solarPanelDAO.readPv().get(i).getPower();
+      }
+    return generation;
+    }
+  }

@@ -111,11 +111,15 @@ public class OverviewController
 
   public OverviewController(){};
 
-  public void init(ViewHandler viewHandler, Region root, Model model){
+  public void init(ViewHandler viewHandler, Region root, Model model)
+      throws SQLException
+  {
     this.viewHandler = viewHandler;
     this.root = root;
     this.model = model;
     solarPanelTable.getItems().clear();
+    fillTable();
+    generationLabel.setText(String.valueOf(model.getGeneration()));
   }
 
   public Region getRoot(){
@@ -150,6 +154,7 @@ public class OverviewController
         solarPanelTable.getItems().add(model.getPanelsByLocation(location).get(i));
       }
     }
+    resetFields();
   }
   public void fillTable () throws SQLException
   {
@@ -164,6 +169,10 @@ public class OverviewController
       System.out.println(model.getAllPanels().get(i));
       solarPanelTable.getItems().add(model.getAllPanels().get(i));
     }
+  }
+
+  public void resetFields(){
+    textFieldSeach.setText("");
   }
 
 }

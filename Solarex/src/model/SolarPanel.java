@@ -123,21 +123,16 @@ public class SolarPanel
     this.model = model;
   }
 
-  public String getTimestamp()
-  {
-    return timestamp;
-  }
-
-  public void setTimestamp(String timestamp)
-  {
-    this.timestamp = timestamp;
-  }
-
   public double getEnergy()
   {
     return model.getArea();
   }
   public String getType(){
     return type;
+  }
+
+  public Factory getFactory()
+  {
+    return factory;
   }
 }
