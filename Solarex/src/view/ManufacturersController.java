@@ -1,8 +1,17 @@
 package view;
 
+import Connection.Model;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Region;
+import model.Manufacturer;
+
+import java.sql.SQLException;
+
 public class ManufacturersController
 {
-/*
+
   @FXML
   private ChoiceBox<String> choiceBox;
 
@@ -179,5 +188,5 @@ public class ManufacturersController
   }
 
 
- */
+
 }

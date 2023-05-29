@@ -6,6 +6,10 @@ public class Manufacturer
   private String email;
   private double phoneNumber;
 
+  public Manufacturer()
+  {
+
+  }
   public Manufacturer(String name)
   {
     this.name = name;
@@ -19,6 +23,21 @@ public class Manufacturer
   public String getEmail()
   {
     return email;
+  }
+
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+
+  public void setPhoneNumber(double phoneNumber)
+  {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public void setEmail(String email)
+  {
+    this.email = email;
   }
 
   public double getPhoneNumber()
