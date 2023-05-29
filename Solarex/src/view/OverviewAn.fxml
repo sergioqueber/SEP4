@@ -51,6 +51,11 @@
                   <MenuItem mnemonicParsing="false" text="Action 1" />
                </items>
             </Menu>
+            <Menu fx:id="manufacturers" mnemonicParsing="false" text="Manufacturers">
+              <items>
+                  <MenuItem fx:id="manufacturerItem" mnemonicParsing="false" onAction="#loadManufacturers" text="open" />
+              </items>
+            </Menu>
          </menus>
       </MenuBar>
       <TableView fx:id="solarPanelTable" layoutX="22.0" layoutY="70.0" prefHeight="193.0" prefWidth="305.0">
