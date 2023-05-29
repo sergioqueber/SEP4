@@ -2,11 +2,9 @@ package Connection;
 
 import DAOTest.*;
 import DAOTest.FactoryDAO;
-import model.Alerts;
-import model.Factory;
-import model.PhotovoltaicPanel;
-import model.SolarPanel;
+import model.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,8 +13,14 @@ public class Model
   public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    return solarPanelDAO.createpv(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
+    return solarPanelDAO.createPv(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
   }
+  public ThermalPanel addThermalPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException{
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.createTh(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
+  }
+
+
 
   public ArrayList<SolarPanel> getAllPanels() throws SQLException
   {
