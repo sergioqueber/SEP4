@@ -44,6 +44,38 @@ public class Model
     return factoryDAO.read();
   }
 
+  public Manufacturer addManufacturer(String name, String email, double phoneNumber)
+      throws SQLException
+  {
+    ManufacturerDAO manufacturerDAO = ManufacturerDAO.getInstance();
+    return manufacturerDAO.createManufacturer(name, email, phoneNumber);
+  }
+
+  public ArrayList<Manufacturer> getManufacturers() throws SQLException
+  {
+    ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
+    return manufacturers.readManufacturers();
+  }
+
+  public ArrayList<Manufacturer> filterByName(String filter) throws SQLException
+  {
+    ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
+    return manufacturers.readByName(filter);
+  }
+
+  public Manufacturer deleteManufacturer(Manufacturer manufacturer)
+      throws SQLException
+  {
+    ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
+    return manufacturers.removeManufacturer(manufacturer.getName());
+  }
+
+  public Manufacturer editManufacturer(Manufacturer manufacturer) throws SQLException
+  {
+    ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
+    return manufacturers.editManufacturer(manufacturer);
+  }
+
   public double getHeatingConsumption()throws SQLException{
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
     System.out.println(factoryDAO.read().get(0).getHeatingConsumption());

@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import java.net.URL;
 
 public class ViewHandler
 {
@@ -17,6 +16,8 @@ public class ViewHandler
   private OverviewController overviewController;
 
   private SetTargetsController setTargetsController;
+
+  private ManufacturersController manufacturersController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -31,8 +32,9 @@ public class ViewHandler
         break;
       case "Set Targets":
         root = loadSetTargetsController("SetTargets.fxml");
-      case "Manage Countries":
-        //root =
+        break;
+      case "Manufacturers":
+        root = loadManufacturersView("Manufacturers.fxml");
         break;
       case "Edit Country":
         //root =
@@ -109,6 +111,35 @@ public class ViewHandler
       {
         root =  setTargetsController.getRoot();
         setTargetsController.init(this,root,model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
+  private Region loadManufacturersView(String fxmlFile){
+    if(manufacturersController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        manufacturersController = loader.getController();
+        manufacturersController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  manufacturersController.getRoot();
+        manufacturersController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();
