@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class Model
 {
-  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, model.Model model, Factory factory, String type) throws SQLException
+  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    return solarPanelDAO.createpv(serialNo,location, installationDate,status,angle,model,factory,type);
+    return solarPanelDAO.createpv(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
   }
 
   public ArrayList<SolarPanel> getAllPanels() throws SQLException
