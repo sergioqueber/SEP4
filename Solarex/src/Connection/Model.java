@@ -1,9 +1,8 @@
 package Connection;
 
+import DAOTest.*;
 import DAOTest.FactoryDAO;
-import DAOTest.PvPanelLogDAO;
-import DAOTest.SolarPanelDAO;
-import DAOTest.FactoryDAO;
+import model.Alerts;
 import model.Factory;
 import model.PhotovoltaicPanel;
 import model.SolarPanel;
@@ -76,5 +75,23 @@ public class Model
     {
       PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
       return pvPanelLogDAO.getDatesInTimePeriod(startDate,endDate);
+    }
+
+    public void setAlertIntensity(double intensity) throws SQLException
+    {
+      AlertsDAO alertsDAO = AlertsDAO.getInstance();
+      alertsDAO.createNotificationIntensity(intensity);
+
+    }
+
+    public void setAlertVoltage(double voltage)throws SQLException{
+      AlertsDAO alertsDAO = AlertsDAO.getInstance();
+      alertsDAO.createNotificationVoltage(voltage);
+    }
+
+    public ArrayList<Alerts> getAlerts() throws SQLException
+    {
+      AlertsDAO alertsDAO = AlertsDAO.getInstance();
+      return alertsDAO.readAlerts();
     }
   }

@@ -27,11 +27,10 @@
                   <MenuItem mnemonicParsing="false" text="Close" />
                </items>
             </Menu>
-            <Menu fx:id="compararison" mnemonicParsing="false" text="Comparison">
+            <Menu mnemonicParsing="false" onAction="#loadSetTargets" text="Set  Targets">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
+                  <MenuItem fx:id="setTargetsItem" mnemonicParsing="false" onAction="#loadSetTargets" text="Click" />
+               </items></Menu>
             <Menu mnemonicParsing="false" text="Cleaning">
                <items>
                   <MenuItem mnemonicParsing="false" text="About" />
@@ -73,16 +72,16 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="18.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="151.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="289.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="431.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="425.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="147.0" />
       <TextField fx:id="textFieldEnd" layoutX="626.0" layoutY="135.0" prefHeight="25.0" prefWidth="62.0" />
       <TextField fx:id="textFieldStart" layoutX="626.0" layoutY="87.0" prefHeight="25.0" prefWidth="62.0" />
       <Button fx:id="applyButton" layoutX="617.0" layoutY="181.0" mnemonicParsing="false" onAction="#selectTimePeriod" text="Apply" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="276.0" layoutX="592.0" layoutY="232.0" stroke="BLACK" strokeType="INSIDE" width="96.0" />
       <Button fx:id="updateButton" layoutX="19.0" layoutY="275.0" mnemonicParsing="false" onAction="#fillTable" text="Update" />
-      <TableView layoutX="434.0" layoutY="343.0" prefHeight="162.0" prefWidth="124.0">
+      <TableView fx:id="alertsTableView" layoutX="428.0" layoutY="343.0" prefHeight="162.0" prefWidth="141.0">
         <columns>
-          <TableColumn fx:id="notificationTable" prefWidth="64.0" text="C1" />
-          <TableColumn prefWidth="86.4000244140625" text="C2" />
+          <TableColumn fx:id="idColumn" prefWidth="64.0" text="Alert ID" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="86.4000244140625" text="Panel SN" />
         </columns>
       </TableView>
       <Label fx:id="startLabel" layoutX="589.0" layoutY="91.0" text="Start" />
@@ -129,5 +128,6 @@
       <Label fx:id="electricityValueConsumption" layoutX="202.0" layoutY="400.0" text="Label" />
       <Label fx:id="heatingValueConsumption" layoutX="202.0" layoutY="470.0" text="Label" />
       <Label fx:id="savingsValueLabel" layoutX="337.0" layoutY="409.0" text="Label" />
+      <Button fx:id="refreshButton" layoutX="509.0" layoutY="275.0" mnemonicParsing="false" onAction="#refreshNotification" text="Refresh" />
    </children>
 </AnchorPane>

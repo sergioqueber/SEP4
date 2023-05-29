@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -20,6 +19,7 @@ import javafx.scene.chart.CategoryAxis;
 import Connection.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import model.Alerts;
 import model.Notification;
 import model.SolarPanel;
 import java.net.URL;
@@ -39,7 +39,9 @@ public class OverviewController implements Initializable
   private Button applyButton;
 
   @FXML
-  private Menu compararison;
+  private Menu setTargets;
+  @FXML
+  private MenuItem setTargetsItem;
 
   @FXML
   private Label consumptionLabel;
@@ -126,6 +128,14 @@ public class OverviewController implements Initializable
   private NumberAxis powerOutputAxis;
   @FXML
   private CategoryAxis timeAxis;
+  @FXML
+  TableView<Alerts> alertsTableView;
+  @FXML
+  TableColumn<Alerts,Integer> idColumn;
+  @FXML
+  TableColumn<Alerts,String> descriptionColumn;
+  @FXML
+  Button refreshButton;
 
 
   public OverviewController() throws SQLException
@@ -140,6 +150,7 @@ public class OverviewController implements Initializable
     this.model = model;
     solarPanelTable.getItems().clear();
     fillTable();
+    //refreshNotification();
     generationValueLabel.setText(String.valueOf(model.getGeneration()));
     electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
     heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
@@ -216,8 +227,24 @@ public class OverviewController implements Initializable
     }
   }
 
+  public void refreshNotification() throws SQLException
+  {
+    idColumn.setCellValueFactory(new PropertyValueFactory<>("notificationId"));
+    descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("solarPanelSn"));
+    alertsTableView.getItems().clear();
+    for (int i = 0; i < model.getAlerts().size(); i++)
+    {
+      alertsTableView.getItems().add(model.getAlerts().get(i));
+      System.out.println(model.getAlerts().get(i));
+    }
+  }
+
   public void resetFields(){
     textFieldSeach.setText("");
   }
 
+  public void loadSetTargets(){
+    viewHandler.openView("Set Targets");
+    System.out.println("Hola");
+  }
 }

@@ -16,6 +16,8 @@ public class ViewHandler
 
   private OverviewController overviewController;
 
+  private SetTargetsController setTargetsController;
+
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
     this.model = model;
@@ -27,8 +29,8 @@ public class ViewHandler
       case "Overview":
         root = loadOverviewView("OverviewAn.fxml");
         break;
-      case "Manage Factors":
-        //root =
+      case "Set Targets":
+        root = loadSetTargetsController("SetTargets.fxml");
       case "Manage Countries":
         //root =
         break;
@@ -79,6 +81,34 @@ public class ViewHandler
       {
         root =  overviewController.getRoot();
         overviewController.init(this,root,model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+  private Region loadSetTargetsController(String fxmlFile){
+    if(setTargetsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        setTargetsController = loader.getController();
+        setTargetsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  setTargetsController.getRoot();
+        setTargetsController.init(this,root,model);
       }
       catch (Exception e){
         e.printStackTrace();

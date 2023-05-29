@@ -19,6 +19,7 @@ public class PhotovoltaicPanel extends SolarPanel
     super(timestamp);
     this.intensity = intensity;
     this.voltage = voltage;
+    power = intensity*voltage;
   }
   public void setIntensity(double intensity)
   {

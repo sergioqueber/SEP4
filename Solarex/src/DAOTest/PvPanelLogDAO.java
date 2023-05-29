@@ -78,17 +78,13 @@ public class PvPanelLogDAO
         System.out.println(dates.size());
         for(int j = 0; j < result.size(); j++){
           if(result.get(j).getTimestamp().equals(dates.get(i))){
-            total = total + result.get(j).getIntensity();
+            total = total + result.get(j).getPower();
           }
         }
         dailyEnergy.add(total);
       }
-
       System.out.println(dailyEnergy);
       return dailyEnergy;
-
-
     }
   }
-
 }
