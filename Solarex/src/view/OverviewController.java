@@ -1,5 +1,8 @@
 package view;
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
 import javafx.scene.control.Button;
@@ -10,16 +13,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.CategoryAxis;
 import Connection.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import model.Notification;
 import model.SolarPanel;
-
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class OverviewController
+public class OverviewController implements Initializable
 {
 
   private Region root;
@@ -36,19 +45,10 @@ public class OverviewController
   private Label consumptionLabel;
 
   @FXML
-  private TextField electricity;
-
-  @FXML
   private Label endLabel;
 
   @FXML
-  private TextField generation;
-
-  @FXML
   private Label generationLabel;
-
-  @FXML
-  private TextField heating;
 
   @FXML
   private TableColumn<?, ?> locationColumn;
@@ -110,9 +110,28 @@ public class OverviewController
   private Button searchButton;
   @FXML
   private Label generationValueLabel;
+  @FXML
+  private Label electricityValueConsumption;
+  @FXML
+  private Label heatingValueConsumption;
+  @FXML
+  private Label electricityConsumption;
+  @FXML
+  private Label heatingConsumption;
+  @FXML
+  private Label savingsValueLabel;
+  @FXML
+  private LineChart<?, ?> graph;
+  @FXML
+  private NumberAxis powerOutputAxis;
+  @FXML
+  private CategoryAxis timeAxis;
 
-  public OverviewController(){};
 
+  public OverviewController() throws SQLException
+  {};
+  ArrayList<Double> generationByTimePeriod;
+  ArrayList<String> days;
   public void init(ViewHandler viewHandler, Region root, Model model)
       throws SQLException
   {
@@ -122,7 +141,31 @@ public class OverviewController
     solarPanelTable.getItems().clear();
     fillTable();
     generationValueLabel.setText(String.valueOf(model.getGeneration()));
+    electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
+    heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
+    savingsValueLabel.setText(String.valueOf(model.getSavings(2.8)));
+
   }
+
+
+  public void selectTimePeriod() throws SQLException
+  {
+    generationByTimePeriod = model.getGenerationByTimePeriod(textFieldStart.getText(), textFieldEnd.getText());
+    days = model.getDaysInTimePeriod(textFieldStart.getText(),textFieldEnd.getText());
+    XYChart.Series series = new XYChart.Series();
+
+    for (int i = 0; i < days.size(); i++){
+      series.getData().add(new XYChart.Data<>(days.get(i), generationByTimePeriod.get(i)));
+    }
+
+    graph.getData().addAll(series);
+  }
+  public void initialize(URL url, ResourceBundle rb) {
+
+
+  }
+
+
 
   public Region getRoot(){
     return root;

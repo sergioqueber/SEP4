@@ -15,7 +15,11 @@ public class PhotovoltaicPanel extends SolarPanel
   public PhotovoltaicPanel(SolarPanel pv){
     super(pv.getSerial_number(),pv.getLocation(),pv.getInstallationTime(),pv.isStatus(),pv.getAngle(),pv.getModel(),pv.getFactory(),pv.getType());
   }
-
+  public PhotovoltaicPanel(double intensity, double voltage, String timestamp){
+    super(timestamp);
+    this.intensity = intensity;
+    this.voltage = voltage;
+  }
   public void setIntensity(double intensity)
   {
     this.intensity = intensity;
@@ -44,6 +48,10 @@ public class PhotovoltaicPanel extends SolarPanel
   public double getPower()
   {
     return intensity*voltage;
+  }
+
+  public String toString(){
+    return "" + intensity;
   }
 
 }

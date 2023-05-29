@@ -33,6 +33,10 @@ public class SolarPanel
     this.type = type;
   }
 
+  public SolarPanel(String timestamp){
+    this.timestamp = timestamp;
+  }
+
   public double getSerial_number()
   {
     return serialNo;
@@ -134,5 +138,10 @@ public class SolarPanel
   public Factory getFactory()
   {
     return factory;
+  }
+
+  public String getTimestamp()
+  {
+    return timestamp;
   }
 }

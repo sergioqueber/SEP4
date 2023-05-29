@@ -62,12 +62,12 @@
             <TableColumn fx:id="typeColumn" prefWidth="87.33334859212238" text="Type " />
          </columns>
       </TableView>
-      <LineChart layoutX="323.0" layoutY="50.0" prefHeight="213.0" prefWidth="241.0">
+      <LineChart fx:id="graph" disable="true" layoutX="323.0" layoutY="50.0" legendVisible="false" prefHeight="213.0" prefWidth="241.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis fx:id="timeAxis" label="Time" side="BOTTOM" tickLabelRotation="155.1" tickLabelsVisible="false" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="powerOutputAxis" disable="true" label="Power Output" side="LEFT" />
         </yAxis>
       </LineChart>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="18.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
@@ -76,7 +76,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="431.0" layoutY="308.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
       <TextField fx:id="textFieldEnd" layoutX="626.0" layoutY="135.0" prefHeight="25.0" prefWidth="62.0" />
       <TextField fx:id="textFieldStart" layoutX="626.0" layoutY="87.0" prefHeight="25.0" prefWidth="62.0" />
-      <Button fx:id="applyButton" layoutX="617.0" layoutY="180.0" mnemonicParsing="false" text="Apply" />
+      <Button fx:id="applyButton" layoutX="617.0" layoutY="181.0" mnemonicParsing="false" onAction="#selectTimePeriod" text="Apply" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="276.0" layoutX="592.0" layoutY="232.0" stroke="BLACK" strokeType="INSIDE" width="96.0" />
       <Button fx:id="updateButton" layoutX="19.0" layoutY="275.0" mnemonicParsing="false" onAction="#fillTable" text="Update" />
       <TableView layoutX="434.0" layoutY="343.0" prefHeight="162.0" prefWidth="124.0">
@@ -97,8 +97,8 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="190.0" layoutY="367.0" text="Electricity" />
-      <Label layoutX="202.0" layoutY="434.0" text="Heat" />
+      <Label fx:id="electricityConsumption" layoutX="179.0" layoutY="368.0" text="Electricity MW" />
+      <Label fx:id="heatingConsumption" layoutX="189.0" layoutY="440.0" text="Heat m^3" />
       <Label fx:id="savingsLabel" layoutX="332.0" layoutY="326.0" text="Savings">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -126,5 +126,8 @@
       <Line endX="16.0" endY="-11.0" layoutX="58.0" layoutY="410.0" startX="5.0" startY="38.0" />
       <Line endX="-12.5" endY="-23.0" layoutX="60.0" layoutY="422.0" startX="14.70709228515625" startY="-23.70709228515625" />
       <Line endX="56.5" endY="-17.0" layoutX="4.0" layoutY="370.0" startX="42.79290771484375" startY="29.70709228515625" />
+      <Label fx:id="electricityValueConsumption" layoutX="202.0" layoutY="400.0" text="Label" />
+      <Label fx:id="heatingValueConsumption" layoutX="202.0" layoutY="470.0" text="Label" />
+      <Label fx:id="savingsValueLabel" layoutX="337.0" layoutY="409.0" text="Label" />
    </children>
 </AnchorPane>

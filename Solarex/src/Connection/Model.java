@@ -1,6 +1,7 @@
 package Connection;
 
 import DAOTest.FactoryDAO;
+import DAOTest.PvPanelLogDAO;
 import DAOTest.SolarPanelDAO;
 import DAOTest.FactoryDAO;
 import model.Factory;
@@ -34,10 +35,26 @@ public class Model
     return solarPanelDAO.readFilter("location",filter);
   }
 
-  public  getHeatingConsumption() throws SQLException
+  public ArrayList<Factory> getFactories() throws SQLException
   {
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
-    return factoryDAO;
+    return factoryDAO.read();
+  }
+
+  public double getHeatingConsumption()throws SQLException{
+    FactoryDAO factoryDAO = FactoryDAO.getInstance();
+    System.out.println(factoryDAO.read().get(0).getHeatingConsumption());
+    return factoryDAO.read().get(0).getHeatingConsumption();
+  }
+
+  public double getElectricityConsumption()throws SQLException{
+    FactoryDAO factoryDAO = FactoryDAO.getInstance();
+    return factoryDAO.read().get(0).getElectricityConsumption();
+  }
+
+  public double getSavings(double electricityPrice)throws SQLException{
+    FactoryDAO factoryDAO = FactoryDAO.getInstance();
+    return ((factoryDAO.read().get(0).getElectricityConsumption()) *(electricityPrice - getGeneration() * electricityPrice));
   }
 
   public double getGeneration ()throws SQLException{
@@ -47,5 +64,17 @@ public class Model
       generation = generation + solarPanelDAO.readPv().get(i).getPower();
       }
     return generation;
+    }
+    public ArrayList<Double> getGenerationByTimePeriod(String startDate, String endDate) throws SQLException{
+      PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
+      System.out.println(pvPanelLogDAO.getDatesInTimePeriod(startDate,endDate));
+      return pvPanelLogDAO.readByTimePeriod(startDate,endDate);
+    }
+
+    public ArrayList<String> getDaysInTimePeriod(String startDate, String endDate)
+        throws SQLException
+    {
+      PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
+      return pvPanelLogDAO.getDatesInTimePeriod(startDate,endDate);
     }
   }

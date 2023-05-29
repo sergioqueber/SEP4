@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import java.net.URL;
 
 public class ViewHandler
 {
@@ -24,7 +25,7 @@ public class ViewHandler
     root = null;
     switch(window){
       case "Overview":
-        root = loadOverviewView("OverviewAN.fxml");
+        root = loadOverviewView("OverviewAn.fxml");
         break;
       case "Manage Factors":
         //root =

@@ -26,7 +26,7 @@ public class FactoryDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * FROM solarex.factory");
+          "SELECT id, heating_consumption, electricity_consumption FROM solarex.factory");
       ResultSet resultSet = statement.executeQuery();
       ArrayList<Factory> result = new ArrayList<>();
 
@@ -35,10 +35,10 @@ public class FactoryDAO
         int id = resultSet.getInt(1);
         double heatingConsumption = resultSet.getDouble(2);
         double electricityConsumption = resultSet.getDouble(3);
-        int addressId = resultSet.getInt(4);
         Factory factory = new Factory(id, heatingConsumption,
             electricityConsumption);
         result.add(factory);
+        System.out.println(factory);
       }
       return result;
     }
