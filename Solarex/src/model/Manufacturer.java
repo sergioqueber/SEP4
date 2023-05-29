@@ -6,6 +6,11 @@ public class Manufacturer
   private String email;
   private double phoneNumber;
 
+  public Manufacturer(String name)
+  {
+    this.name = name;
+  }
+
   public String getName()
   {
     return name;
