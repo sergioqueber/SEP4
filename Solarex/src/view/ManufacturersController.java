@@ -159,12 +159,16 @@ public class ManufacturersController
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-    manufacturerTable.getItems().clear();
     if (manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
     {
+      System.out.println("Hola");
       model.getManufacturers().remove(manufacturerTable.getSelectionModel().getSelectedIndex());
       model.deleteManufacturer(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()));
     }
+    manufacturerTable.getItems().clear();
+   for (int i= 0; i < model.getManufacturers().size(); i++ ){
+     manufacturerTable.getItems().add(model.getManufacturers().get(i));
+   }
   }
 
   public void onEditButtonClicked() throws SQLException
