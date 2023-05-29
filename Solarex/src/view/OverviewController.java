@@ -42,6 +42,10 @@ public class OverviewController implements Initializable
   private Menu setTargets;
   @FXML
   private MenuItem setTargetsItem;
+  @FXML
+  private Menu manufacturers;
+  @FXML
+  private MenuItem manufacturerItem;
 
   @FXML
   private Label consumptionLabel;
@@ -136,6 +140,7 @@ public class OverviewController implements Initializable
   TableColumn<Alerts,String> descriptionColumn;
   @FXML
   Button refreshButton;
+
 
 
   public OverviewController() throws SQLException
@@ -246,5 +251,9 @@ public class OverviewController implements Initializable
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
     System.out.println("Hola");
+  }
+
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
   }
 }
