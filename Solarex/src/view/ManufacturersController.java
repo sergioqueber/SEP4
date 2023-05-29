@@ -159,12 +159,13 @@ public class ManufacturersController
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-    manufacturerTable.getItems().clear();
     if (manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
     {
       model.getManufacturers().remove(manufacturerTable.getSelectionModel().getSelectedIndex());
       model.deleteManufacturer(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()));
     }
+    manufacturerTable.getItems().clear();
+    fillManufacturers();
   }
 
   public void onEditButtonClicked() throws SQLException
@@ -172,7 +173,6 @@ public class ManufacturersController
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-    manufacturerTable.getItems().clear();
     if(manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
     {
       String name = nameText.getText();
@@ -185,6 +185,8 @@ public class ManufacturersController
       model.editManufacturer(manufacturer);
       model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex());
     }
+    manufacturerTable.getItems().clear();
+    fillManufacturers();
   }
 
 

@@ -1,7 +1,5 @@
 package model;
 
-import java.time.*;
-
 public class SolarPanel
 {
   private double serialNo;
@@ -33,9 +31,11 @@ public class SolarPanel
     this.type = type;
   }
 
+
   public SolarPanel(String timestamp){
     this.timestamp = timestamp;
   }
+
 
   public double getSerial_number()
   {
