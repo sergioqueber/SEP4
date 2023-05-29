@@ -16,6 +16,7 @@ public class ViewHandler
   private OverviewController overviewController;
 
   private SetTargetsController setTargetsController;
+  private LogInController logInController;
 
   private ManufacturersController manufacturersController;
 
@@ -27,7 +28,7 @@ public class ViewHandler
   public void openView(String window){
     root = null;
     switch(window){
-      case "Overview":
+      case "OverviewAn":
         root = loadOverviewView("OverviewAn.fxml");
         break;
       case "Set Targets":
@@ -36,11 +37,11 @@ public class ViewHandler
       case "Manufacturers":
         root = loadManufacturersView("Manufacturers.fxml");
         break;
-      case "Edit Country":
-        //root =
-      case "IMS Calculator":
-        //root =
-
+      case "LogIn":
+        root = loadLogIn("login.fxml");
+        break;
+      case "OverviewTe":
+        root = loadOverviewView("OverviewTe.fxml");
         break;
       case "Home Page 2":
         //root =
@@ -60,7 +61,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Overview");
+    openView("LogIn");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -140,6 +141,35 @@ public class ViewHandler
       {
         root =  manufacturersController.getRoot();
         manufacturersController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
+  private Region loadLogIn(String fxmlFile){
+    if(logInController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        logInController = loader.getController();
+        logInController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  logInController.getRoot();
+        logInController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();

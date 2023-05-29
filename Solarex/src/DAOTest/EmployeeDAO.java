@@ -52,7 +52,23 @@ public class EmployeeDAO
     }
   }
 
-
+  public Employee readById(int id) throws SQLException
+  {
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT password, role_id FROM solarex.employee WHERE id = ?");
+      statement.setInt(1,id);
+      ResultSet resultSet = statement.executeQuery();
+      if(resultSet.next()){
+        String password = resultSet.getString("password");
+        int roleId = resultSet.getInt("role_id");
+        return new Employee(id,password, new Role(roleId));
+      }
+      else {
+        return null;
+      }
+    }
+  }
 
 
 }

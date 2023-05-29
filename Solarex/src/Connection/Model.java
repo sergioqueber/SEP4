@@ -130,4 +130,26 @@ public class Model
       AlertsDAO alertsDAO = AlertsDAO.getInstance();
       return alertsDAO.readAlerts();
     }
+
+    public boolean logInCheck(int id, String password) throws SQLException
+    {
+    EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+    return employeeDAO.readById(id).getPassword().equals(password);
+    }
+
+    public Employee getEmployee(int id) throws SQLException
+    {
+    EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+    return employeeDAO.readById(id);
+    }
+
+    public Employee registerEmployee(int id, double CPR, String fName, String lNAme, String type, String email, double phoneNo, String employmentDate, Role role, Factory workPlace)
+        throws SQLException
+    {
+    EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+
+    employeeDAO.createEmployee(id, CPR, fName,lNAme,type,email,phoneNo,employmentDate,role,workPlace);
+    return null;
+    }
+
   }
