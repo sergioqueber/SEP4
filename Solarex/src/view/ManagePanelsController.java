@@ -162,7 +162,7 @@ public class ManagePanelsController
     this.model = model;
     this.root = root;
     modelChoiceBox.getItems().addAll(model.getModels());
-    factoryChoiceBox.getItems().addAll(model.getFactories());
+    //factoryChoiceBox.getItems().addAll(model.getFactories());
     fillPVPanels();
     fillTHPanels();
   }
@@ -214,7 +214,8 @@ public class ManagePanelsController
     {
       String type = "Photovoltaic panel";
       double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
-      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
+      //int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
+      int factoryId = 1;
       model.addPhotovoltaicPanel(serialNo, location, installationDate, status,
           angle, modelNo, factoryId, type);
       pvPanelTable.getItems().add(model.addPhotovoltaicPanel(serialNo, location, installationDate, status, angle,
@@ -225,7 +226,8 @@ public class ManagePanelsController
     {
       String type = "Thermal panel";
       double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
-      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
+      //int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
+      int factoryId = 1;
       model.addThermalPanel(serialNo, location, installationDate, status, angle,
           modelNo, factoryId, type);
       thPanelTable.getItems().add(model.addThermalPanel(serialNo, location, installationDate, status, angle,
@@ -238,7 +240,7 @@ public class ManagePanelsController
     statusText.clear();
     angleText.clear();
     modelChoiceBox.getSelectionModel();
-    factoryChoiceBox.getSelectionModel();
+    //factoryChoiceBox.getSelectionModel();
   }
 
 

@@ -1,7 +1,9 @@
 package DAOTest;
-import java.sql.*;
+
 import model.*;
-import java.util.*;
+
+import java.sql.*;
+import java.util.ArrayList;
 public class SolarPanelDAO
 {
   private static SolarPanelDAO instance;
@@ -23,7 +25,7 @@ public class SolarPanelDAO
 
   public PhotovoltaicPanel createPv(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)");
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_time) VALUES(?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
       statement.setBoolean(3,status);
@@ -40,7 +42,7 @@ public class SolarPanelDAO
 
   public ThermalPanel createTh(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)");
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_time) VALUES(?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
       statement.setBoolean(3,status);
@@ -70,7 +72,7 @@ public class SolarPanelDAO
         int location = resultSet.getInt(2);
         boolean status = resultSet.getBoolean(3);
         int angle = resultSet.getInt(4);
-        int model_no = resultSet.getInt(5);
+        int model_no = resultSet .getInt(5);
         int factory_id = resultSet.getInt(6);
         String type = resultSet.getString(7);
         String installation_time = resultSet.getString(8);
