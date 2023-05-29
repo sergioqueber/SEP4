@@ -56,6 +56,12 @@ public class Model
     return manufacturers.readByName(filter);
   }
 
+  public ArrayList<Manufacturer> filterByEmail(String filter) throws SQLException
+  {
+    ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
+    return manufacturers.readByEmail(filter);
+  }
+
   public Manufacturer deleteManufacturer(Manufacturer manufacturer)
       throws SQLException
   {

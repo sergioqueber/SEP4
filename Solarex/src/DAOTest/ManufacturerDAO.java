@@ -99,6 +99,25 @@ public class ManufacturerDAO
     }
   }
 
+  public ArrayList<Manufacturer> readByEmail(String searchString) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM solarex.manufacturer WHERE email LIKE ?");
+      statement.setString(1, "%" + searchString + "%");
+      ResultSet resultSet = statement.executeQuery();
+      ArrayList<Manufacturer> result = new ArrayList<>();
+      while (resultSet.next())
+      {
+        String email = resultSet.getString("email");
+        Manufacturer manufacturer = new Manufacturer(email);
+        result.add(manufacturer);
+      }
+      return result;
+    }
+  }
+
   public Manufacturer removeManufacturer(String name) throws SQLException
   {
     try (Connection connection = getConnection())

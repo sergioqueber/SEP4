@@ -143,11 +143,11 @@ public class ManufacturersController
     }
     else if (choiceBox.getValue() == "Email")
     {
-      String name = searchField.getText();
+      String email = searchField.getText();
       manufacturerTable.getItems().clear();
       for (int i = 0; i < model.getManufacturers().size(); i++)
       {
-        model.filterByName(name);
+        model.filterByEmail(email);
         manufacturerTable.getItems().add(model.getManufacturers().get(i));
       }
     }
