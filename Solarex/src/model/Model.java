@@ -22,7 +22,8 @@ public class Model
     this.modelNo = modelNo;
   }
 
-  public Model(){}
+  public Model(){
+  }
 
   public void setModelNo(double modelNo)
   {

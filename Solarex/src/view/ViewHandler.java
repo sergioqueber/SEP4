@@ -17,6 +17,8 @@ public class ViewHandler
 
   private SetTargetsController setTargetsController;
 
+  private ManagePanelsController managePanelsController;
+
   private ManufacturersController manufacturersController;
 
   public ViewHandler(Model model){
@@ -36,8 +38,8 @@ public class ViewHandler
       case "Manufacturers":
         root = loadManufacturersView("Manufacturers.fxml");
         break;
-      case "Edit Country":
-        //root =
+      case "Manage panels":
+        root = loadManagePanelsView("ManagePanels.fxml");
       case "IMS Calculator":
         //root =
 
@@ -148,4 +150,32 @@ public class ViewHandler
     return root;
   }
 
+  private Region loadManagePanelsView(String fxmlFile){
+    if(managePanelsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        managePanelsController = loader.getController();
+        managePanelsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  managePanelsController.getRoot();
+        managePanelsController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
 }

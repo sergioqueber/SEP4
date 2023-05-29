@@ -61,7 +61,7 @@
             <TableColumn fx:id="pvLocationC" prefWidth="66.39996337890625" text="Location" />
             <TableColumn fx:id="pvStatusC" prefWidth="49.60003662109375" text="Status" />
             <TableColumn fx:id="pvTypeC" prefWidth="46.40000915527344" text="Type " />
-            <TableColumn fx:id="pvManufacturerC" prefWidth="71.199951171875" text="Model" />
+            <TableColumn fx:id="pvModelC" prefWidth="71.199951171875" text="Model" />
             <TableColumn prefWidth="75.0" text="Column X" />
             <TableColumn prefWidth="75.0" text="Column X" />
          </columns>
@@ -73,17 +73,16 @@
             <TableColumn fx:id="tpLocationC" prefWidth="68.0" text="Location" />
             <TableColumn fx:id="tpStatusC" prefWidth="49.60003662109375" text="Status" />
             <TableColumn fx:id="tpTypeC" prefWidth="52.79998779296875" text="Type " />
-            <TableColumn fx:id="tpManufacturerC" prefWidth="64.0" text="Model" />
+            <TableColumn fx:id="tpModelC" prefWidth="64.0" text="Model" />
          </columns>
       </TableView>
       <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
       <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
       <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
       <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="addNewButton" layoutX="630.0" layoutY="428.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Add" />
+      <Button fx:id="addNewButton" layoutX="630.0" layoutY="428.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
       <Button fx:id="editButton" layoutX="25.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
-      <Button fx:id="removeButton" layoutX="90.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Remove" />
-      <Button fx:id="saveButton" layoutX="631.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Save" />
+      <Button fx:id="removeButton" layoutX="618.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Remove" />
       <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
          <font>
             <Font size="14.0" />
