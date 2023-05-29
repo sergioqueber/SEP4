@@ -87,14 +87,14 @@ public class SolarPanelDAO
     }
   }
 
-  public ArrayList<PhotovoltaicPanel> readTh()throws SQLException
+  public ArrayList<ThermalPanel> readTh()throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT serial_number,location,status,\"angle(°)\",model_no,factory_id,type,installation_time, \"initial_temp(°C)\",\"final_temp(°C)\",tp.\"ambient_temp(°C)\" FROM solarex.solar_panel JOIN thermal_panel tp ON solar_panel.serial_number = tp.solar_panel_sn");
       ResultSet resultSet = statement.executeQuery();
-      ArrayList<PhotovoltaicPanel> result = new ArrayList<>();
+      ArrayList<ThermalPanel> result = new ArrayList<>();
       while (resultSet.next())
       {
         double serialNo = resultSet.getDouble(1);
@@ -105,14 +105,16 @@ public class SolarPanelDAO
         int factory_id = resultSet.getInt(6);
         String type = resultSet.getString(7);
         String installation_time = resultSet.getString(8);
-        double voltage = resultSet.getDouble(9);
-        double intensity = resultSet.getDouble(10);
-        PhotovoltaicPanel pv = new PhotovoltaicPanel(serialNo, location,
+        double initialTemp = resultSet.getDouble(9);
+        double finalTemp = resultSet.getDouble(10);
+        double ambientTemp = resultSet.getDouble(11);
+        ThermalPanel th = new ThermalPanel(serialNo, location,
             installation_time, status, angle, new Model(model_no), new Factory(factory_id),
             type);
-        pv.setIntensity(intensity);
-        pv.setVoltage(voltage);
-        result.add(pv);
+        th.setInitialTemp(initialTemp);
+        th.setAmbient_temp(ambientTemp);
+        th.setFinalTemp(ambientTemp);
+        result.add(th);
       }
       return result;
     }

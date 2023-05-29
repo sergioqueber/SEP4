@@ -92,7 +92,7 @@ public class SolarPanel
     return ambientTemp;
   }
 
-  public void setAmbient_temp(int ambientTemp)
+  public void setAmbient_temp(double ambientTemp)
   {
     this.ambientTemp = ambientTemp;
   }

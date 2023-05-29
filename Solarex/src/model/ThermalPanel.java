@@ -30,4 +30,18 @@ public class ThermalPanel extends SolarPanel
     return ambientTemp;
   }
 
+  public void setInitialTemp(double initialTemp)
+  {
+    this.initialTemp = initialTemp;
+  }
+
+  public void setFinalTemp(double finalTemp)
+  {
+    this.finalTemp = finalTemp;
+  }
+
+  public void setAmbientTemp(double ambientTemp)
+  {
+    this.ambientTemp = ambientTemp;
+  }
 }
