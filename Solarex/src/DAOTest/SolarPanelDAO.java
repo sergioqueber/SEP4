@@ -25,7 +25,7 @@ public class SolarPanelDAO
 
   public PhotovoltaicPanel createPv(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_time) VALUES(?,?,?,?,?,?,?)");
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, type, installation_time) VALUES(?,?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
       statement.setBoolean(3,status);
@@ -42,7 +42,7 @@ public class SolarPanelDAO
 
   public ThermalPanel createTh(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_time) VALUES(?,?,?,?,?,?,?)");
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, type, installation_time) VALUES(?,?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
       statement.setBoolean(3,status);
@@ -94,7 +94,7 @@ public class SolarPanelDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT serial_number,location,status,\"angle(°)\",model_no,factory_id,type,installation_time, \"initial_temp(°C)\",\"final_temp(°C)\",tp.\"ambient_temp(°C)\" FROM solarex.solar_panel JOIN thermal_panel tp ON solar_panel.serial_number = tp.solar_panel_sn");
+          "SELECT serial_number,location,status,\"angle(°)\",model_no,factory_id,type,installation_time, \"initial_temp(°C)\",\"final_temp(°C)\",tp.\"ambient_temp(°C)\" FROM solarex.solar_panel JOIN solarex.thermal_panel tp ON solar_panel.serial_number = tp.solar_panel_sn");
       ResultSet resultSet = statement.executeQuery();
       ArrayList<ThermalPanel> result = new ArrayList<>();
       while (resultSet.next())
@@ -115,7 +115,7 @@ public class SolarPanelDAO
             type);
         th.setInitialTemp(initialTemp);
         th.setAmbient_temp(ambientTemp);
-        th.setFinalTemp(ambientTemp);
+        th.setFinalTemp(finalTemp);
         result.add(th);
       }
       return result;

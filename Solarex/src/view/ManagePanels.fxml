@@ -67,7 +67,7 @@
          </columns>
       </TableView>
       <Label fx:id="tpLabel" layoutX="599.0" layoutY="74.0" text="Thermal panels" />
-      <TableView fx:id="tpPanelTable" layoutX="363.0" layoutY="132.0" prefHeight="164.0" prefWidth="318.0">
+      <TableView fx:id="thPanelTable" layoutX="363.0" layoutY="132.0" prefHeight="164.0" prefWidth="318.0">
          <columns>
             <TableColumn fx:id="tpSNC" prefWidth="79.20001220703125" text="Serial number" />
             <TableColumn fx:id="tpLocationC" prefWidth="68.0" text="Location" />
@@ -137,7 +137,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <TextField fx:id="installationTimeText" layoutX="25.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
+      <TextField fx:id="installationTimeText" disable="true" layoutX="25.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
       <TextField fx:id="cleaningTimeText" layoutX="151.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
       <Label fx:id="pvLabel11211" layoutX="561.0" layoutY="410.0" text="Factory">
          <font>
@@ -161,5 +161,7 @@
       </Label>
       <ChoiceBox fx:id="factoryChoiceBpx" layoutX="525.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
       <ChoiceBox fx:id="modelChoiceBox" layoutX="401.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
+      <Button fx:id="updatePVbutton" layoutX="87.0" layoutY="306.0" mnemonicParsing="false" onAction="#onUpdatePVButton" prefHeight="26.0" prefWidth="130.0" text="Update Photovoltaic" />
+      <Button fx:id="updateTHbutton" layoutX="478.0" layoutY="306.0" mnemonicParsing="false" onAction="#onUpdateTHButton" prefHeight="26.0" prefWidth="130.0" text="Update Thermal" />
    </children>
 </AnchorPane>

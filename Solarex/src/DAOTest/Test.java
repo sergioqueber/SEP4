@@ -7,8 +7,7 @@ public class Test
   public static void main(String[] args) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    solarPanelDAO.readPv();
-    solarPanelDAO.readTh();
+    System.out.println(solarPanelDAO.readTh());
 
   }
 }
