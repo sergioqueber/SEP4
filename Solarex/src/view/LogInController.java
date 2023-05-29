@@ -49,10 +49,12 @@ public class LogInController
   private Label passwordLabel;
 
   @FXML
-  private TextField passwordTextField;
+  private PasswordField passwordTextField;
 
   @FXML
   private Label welcomeLabel;
+  @FXML
+  private Button newUserButton;
 
   public LogInController(){}
 
@@ -78,8 +80,10 @@ public class LogInController
     if(model.logInCheck(id,password)){
       if(model.getEmployee(id).getRole().getId() == 1){
         viewHandler.openView("OverviewAn");
+        model.setLastOverview("OverviewAn");
       }else if(model.getEmployee(id).getRole().getId() == 2){
         viewHandler.openView("OverviewTe");
+        model.setLastOverview("OverviewTe");
       }
     }
     else {
@@ -91,5 +95,7 @@ public class LogInController
     return root;
   }
 
-
+  public void loadNewUser(){
+    viewHandler.openView("New User");
+  }
 }

@@ -25,24 +25,25 @@ public class EmployeeDAO
     return DriverManager.getConnection("jdbc:postgresql://balarama.db.elephantsql.com:5432/osmxbusz", "osmxbusz", "m5YUAz0vMtIcjX3bmybJc7Kaz2STNoQ-");
   }
 
-  public Employee createEmployee(int id, double CPR, String fName, String lNAme, String type, String email, double phoneNo, String employmentDate, Role role, Factory workPlace) throws SQLException
+  public Employee createEmployee(String CPR, String fName, String lNAme, String email, double phoneNo, String employmentDate, String password, Role role, Factory workPlace) throws SQLException
   {
     try(Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.employee(id, ssn, f_name, l_name, email, phone_number, date_of_employment, password, role_id, factory_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-      statement.setDouble(2, CPR);
-      statement.setString(3, fName);
-      statement.setString(4, lNAme);
-      statement.setString(5, type);
-      statement.setString(6, email);
-      statement.setDouble(7, phoneNo);
-      statement.setString(8, employmentDate);
-      statement.setInt(9, role.getId());
-      statement.setInt(10, workPlace.getId());
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.employee(ssn, f_name, l_name, email, phone_number, date_of_employment, password, role_id, factory_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+      statement.setString(1, CPR);
+      statement.setString(2, fName);
+      statement.setString(3, lNAme);
+      statement.setString(4, email);
+      statement.setDouble(5, phoneNo);
+      statement.setString(6, employmentDate);
+      statement.setString(7,password);
+      statement.setInt(8, role.getId());
+      statement.setInt(9, workPlace.getId());
+      statement.executeUpdate();
       ResultSet keys = statement.getGeneratedKeys();
       if (keys.next())
       {
-        return new Employee(keys.getInt(1), CPR, fName, lNAme, type, email,
+        return new Employee(keys.getInt(1), CPR, fName, lNAme, email,
             phoneNo, employmentDate, role, workPlace);
       }
       else

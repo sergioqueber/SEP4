@@ -19,6 +19,7 @@ public class ViewHandler
   private LogInController logInController;
 
   private ManufacturersController manufacturersController;
+  private CreateNewUserController createNewUserController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -43,8 +44,8 @@ public class ViewHandler
       case "OverviewTe":
         root = loadOverviewView("OverviewTe.fxml");
         break;
-      case "Home Page 2":
-        //root =
+      case "New User":
+        root = loadNewUser("CreateNewUser.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -178,4 +179,32 @@ public class ViewHandler
     return root;
   }
 
+  private Region loadNewUser(String fxmlFile){
+    if(createNewUserController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        createNewUserController = loader.getController();
+        createNewUserController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  createNewUserController.getRoot();
+        createNewUserController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
 }

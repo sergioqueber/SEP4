@@ -4,10 +4,9 @@ package model;
 public class Employee
 {
   private int id;
-  private double CPR;
+  private String CPR;
   private String fName;
   private String lName;
-  private String type;
   private String email;
   private double phoneNo;
   private String employmentDate;
@@ -15,13 +14,12 @@ public class Employee
   private Role role;
   private Factory workPlace;
 
-  public Employee(int id, double CPR, String fName, String lNAme, String type, String email, double phoneNo, String employmentDate, Role role, Factory workPlace)
+  public Employee(int id, String CPR, String fName, String lNAme, String email, double phoneNo, String employmentDate, Role role, Factory workPlace)
   {
     this.id = id;
     this.CPR = CPR;
     this.fName = fName;
     this.lName = lNAme;
-    this.type = type;
     this.email = email;
     this.phoneNo = phoneNo;
     this.employmentDate = employmentDate;
@@ -53,11 +51,6 @@ public class Employee
     return lName;
   }
 
-  public String getType()
-  {
-    return type;
-  }
-
   public double getPhoneNo()
   {
     return phoneNo;
@@ -78,7 +71,7 @@ public class Employee
     this.id = id;
   }
 
-  public void setCPR(double CPR)
+  public void setCPR(String CPR)
   {
     this.CPR = CPR;
   }
@@ -91,11 +84,6 @@ public class Employee
   public void setlName(String lName)
   {
     this.lName = lName;
-  }
-
-  public void setType(String type)
-  {
-    this.type = type;
   }
 
   public void setEmail(String email)
@@ -128,7 +116,7 @@ public class Employee
     this.workPlace = workPlace;
   }
 
-  public double getCPR()
+  public String getCPR()
   {
     return CPR;
   }

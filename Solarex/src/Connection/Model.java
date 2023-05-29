@@ -10,6 +10,22 @@ import java.util.ArrayList;
 
 public class Model
 {
+  private String lastOverview;
+  private String adminPassword = "1234";
+
+  public void setLastOverview(String lastOverview){
+    this.lastOverview = lastOverview;
+  }
+
+  public String getLastOverview(){
+    return lastOverview;
+  }
+
+  public String getAdminPassword()
+  {
+    return adminPassword;
+  }
+
   public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
@@ -143,13 +159,11 @@ public class Model
     return employeeDAO.readById(id);
     }
 
-    public Employee registerEmployee(int id, double CPR, String fName, String lNAme, String type, String email, double phoneNo, String employmentDate, Role role, Factory workPlace)
+    public void registerEmployee(String CPR, String fName, String lNAme, String email, double phoneNo, String employmentDate,String password, Role role, Factory workPlace)
         throws SQLException
     {
     EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
-
-    employeeDAO.createEmployee(id, CPR, fName,lNAme,type,email,phoneNo,employmentDate,role,workPlace);
-    return null;
+    employeeDAO.createEmployee(CPR, fName,lNAme,email,phoneNo,employmentDate,password,role,workPlace);
     }
 
   }
