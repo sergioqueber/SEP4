@@ -21,19 +21,19 @@ public class SolarPanelDAO
     return DriverManager.getConnection("jdbc:postgresql://balarama.db.elephantsql.com:5432/osmxbusz", "osmxbusz", "m5YUAz0vMtIcjX3bmybJc7Kaz2STNoQ-");
   }
 
-  public PhotovoltaicPanel createpv(double serialNo, int location,String installationDate, boolean status, int angle, Model model, Factory factory, String type) throws SQLException{
+  public PhotovoltaicPanel createpv(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
       statement.setBoolean(3,status);
       statement.setInt(4,angle);
-      statement.setDouble(5,model.getModelNo());
-      statement.setInt(6,factory.getId());
+      statement.setDouble(5,modelNo);
+      statement.setInt(6,factoryId);
       statement.setString(7,type);
       statement.setString(8,installationDate);
       statement.executeUpdate();
-      return new PhotovoltaicPanel(serialNo,location,installationDate,status,angle,model,factory,type);
+      return new PhotovoltaicPanel(serialNo,location,installationDate,status,angle,new Model(modelNo),new Factory(factoryId),type);
 
     }
   }
@@ -143,5 +143,7 @@ public class SolarPanelDAO
       }
       return result;
     }
+
+
   }
 }

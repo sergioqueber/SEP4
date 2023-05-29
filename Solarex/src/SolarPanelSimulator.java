@@ -25,6 +25,8 @@ public class SolarPanelSimulator extends Thread
       double solarFlux = 700.0 + (1000.0 - 700.0) * random.nextDouble();
       System.out.println(intensity + " " + voltage + " " + solarFlux);
 
+
+
       try {
         Thread.sleep(waitTime);
       } catch (InterruptedException e) {

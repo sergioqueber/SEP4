@@ -2,14 +2,14 @@ package model;
 
 public class Model
 {
-  private int modelNo;
+  private double modelNo;
   private double length;
   private double width;
   private double area;
   private Manufacturer manufacturer ;
   private double efficiency;
 
-  public Model(int modelNo, double length, double width, Manufacturer manufacturer, double efficiency)
+  public Model(double modelNo, double length, double width, Manufacturer manufacturer, double efficiency)
   {
     this.modelNo = modelNo;
     this.length = length;
@@ -18,13 +18,13 @@ public class Model
     this.manufacturer = manufacturer;
     this.efficiency = efficiency;
   }
-  public Model(int modelNo){
+  public Model(double modelNo){
     this.modelNo = modelNo;
   }
 
   public Model(){}
 
-  public void setModelNo(int modelNo)
+  public void setModelNo(double modelNo)
   {
     this.modelNo = modelNo;
   }
@@ -49,7 +49,7 @@ public class Model
     this.manufacturer = manufacturer;
   }
 
-  public int getModelNo()
+  public double getModelNo()
   {
     return modelNo;
   }
