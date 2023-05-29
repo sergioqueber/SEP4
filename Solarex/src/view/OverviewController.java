@@ -240,10 +240,15 @@ public class OverviewController implements Initializable
 
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
-    System.out.println("Hola");
   }
 
   public void loadManufacturers(){
     viewHandler.openView("Manufacturers");
   }
+
+  public void loadManagePanels()
+  {
+    viewHandler.openView("Manage panels");
+  }
+
 }

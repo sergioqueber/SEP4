@@ -48,7 +48,7 @@
             </Menu>
             <Menu fx:id="managePanels" mnemonicParsing="false" text="Manage Panels">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem fx:id="managePanelsItem" mnemonicParsing="false" onAction="#loadManagePanels" text="open" />
                </items>
             </Menu>
             <Menu fx:id="manufacturers" mnemonicParsing="false" text="Manufacturers">

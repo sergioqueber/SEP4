@@ -205,16 +205,16 @@ public class ManagePanelsController
     pvTypeC.setCellValueFactory(new PropertyValueFactory<>("type"));
     pvModelC.setCellValueFactory(new PropertyValueFactory<>("model"));
     pvPanelTable.getItems();
+    Double serialNo = Double.parseDouble(snText.getText());
+    int location = Integer.parseInt(locationText.getText());
+    boolean status = Boolean.valueOf(statusText.getText());
+    int angle = Integer.parseInt(angleText.getText());
+    String installationDate = installationTimeText.getText();
     if (pvCheckBox.isSelected())
     {
-      Double serialNo = Double.parseDouble(snText.getText());
-      int location = Integer.parseInt(locationText.getText());
-      boolean status = Boolean.valueOf(statusText.getText());
       String type = "Photovoltaic panel";
-      String installationDate = installationTimeText.getText();
-      int angle = Integer.parseInt(angleText.getText());
-      double modelNo = modelChoiceBox.getSelectionModel().getSelectedIndex();
-      int factoryId = factoryChoiceBox.getSelectionModel().getSelectedIndex();
+      double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
+      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
       model.addPhotovoltaicPanel(serialNo, location, installationDate, status,
           angle, modelNo, factoryId, type);
       pvPanelTable.getItems().add(model.addPhotovoltaicPanel(serialNo, location, installationDate, status, angle,
@@ -223,14 +223,9 @@ public class ManagePanelsController
     }
     else if (thCheckBox.isSelected())
     {
-      Double serialNo = Double.parseDouble(snText.getText());
-      int location = Integer.parseInt(locationText.getText());
-      boolean status = Boolean.valueOf(statusText.getText());
       String type = "Thermal panel";
-      String installationDate = installationTimeText.getText();
-      int angle = Integer.parseInt(angleText.getText());
-      double modelNo = modelChoiceBox.getSelectionModel().getSelectedIndex();
-      int factoryId = factoryChoiceBox.getSelectionModel().getSelectedIndex();
+      double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
+      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
       model.addThermalPanel(serialNo, location, installationDate, status, angle,
           modelNo, factoryId, type);
       thPanelTable.getItems().add(model.addThermalPanel(serialNo, location, installationDate, status, angle,
