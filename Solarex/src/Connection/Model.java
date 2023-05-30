@@ -14,14 +14,14 @@ public class Model
     return models.readModels();
   }
 
-  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    return solarPanelDAO.createPv(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
+    return solarPanelDAO.createPv(serialNo,location, status,angle,modelNo,factoryId,type);
   }
-  public ThermalPanel addThermalPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException{
+  public ThermalPanel addThermalPanel(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    return solarPanelDAO.createTh(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
+    return solarPanelDAO.createTh(serialNo,location, status,angle,modelNo,factoryId,type);
   }
 
 
@@ -44,9 +44,27 @@ public class Model
     return solarPanelDAO.readTh();
   }
 
+  public SolarPanel deletePVPanel(SolarPanel solarPanel) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.removePVPanel(solarPanel.getLocation());
+  }
+
+  public SolarPanel deleteTHPanel(SolarPanel solarPanel) throws SQLException
+{
+  SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+  return solarPanelDAO.removeTHPanel(solarPanel.getLocation());
+}
+
   public ArrayList<SolarPanel> getPanelsBySn(int filter) throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readFilter("sn",filter);
+  }
+
+  public ArrayList<SolarPanel> getPanelsBySerialNo(double sn) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    return solarPanelDAO.readBySN(sn);
   }
 
   public ArrayList<SolarPanel> getPanelsByLocation(int filter)throws SQLException{
@@ -92,11 +110,13 @@ public class Model
     return manufacturers.removeManufacturer(manufacturer.getName());
   }
 
-  public Manufacturer editManufacturer(Manufacturer manufacturer) throws SQLException
+  public void updateManufacturer(String select, Manufacturer manufacturer) throws SQLException
   {
     ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
-    return manufacturers.editManufacturer(manufacturer);
+    manufacturers.editManufacturer(select, manufacturer);
   }
+
+
 
   public double getHeatingConsumption()throws SQLException{
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
@@ -108,6 +128,7 @@ public class Model
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
     return factoryDAO.read().get(0).getElectricityConsumption();
   }
+
 
   public double getSavings(double electricityPrice)throws SQLException{
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
@@ -152,4 +173,5 @@ public class Model
       AlertsDAO alertsDAO = AlertsDAO.getInstance();
       return alertsDAO.readAlerts();
     }
-  }
+
+}

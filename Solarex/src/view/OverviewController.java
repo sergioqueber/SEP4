@@ -147,7 +147,7 @@ public class OverviewController implements Initializable
     fillTable();
     //refreshNotification();
     generationValueLabel.setText(String.valueOf(model.getGeneration()));
-    electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
+    //electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
     heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
     savingsValueLabel.setText(String.valueOf(model.getSavings(2.8)));
 

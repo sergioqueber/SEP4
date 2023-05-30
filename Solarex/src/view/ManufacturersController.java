@@ -77,7 +77,6 @@ public class ManufacturersController
     fillManufacturers();
     choiceBox.getItems().add(0, "Name");
     choiceBox.getItems().add(1, "Email");
-    choiceBox.getItems().add(2, "Phone number");
 
   }
 
@@ -98,6 +97,17 @@ public class ManufacturersController
     }
   }
 
+  private String manufacturerName;
+
+  public void setManufacturerName(String manufacturerName)
+  {
+    this.manufacturerName = manufacturerName;
+  }
+
+  public String getManufacturerName()
+  {
+    return manufacturerName;
+  }
 
   public void onSaveButtonClicked() throws SQLException
   {
@@ -105,25 +115,43 @@ public class ManufacturersController
     emailColumn.setCellValueFactory(new PropertyValueFactory("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
     manufacturerTable.getItems().clear();
-    if(phoneNoText.getText().isBlank() || nameText.getText().isBlank() || emailText.getText().isBlank())
+    if(phoneNoText.getText().isEmpty() || nameText.getText().isEmpty() || emailText.getText().isEmpty())
     {
       messageField.setText("Fill out all the fields in order to proceed.");
     }
-    String name = nameText.getText();
-    String email = emailText.getText();
-    String phoneNo = phoneNoText.getText();
     Manufacturer manufacturer = new Manufacturer();
-    manufacturer.setName(name);
-    manufacturer.setEmail(email);
-    manufacturer.setPhoneNumber(Double.parseDouble(phoneNo));
-    fillManufacturers();
-    manufacturerTable.getItems().add(manufacturer);
-    model.addManufacturer(name, email, Double.parseDouble(phoneNo));
-    nameText.clear();
-    emailText.clear();
-    phoneNoText.clear();
-    messageField.setText("");
-  }
+    if(getEdit())
+       {
+         String newName = nameText.getText();
+        String newEmail = emailText.getText();
+        String newPhoneNo = phoneNoText.getText();
+        Manufacturer newManufacturer = new Manufacturer();
+        newManufacturer.setName(newName);
+        newManufacturer.setEmail(newEmail);
+        newManufacturer.setPhoneNumber(Double.parseDouble(newPhoneNo));
+        model.updateManufacturer(getManufacturerName(), newManufacturer);
+        manufacturerTable.getItems().remove(manufacturer);
+        manufacturerTable.getItems().add(newManufacturer);
+        fillManufacturers();
+       }
+    else
+    {
+      String name = nameText.getText();
+      String email = emailText.getText();
+      String phoneNo = phoneNoText.getText();
+      manufacturer.setName(name);
+      manufacturer.setEmail(email);
+      manufacturer.setPhoneNumber(Double.parseDouble(phoneNo));
+      fillManufacturers();
+      manufacturerTable.getItems().add(manufacturer);
+      model.addManufacturer(name, email, Double.parseDouble(phoneNo));
+    }
+      nameText.clear();
+      emailText.clear();
+      phoneNoText.clear();
+      messageField.setText("");
+    }
+
 
 
   public void onSearchButtonClicked() throws SQLException
@@ -131,28 +159,32 @@ public class ManufacturersController
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-    if(choiceBox.getValue() == "Name")
+    manufacturerTable.getItems().clear();
+    if (choiceBox.getValue().equals("Name"))
     {
-      String name = searchField.getText();
-      manufacturerTable.getItems().clear();
-      for (int i = 0; i < model.getManufacturers().size(); i++)
+      if (searchField.getText() != null)
       {
-        model.filterByName(name);
-        manufacturerTable.getItems().add(model.getManufacturers().get(i));
+        String name = searchField.getText();
+        for (int i = 0; i < model.filterByName(name).size(); i++)
+        {
+          manufacturerTable.getItems().add(model.filterByName(name).get(i));
+        }
       }
     }
-    else if (choiceBox.getValue() == "Email")
+    else if (choiceBox.getValue().equals("Email"))
     {
-      String email = searchField.getText();
-      manufacturerTable.getItems().clear();
-      for (int i = 0; i < model.getManufacturers().size(); i++)
+      if (searchField.getText() != null)
       {
-        model.filterByEmail(email);
-        manufacturerTable.getItems().add(model.getManufacturers().get(i));
+        String email = searchField.getText();
+        for (int i = 0; i < model.filterByEmail(email).size(); i++)
+        {
+            manufacturerTable.getItems().add(model.filterByEmail(email).get(i));
+        }
       }
     }
-
   }
+
+
 
   public void onRemoveButtonClicked() throws SQLException
   {
@@ -170,25 +202,34 @@ public class ManufacturersController
 
   public void onEditButtonClicked() throws SQLException
   {
+    setEdit(true);
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
     if(manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
     {
-      String name = nameText.getText();
-      String email = emailText.getText();
-      String phoneNo = phoneNoText.getText();
-      Manufacturer manufacturer = new Manufacturer();
-      manufacturer.setName(name);
-      manufacturer.setEmail(email);
-      manufacturer.setPhoneNumber(Double.parseDouble(phoneNo));
-      model.editManufacturer(manufacturer);
-      model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex());
+      messageField.setText("");
+      nameText.setText(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()).getName());
+      setManufacturerName(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()).getName());
+      emailText.setText(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()).getEmail());
+      phoneNoText.setText(String.valueOf(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()).getPhoneNumber()));
     }
-    manufacturerTable.getItems().clear();
-    fillManufacturers();
+    else
+    {
+      messageField.setText("Select a manufacturer from the table in order to proceed.");
+    }
   }
 
+  private boolean edit = false;
+
+  public void setEdit(boolean edit)
+  {
+    this.edit = edit;
+  }
+  public boolean getEdit()
+  {
+    return edit;
+  }
 
 
 }

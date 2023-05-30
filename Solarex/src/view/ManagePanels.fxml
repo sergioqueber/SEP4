@@ -49,7 +49,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Manufacturers">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem fx:id="manufacturersItem" mnemonicParsing="false" onAction="#loadManufacturersView" text="Open" />
                </items>
             </Menu>
          </menus>
@@ -62,8 +62,6 @@
             <TableColumn fx:id="pvStatusC" prefWidth="49.60003662109375" text="Status" />
             <TableColumn fx:id="pvTypeC" prefWidth="46.40000915527344" text="Type " />
             <TableColumn fx:id="pvModelC" prefWidth="71.199951171875" text="Model" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
          </columns>
       </TableView>
       <Label fx:id="tpLabel" layoutX="599.0" layoutY="74.0" text="Thermal panels" />
@@ -78,35 +76,33 @@
       </TableView>
       <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
       <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
-      <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
       <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="addNewButton" layoutX="630.0" layoutY="428.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
-      <Button fx:id="editButton" layoutX="25.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
-      <Button fx:id="removeButton" layoutX="618.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Remove" />
+      <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
+      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
       <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="snText" layoutX="25.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
-      <TextField fx:id="locationText" layoutX="151.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
-      <TextField fx:id="statusText" layoutX="276.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
-      <Label fx:id="pvLabel1" layoutX="42.0" layoutY="408.0" text="Serial number">
+      <TextField fx:id="snText" layoutX="25.0" layoutY="377.0" prefHeight="26.0" prefWidth="122.0" />
+      <TextField fx:id="locationText" layoutX="180.0" layoutY="377.0" prefHeight="26.0" prefWidth="122.0" />
+      <Label fx:id="pvLabel1" layoutX="55.0" layoutY="408.0" text="Serial number">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel11" layoutX="182.0" layoutY="408.0" text="Location">
+      <Label fx:id="pvLabel11" layoutX="222.0" layoutY="408.0" text="Location">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel111" layoutX="314.0" layoutY="408.0" text="Status">
+      <Label fx:id="pvLabel111" layoutX="72.0" layoutY="461.0" text="Status">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel1121" layoutX="315.0" layoutY="462.0" text="Angle">
+      <Label fx:id="pvLabel1121" layoutX="228.0" layoutY="461.0" text="Angle">
          <font>
             <Font size="10.0" />
          </font>
@@ -116,52 +112,39 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <CheckBox fx:id="pvCheckBox" layoutX="535.0" layoutY="436.0" mnemonicParsing="false" text="Photovoltaic ">
+      <CheckBox fx:id="pvCheckBox" layoutX="533.0" layoutY="390.0" mnemonicParsing="false" text="Photovoltaic ">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="thCheckBox" layoutX="466.0" layoutY="436.0" mnemonicParsing="false" text="Thermal">
+      <CheckBox fx:id="thCheckBox" layoutX="533.0" layoutY="433.0" mnemonicParsing="false" text="Thermal">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="angleText" layoutX="276.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
+      <TextField fx:id="angleText" layoutX="180.0" layoutY="430.0" prefHeight="26.0" prefWidth="122.0" />
       <Label fx:id="pvLabel11212" layoutX="348.0" layoutY="408.0">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel11213" layoutX="439.0" layoutY="410.0" text="Model">
+      <Label fx:id="pvLabel11213" layoutX="383.0" layoutY="408.0" text="Model">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <TextField fx:id="installationTimeText" disable="true" layoutX="25.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
-      <TextField fx:id="cleaningTimeText" layoutX="151.0" layoutY="429.0" prefHeight="26.0" prefWidth="104.0" />
-      <Label fx:id="pvLabel11211" layoutX="561.0" layoutY="410.0" text="Factory">
+      <Label fx:id="pvLabel11211" layoutX="378.0" layoutY="461.0" text="Factory">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel12" layoutX="37.0" layoutY="462.0" text="Installation time">
+      <Label fx:id="pvLabel112111" layoutX="478.0" layoutY="408.0" text="Panel type:">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="pvLabel13" layoutX="170.0" layoutY="462.0" text="Cleaning time">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label fx:id="pvLabel112111" layoutX="401.0" layoutY="436.0" text="Panel type:">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="factoryChoiceBpx" layoutX="525.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
-      <ChoiceBox fx:id="modelChoiceBox" layoutX="401.0" layoutY="377.0" prefHeight="26.0" prefWidth="104.0" />
-      <Button fx:id="updatePVbutton" layoutX="87.0" layoutY="306.0" mnemonicParsing="false" onAction="#onUpdatePVButton" prefHeight="26.0" prefWidth="130.0" text="Update Photovoltaic" />
-      <Button fx:id="updateTHbutton" layoutX="478.0" layoutY="306.0" mnemonicParsing="false" onAction="#onUpdateTHButton" prefHeight="26.0" prefWidth="130.0" text="Update Thermal" />
+      <ChoiceBox fx:id="factoryChoiceBox" layoutX="334.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
+      <ChoiceBox fx:id="modelChoiceBox" layoutX="334.0" layoutY="377.0" prefHeight="26.0" prefWidth="121.0" />
+      <ChoiceBox fx:id="statusChoiceBox" layoutX="26.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
    </children>
 </AnchorPane>

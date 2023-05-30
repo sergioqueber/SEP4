@@ -13,156 +13,119 @@ import java.sql.SQLException;
 
 public class ManagePanelsController
 {
-  @FXML
-  private Button addNewButton;
+  @FXML private Button addNewButton;
 
-  @FXML
-  private TextField angleText;
+  @FXML private TextField angleText;
 
-  @FXML
-  private TextField cleaningTimeText;
+  @FXML private TextField cleaningTimeText;
 
-  @FXML
-  private Button editButton;
+  @FXML private Button editButton;
 
-  @FXML
-  private ChoiceBox<Factory> factoryChoiceBox;
+  @FXML private ChoiceBox<Factory> factoryChoiceBox;
 
-  @FXML
-  private TextField installationTimeText;
+  @FXML private TextField installationTimeText;
 
-  @FXML
-  private TextField locationText;
+  @FXML private TextField locationText;
 
-  @FXML
-  private ChoiceBox<model.Model> modelChoiceBox;
+  @FXML private ChoiceBox<model.Model> modelChoiceBox;
 
-  @FXML
-  private CheckBox pvCheckBox;
+  @FXML private CheckBox pvCheckBox;
 
-  @FXML
-  private Label pvLabel;
+  @FXML private ChoiceBox<String> statusChoiceBox;
+  @FXML private Label pvLabel;
 
-  @FXML
-  private Label pvLabel1;
+  @FXML private Label pvLabel1;
 
-  @FXML
-  private Label pvLabel11;
+  @FXML private Label pvLabel11;
 
-  @FXML
-  private Label pvLabel111;
+  @FXML private Label pvLabel111;
 
-  @FXML
-  private Label pvLabel1121;
+  @FXML private Label pvLabel1121;
 
-  @FXML
-  private Label pvLabel11211;
+  @FXML private Label pvLabel11211;
 
-  @FXML
-  private Label pvLabel112111;
+  @FXML private Label pvLabel112111;
 
-  @FXML
-  private Label pvLabel11212;
+  @FXML private Label pvLabel11212;
 
-  @FXML
-  private Label pvLabel11213;
+  @FXML private Label pvLabel11213;
 
-  @FXML
-  private Label pvLabel12;
+  @FXML private Label pvLabel12;
 
-  @FXML
-  private Label pvLabel13;
+  @FXML private Label pvLabel13;
 
-  @FXML
-  private Label pvLabel2;
+  @FXML private Label pvLabel2;
 
-  @FXML
-  private TableColumn<Integer, Integer> pvLocationC;
+  @FXML private TableColumn<Integer, Integer> pvLocationC;
 
-  @FXML
-  private TableColumn<Double, Double> pvModelC;
+  @FXML private TableColumn<Double, Double> pvModelC;
 
-  @FXML
-  private TableView<PhotovoltaicPanel> pvPanelTable;
+  @FXML private TableView<PhotovoltaicPanel> pvPanelTable;
 
-  @FXML
-  private TableColumn<PhotovoltaicPanel, Double> pvSNC;
+  @FXML private TableColumn<PhotovoltaicPanel, Double> pvSNC;
 
-  @FXML
-  private Button pvSearch;
+  @FXML private Button pvSearch;
 
-  @FXML
-  private TableColumn<PhotovoltaicPanel, Boolean> pvStatusC;
+  @FXML private TableColumn<PhotovoltaicPanel, Boolean> pvStatusC;
 
-  @FXML
-  private TextField pvText;
+  @FXML private TextField pvText;
 
-  @FXML
-  private TableColumn<PhotovoltaicPanel, String> pvTypeC;
+  @FXML private TableColumn<PhotovoltaicPanel, String> pvTypeC;
 
-  @FXML
-  private Button removeButton;
+  @FXML private Button removeButton;
 
-  @FXML
-  private Button saveButton;
+  @FXML private Button saveButton;
 
-  @FXML
-  private TextField snText;
+  @FXML private TextField snText;
 
-  @FXML
-  private TextField statusText;
+  @FXML private TextField statusText;
 
-  @FXML
-  private CheckBox thCheckBox;
+  @FXML private CheckBox thCheckBox;
 
-  @FXML
-  private Label tpLabel;
+  @FXML private Label tpLabel;
 
-  @FXML
-  private TableColumn<ThermalPanel, Integer> tpLocationC;
+  @FXML private TableColumn<ThermalPanel, Integer> tpLocationC;
 
-  @FXML
-  private TableColumn<ThermalPanel, Double> tpModelC;
+  @FXML private TableColumn<ThermalPanel, Double> tpModelC;
 
-  @FXML
-  private TableView<ThermalPanel> thPanelTable;
+  @FXML private TableView<ThermalPanel> thPanelTable;
 
-  @FXML
-  private TableColumn<Double, Double> tpSNC;
+  @FXML private TableColumn<Double, Double> tpSNC;
 
-  @FXML
-  private Button tpSearch;
+  @FXML private Button tpSearch;
 
-  @FXML
-  private TableColumn<ThermalPanel, Boolean> tpStatusC;
+  @FXML private TableColumn<ThermalPanel, Boolean> tpStatusC;
 
-  @FXML
-  private TextField tpText;
+  @FXML private TextField tpText;
 
-  @FXML
-  private TableColumn<ThermalPanel, String> tpTypeC;
+  @FXML private TableColumn<ThermalPanel, String> tpTypeC;
 
   private ViewHandler viewHandler;
   private Model model;
   private Region root;
 
-
   public ManagePanelsController()
-  {}
+  {
+  }
 
   public Region getRoot()
   {
-  return root;
+    return root;
   }
 
-  public void init(ViewHandler viewHandler, Region root, Model model) throws
-      SQLException
+  public void init(ViewHandler viewHandler, Region root, Model model)
+      throws SQLException
   {
     this.viewHandler = viewHandler;
     this.model = model;
     this.root = root;
     modelChoiceBox.getItems().addAll(model.getModels());
     factoryChoiceBox.getItems().addAll(model.getFactories());
+    statusChoiceBox.getItems().add(0, "Active");
+    statusChoiceBox.getItems().add(1, "Maintenance");
+    statusChoiceBox.getItems().add(2, "Removed");
+    fillPVPanels();
+    fillTHPanels();
   }
 
   public void fillPVPanels() throws SQLException
@@ -193,66 +156,90 @@ public class ManagePanelsController
     }
   }
 
-  public void onUpdatePVButton() throws SQLException
-  {
-    fillPVPanels();;
-  }
-
-  public void onUpdateTHButton() throws SQLException
-  {
-    fillTHPanels();;
-  }
 
   public void onAddNewPanelButton() throws SQLException
+  {
+    Double serialNo = Double.parseDouble(snText.getText());
+    int location = Integer.parseInt(locationText.getText());
+    String status = statusChoiceBox.getValue();
+    int angle = Integer.parseInt(angleText.getText());
+    if (pvCheckBox.isSelected())
+    {
+      if (model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getStatus()
+          .equals(status))
+      {
+        String type = "Photovoltaic";
+        double modelNo = model.getModels()
+            .get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
+        int factoryId = model.getFactories()
+            .get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
+        model.addPhotovoltaicPanel(serialNo, location, status, angle, modelNo,
+            factoryId, type);
+        fillPVPanels();
+      }
+    }
+    else if (thCheckBox.isSelected())
+    {
+        String type = "Thermal";
+        double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex())
+            .getModelNo();
+        int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex())
+            .getId();
+        model.addThermalPanel(serialNo, location, status, angle, modelNo,
+            factoryId, type);
+        fillTHPanels();
+    }
+    snText.clear();
+    locationText.clear();
+    angleText.clear();
+    modelChoiceBox.getSelectionModel().clearSelection();
+    factoryChoiceBox.getSelectionModel().clearSelection();
+    statusChoiceBox.getSelectionModel().clearSelection();
+  }
+
+  public void onRemoveButton() throws SQLException
+  {
+    if (pvPanelTable.getSelectionModel().isSelected(pvPanelTable.getSelectionModel().getSelectedIndex()))
+    {
+      model.getAllPVPanels().remove(pvPanelTable.getSelectionModel().getSelectedIndex());
+      model.deletePVPanel(model.getAllPVPanels().remove(pvPanelTable.getSelectionModel().getSelectedIndex()));
+    }
+    else if (thPanelTable.getSelectionModel().isSelected(thPanelTable.getSelectionModel().getSelectedIndex()))
+    {
+      model.getAllTHPanels().remove(thPanelTable.getSelectionModel().getSelectedIndex());
+      model.deleteTHPanel(model.getAllTHPanels().remove(thPanelTable.getSelectionModel().getSelectedIndex()));
+    }
+    pvPanelTable.getItems().clear();
+    thPanelTable.getItems().clear();
+    fillPVPanels();
+    fillTHPanels();
+
+  }
+
+
+  public void onPVSearchButton() throws SQLException
   {
     pvSNC.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
     pvLocationC.setCellValueFactory(new PropertyValueFactory<>("location"));
     pvStatusC.setCellValueFactory(new PropertyValueFactory<>("status"));
     pvTypeC.setCellValueFactory(new PropertyValueFactory<>("type"));
     pvModelC.setCellValueFactory(new PropertyValueFactory<>("model"));
-    pvPanelTable.getItems();
-    Double serialNo = Double.parseDouble(snText.getText());
-    int location = Integer.parseInt(locationText.getText());
-    boolean status = Boolean.valueOf(statusText.getText());
-    int angle = Integer.parseInt(angleText.getText());
-    String installationDate = installationTimeText.getText();
-    if (pvCheckBox.isSelected())
+    pvPanelTable.getItems().clear();
+    if (pvText.getText() != null)
     {
-      String type = "Photovoltaic panel";
-      double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
-      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
-      PhotovoltaicPanel photovoltaicPanel = new PhotovoltaicPanel(serialNo, location, installationDate, status, angle,
-          new model.Model(modelNo), new Factory(factoryId), type);
-      model.addPhotovoltaicPanel(serialNo, location, installationDate, status, angle,
-          modelNo, factoryId, type);
-      pvPanelTable.getItems().add(photovoltaicPanel);
-
+      double sn = Double.parseDouble(pvText.getText());
+      for (int i = 0; i < model.getPanelsBySerialNo(sn).size(); i++)
+      {
+        PhotovoltaicPanel photovoltaicPanel = new PhotovoltaicPanel(model.getPanelsBySerialNo(sn).get(i));
+        pvPanelTable.getItems().add(photovoltaicPanel);
+      }
     }
-    else if (thCheckBox.isSelected())
-    {
-      String type = "Thermal panel";
-      double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
-      int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
-      ThermalPanel thermalPanel = new ThermalPanel(serialNo, location, installationDate, status, angle,
-          new model.Model(modelNo), new Factory(factoryId), type);
-      model.addThermalPanel(serialNo, location, installationDate, status, angle,
-          modelNo, factoryId, type);
-      thPanelTable.getItems().add(thermalPanel);
-    }
-    fillPVPanels();
-    fillTHPanels();
-    snText.clear();
-    locationText.clear();
-    statusText.clear();
-    angleText.clear();
-    modelChoiceBox.getSelectionModel();
-    //factoryChoiceBox.getSelectionModel();
   }
 
-
-
-
-
+  public void loadManufacturersView()
+  {
+    viewHandler.openView("Manufacturers");
+  }
 
 }
 
