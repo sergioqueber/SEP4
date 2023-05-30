@@ -7,10 +7,10 @@ public class PhotovoltaicPanel extends SolarPanel
   private double power;
   private double solarFlux;
 
-  public PhotovoltaicPanel(double serialNo, int location, String installationTime,
+  public PhotovoltaicPanel(double serialNo, int location,
       String status, int angle, Model model, Factory factory,String type)
   {
-    super(serialNo, location, installationTime, status, angle, model,factory,type);
+    super(serialNo, location, status, angle, model,factory,type);
     this.power = intensity*voltage;
   }
   public PhotovoltaicPanel(SolarPanel pv){
@@ -24,11 +24,6 @@ public class PhotovoltaicPanel extends SolarPanel
     power = intensity*voltage;
   }
 
-  public PhotovoltaicPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
-      String type)
-  {
-    super(serialNo, location, status, angle, model, factory, type);
-  }
 
   public void setIntensity(double intensity)
   {
