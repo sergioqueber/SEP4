@@ -30,6 +30,9 @@ public class Employee
     this.password = password;
     this.role = role;
   }
+  public Employee(int id){
+    this.id = id;
+  }
 
   public int getId()
   {
@@ -139,5 +142,9 @@ public class Employee
   public Factory getWorkPlace()
   {
     return workPlace;
+  }
+
+  public String toString(){
+    return "" + id;
   }
 }

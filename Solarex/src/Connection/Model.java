@@ -26,12 +26,12 @@ public class Model
     return adminPassword;
   }
 
-  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String installationDate, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.createPv(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
   }
-  public ThermalPanel addThermalPanel(double serialNo, int location, String installationDate, boolean status, int angle, double modelNo, int factoryId, String type) throws SQLException{
+  public ThermalPanel addThermalPanel(double serialNo, int location, String installationDate, String status, int angle, double modelNo, int factoryId, String type) throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.createTh(serialNo,location, installationDate,status,angle,modelNo,factoryId,type);
   }
@@ -44,7 +44,7 @@ public class Model
     return solarPanelDAO.readAllPanels();
   }
 
-  public ArrayList<SolarPanel> getPanelsBySn(int filter) throws SQLException{
+  public ArrayList<SolarPanel> getPanelsBySn(double filter) throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readFilter("sn",filter);
   }
@@ -111,8 +111,8 @@ public class Model
   public double getGeneration ()throws SQLException{
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     double generation = 0;
-    for(int i = 0; i < solarPanelDAO.readPv().size(); i++){
-      generation = generation + solarPanelDAO.readPv().get(i).getPower();
+    for(int i = 0; i < solarPanelDAO.readPvValues().size(); i++){
+      generation = generation + solarPanelDAO.readPvValues().get(i).getPower();
       }
     return generation;
     }
@@ -166,4 +166,27 @@ public class Model
     employeeDAO.createEmployee(CPR, fName,lNAme,email,phoneNo,employmentDate,password,role,workPlace);
     }
 
+    public ArrayList<PhotovoltaicPanel> getPvLogValues(String startTime, String endTime) throws SQLException
+    {
+      PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
+      return pvPanelLogDAO.readValues(startTime,endTime, 111111.0);
+    }
+
+    public double getIndividualGeneration (Double sn) throws SQLException
+    {
+      SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+      double generation = 0;
+      for(int i = 0;  i < solarPanelDAO.readPvValues().size(); i++){
+        if(solarPanelDAO.readPvValues().get(i).getSerial_number() == sn){
+         generation = solarPanelDAO.readPvValues().get(i).getPower();
+        }
+      }
+      return generation;
+    }
+
+    public ArrayList<Repairs> getRepairsBySn(double sn) throws SQLException
+    {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.readRepairsBySn(sn);
+    }
   }

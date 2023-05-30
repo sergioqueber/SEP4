@@ -21,12 +21,12 @@ public class SolarPanelDAO
     return DriverManager.getConnection("jdbc:postgresql://balarama.db.elephantsql.com:5432/osmxbusz", "osmxbusz", "m5YUAz0vMtIcjX3bmybJc7Kaz2STNoQ-");
   }
 
-  public PhotovoltaicPanel createPv(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
+  public PhotovoltaicPanel createPv(double serialNo, int location,String installationDate, String status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
       PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
-      statement.setBoolean(3,status);
+      statement.setString(3,status);
       statement.setInt(4,angle);
       statement.setDouble(5,modelNo);
       statement.setInt(6,factoryId);
@@ -38,12 +38,12 @@ public class SolarPanelDAO
     }
   }
 
-  public ThermalPanel createTh(double serialNo, int location,String installationDate, boolean status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
+  public ThermalPanel createTh(double serialNo, int location,String installationDate, String status, int angle, double modelNo, int  factoryId, String type) throws SQLException{
     try(Connection connection = getConnection()){
       PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.solar_panel(serial_number,location,status,\"angle(°)\",model_no,factory_id, installation_Date) VALUES(?,?,?,?,?,?,?,?)");
       statement.setDouble(1,serialNo);
       statement.setInt(2,location);
-      statement.setBoolean(3,status);
+      statement.setString(3,status);
       statement.setInt(4,angle);
       statement.setDouble(5,modelNo);
       statement.setInt(6,factoryId);
@@ -56,7 +56,7 @@ public class SolarPanelDAO
   }
 
 
-  public ArrayList<PhotovoltaicPanel> readPv()throws SQLException
+  public ArrayList<PhotovoltaicPanel> readPvValues()throws SQLException
   {
     try (Connection connection = getConnection())
     {
@@ -68,7 +68,7 @@ public class SolarPanelDAO
       {
         double serialNo = resultSet.getDouble(1);
         int location = resultSet.getInt(2);
-        boolean status = resultSet.getBoolean(3);
+        String status = resultSet.getString(3);
         int angle = resultSet.getInt(4);
         int model_no = resultSet.getInt(5);
         int factory_id = resultSet.getInt(6);
@@ -99,7 +99,7 @@ public class SolarPanelDAO
       {
         double serialNo = resultSet.getDouble(1);
         int location = resultSet.getInt(2);
-        boolean status = resultSet.getBoolean(3);
+        String status = resultSet.getString(3);
         int angle = resultSet.getInt(4);
         int model_no = resultSet.getInt(5);
         int factory_id = resultSet.getInt(6);
@@ -130,7 +130,7 @@ public class SolarPanelDAO
       while (resultSet.next()){
         double serialNo = resultSet.getDouble(1);
         int location = resultSet.getInt(2);
-        boolean status = resultSet.getBoolean(3);
+        String status = resultSet.getString(3);
         int angle = resultSet.getInt(4);
         int model_no = resultSet.getInt(5);
         int factory_id = resultSet.getInt(6);
@@ -150,7 +150,7 @@ public class SolarPanelDAO
       }
     }
 
-  public ArrayList<SolarPanel> readFilter(String filter, int search ) throws SQLException
+  public ArrayList<SolarPanel> readFilter(String filter, double search ) throws SQLException
   {
     String query = null;
     if (filter.equals("sn"))
@@ -165,14 +165,14 @@ public class SolarPanelDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(query);
-      statement.setInt(1, search);
+      statement.setDouble(1, search);
       ResultSet resultSet = statement.executeQuery();
       ArrayList<SolarPanel> result = new ArrayList<>();
       while (resultSet.next())
       {
         double serialNo = resultSet.getDouble(1);
         int location = resultSet.getInt(2);
-        boolean status = resultSet.getBoolean(3);
+        String status = resultSet.getString(3);
         int angle = resultSet.getInt(4);
         int model_no = resultSet.getInt(5);
         int factory_id = resultSet.getInt(6);
@@ -196,6 +196,6 @@ public class SolarPanelDAO
       return result;
     }
 
-
   }
+
 }

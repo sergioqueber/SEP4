@@ -17,6 +17,7 @@ public class ViewHandler
 
   private SetTargetsController setTargetsController;
   private LogInController logInController;
+  private SinglePanelController singlePanelController;
 
   private ManufacturersController manufacturersController;
   private CreateNewUserController createNewUserController;
@@ -47,6 +48,9 @@ public class ViewHandler
       case "New User":
         root = loadNewUser("CreateNewUser.fxml");
         break;
+      case "Single Panel Pv":
+        root = loadSinglePanel("SinglePanelPhoto.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -62,7 +66,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("LogIn");
+    openView("Single Panel Pv");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -200,6 +204,34 @@ public class ViewHandler
       {
         root =  createNewUserController.getRoot();
         createNewUserController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+  private Region loadSinglePanel(String fxmlFile){
+    if(singlePanelController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        singlePanelController = loader.getController();
+        singlePanelController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  singlePanelController.getRoot();
+        singlePanelController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();

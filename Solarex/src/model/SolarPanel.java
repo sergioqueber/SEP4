@@ -8,7 +8,7 @@ public class SolarPanel
   private int location;
   private String installationTime;
   private String cleaningTime;
-  private boolean status;
+  private String status;
   private double ambientTemp;
   private double solarFlux;
   private int angle;
@@ -17,7 +17,7 @@ public class SolarPanel
   private Factory factory;
   private String type;
 
-  public SolarPanel(double serialNo, int location, String installationTime, boolean status, int angle, Model model, Factory factory, String type)
+  public SolarPanel(double serialNo, int location, String installationTime, String status, int angle, Model model, Factory factory, String type)
   {
     this.serialNo = serialNo;
     this.location = location;
@@ -36,7 +36,9 @@ public class SolarPanel
   public SolarPanel(String timestamp){
     this.timestamp = timestamp;
   }
-
+  public SolarPanel(double serialNo){
+    this.serialNo = serialNo;
+  }
   public double getSerial_number()
   {
     return serialNo;
@@ -52,12 +54,12 @@ public class SolarPanel
     return installationTime;
   }
 
-  public boolean isStatus()
+  public String isStatus()
   {
     return status;
   }
 
-  public void setStatus(boolean status)
+  public void setStatus(String status)
   {
     this.status = status;
   }

@@ -7,7 +7,7 @@ public class PhotovoltaicPanel extends SolarPanel
   private double power;
 
   public PhotovoltaicPanel(double serialNo, int location, String installationTime,
-      boolean status, int angle, Model model, Factory factory,String type)
+      String status, int angle, Model model, Factory factory,String type)
   {
     super(serialNo, location, installationTime, status, angle, model,factory,type);
     this.power = intensity*voltage;

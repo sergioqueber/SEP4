@@ -55,7 +55,7 @@ public class AlertsDAO
   public void createNotificationIntensity(double intensity) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    ArrayList<PhotovoltaicPanel> panels = solarPanelDAO.readPv();
+    ArrayList<PhotovoltaicPanel> panels = solarPanelDAO.readPvValues();
 
 
     for(int i = 0; i < panels.size(); i++){
@@ -74,7 +74,7 @@ public class AlertsDAO
   public void createNotificationVoltage(double voltage) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    ArrayList<PhotovoltaicPanel> panels = solarPanelDAO.readPv();
+    ArrayList<PhotovoltaicPanel> panels = solarPanelDAO.readPvValues();
 
 
     for(int i = 0; i < panels.size(); i++){

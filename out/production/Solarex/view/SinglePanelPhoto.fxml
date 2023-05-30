@@ -4,6 +4,8 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,11 +14,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SinglePanelController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="686.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="644.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
       <MenuBar layoutX="7.0" layoutY="1.0" prefHeight="25.0" prefWidth="811.0">
          <menus>
             <Menu mnemonicParsing="false" text="Overview">
@@ -51,47 +53,47 @@
             </Menu>
          </menus>
       </MenuBar>
-      <LineChart layoutX="411.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
+      <LineChart fx:id="graph" layoutX="250.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="timeAxis" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="powerOutPutAxis" side="LEFT" />
          </yAxis>
       </LineChart>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="14.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
-      <Text layoutX="25.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Generation" />
-      <Text layoutX="700.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select time period" />
-      <Text layoutX="696.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" />
-      <Text layoutX="698.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
-      <TextField layoutX="731.0" layoutY="356.0" prefHeight="25.0" prefWidth="62.0" />
-      <Button layoutX="725.0" layoutY="437.0" mnemonicParsing="false" text="Apply" />
-      <TableView layoutX="156.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="194.0" layoutX="31.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
+      <TextField fx:id="startTextField" layoutX="689.0" layoutY="130.0" prefHeight="25.0" prefWidth="62.0" />
+      <Button fx:id="applyButton" layoutX="655.0" layoutY="217.0" mnemonicParsing="false" onAction="#fillValuesTable" text="Apply" />
+      <TableView fx:id="pvVariablesTable" layoutX="156.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
          <columns>
-            <TableColumn prefWidth="58.66668701171875" text="Intensity " />
-            <TableColumn prefWidth="48.66670227050781" text="Voltage" />
-            <TableColumn prefWidth="42.0" text="Power" />
-            <TableColumn prefWidth="47.33331298828125" text="Angle " />
-            <TableColumn prefWidth="68.66668701171875" text="Timestamp" />
+            <TableColumn fx:id="intensityColumn" prefWidth="58.66668701171875" text="Intensity " />
+            <TableColumn fx:id="voltageColumn" prefWidth="60.0" text="Voltage" />
+            <TableColumn fx:id="powerColumn" prefWidth="53.5999755859375" text="Power" />
+            <TableColumn fx:id="timeStampColumn" prefWidth="97.5999755859375" text="Timestamp" />
          </columns>
       </TableView>
-      <TableView layoutX="436.0" layoutY="296.0" prefHeight="193.0" prefWidth="147.0">
+      <TableView fx:id="repairsTable" layoutX="436.0" layoutY="296.0" prefHeight="194.0" prefWidth="193.0">
          <columns>
-            <TableColumn prefWidth="34.0" text="Date" />
-            <TableColumn prefWidth="111.99996948242188" text="Repair description" />
+            <TableColumn fx:id="dateColumn" prefWidth="91.19998168945312" text="Date" />
+            <TableColumn fx:id="employeeIdColumn" prefWidth="99.199951171875" text="Employee" />
          </columns>
       </TableView>
-      <TableView layoutX="593.0" layoutY="296.0" prefHeight="193.0" prefWidth="85.0">
+      <TableView fx:id="cleaningTable" layoutX="644.0" layoutY="295.0" prefHeight="194.0" prefWidth="118.0">
          <columns>
             <TableColumn prefWidth="83.3333740234375" text="Cleaning date" />
          </columns>
       </TableView>
-      <TableView layoutX="33.0" layoutY="67.0" prefHeight="200.0" prefWidth="185.0">
-        <columns>
-          <TableColumn prefWidth="87.33334732055664" text="Serial number" />
-          <TableColumn prefWidth="95.9999974568685" text="8472640128" />
-        </columns>
-      </TableView>
-      <TextField layoutX="731.0" layoutY="399.0" prefHeight="25.0" prefWidth="62.0" />
+      <TextField fx:id="endTextField" layoutX="689.0" layoutY="173.0" prefHeight="25.0" prefWidth="62.0" />
+      <Label layoutX="671.0" layoutY="93.0" text="Select Time Period" />
+      <Label layoutX="657.0" layoutY="134.0" text="Start" />
+      <Label layoutX="659.0" layoutY="177.0" text="End" />
+      <Label layoutX="41.0" layoutY="310.0" text="Curent Generation">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="curentGenerationLabelValue" layoutX="76.0" layoutY="392.0" text="Label" />
+      <Button fx:id="graphButton" layoutX="706.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectTimePeriod" text="Graph" />
+      <ListView fx:id="panelData" layoutX="23.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
