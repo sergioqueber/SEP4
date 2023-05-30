@@ -21,6 +21,7 @@ public class ViewHandler
 
   private ManufacturersController manufacturersController;
   private CreateNewUserController createNewUserController;
+  private SinglePanelThermalController singlePanelThermalController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -51,6 +52,9 @@ public class ViewHandler
       case "Single Panel Pv":
         root = loadSinglePanel("SinglePanelPhoto.fxml");
         break;
+      case "Single Panel Th":
+        root = loadSinglePanelThermal("SinglePanelThermal.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -66,7 +70,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Single Panel Pv");
+    openView("OverviewAn");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -232,6 +236,34 @@ public class ViewHandler
       {
         root =  singlePanelController.getRoot();
         singlePanelController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+  private Region loadSinglePanelThermal(String fxmlFile){
+    if(singlePanelThermalController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        singlePanelThermalController = loader.getController();
+        singlePanelThermalController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  singlePanelThermalController.getRoot();
+        singlePanelThermalController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();

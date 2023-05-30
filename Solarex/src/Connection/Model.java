@@ -12,6 +12,28 @@ public class Model
 {
   private String lastOverview;
   private String adminPassword = "1234";
+  private Double selectedSn;
+  private String selectedType;
+
+  public void setSelectedType(String selectedType)
+  {
+    this.selectedType = selectedType;
+  }
+
+  public String getSelectedType()
+  {
+    return selectedType;
+  }
+
+  public Double getSelectedSn()
+  {
+    return selectedSn;
+  }
+
+  public void setSelectedSn(Double selectedSn)
+  {
+    this.selectedSn = selectedSn;
+  }
 
   public void setLastOverview(String lastOverview){
     this.lastOverview = lastOverview;
@@ -166,10 +188,14 @@ public class Model
     employeeDAO.createEmployee(CPR, fName,lNAme,email,phoneNo,employmentDate,password,role,workPlace);
     }
 
-    public ArrayList<PhotovoltaicPanel> getPvLogValues(String startTime, String endTime) throws SQLException
+    public ArrayList<PhotovoltaicPanel> getPvLogValues(String startTime, String endTime, Double sn) throws SQLException
     {
       PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
-      return pvPanelLogDAO.readValues(startTime,endTime, 111111.0);
+      return pvPanelLogDAO.readValues(startTime,endTime, sn);
+    }
+    public ArrayList<ThermalPanel> getThLogValues(String startTime, String endTime, Double sn) throws SQLException{
+    ThPanelLogDAO thPanelLogDAO = ThPanelLogDAO.getInstance();
+    return thPanelLogDAO.readValues(startTime,endTime,sn);
     }
 
     public double getIndividualGeneration (Double sn) throws SQLException
@@ -188,5 +214,10 @@ public class Model
     {
     RepairsDAO repairsDAO = RepairsDAO.getInstance();
     return repairsDAO.readRepairsBySn(sn);
+    }
+
+    public ArrayList<SolarPanel> getCleaningLogBySn(double sn)throws SQLException{
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    return cleaningLogDAO.readCleaningLog(sn);
     }
   }

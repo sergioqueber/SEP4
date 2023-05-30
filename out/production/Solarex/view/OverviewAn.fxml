@@ -134,5 +134,6 @@
       <Label fx:id="heatingValueConsumption" layoutX="202.0" layoutY="470.0" text="Label" />
       <Label fx:id="savingsValueLabel" layoutX="337.0" layoutY="409.0" text="Label" />
       <Button fx:id="refreshButton" layoutX="509.0" layoutY="275.0" mnemonicParsing="false" onAction="#refreshNotification" text="Refresh" />
+      <Button fx:id="selectButton" layoutX="88.0" layoutY="275.0" mnemonicParsing="false" onAction="#loadSinglePanelView" text="Select" />
    </children>
 </AnchorPane>

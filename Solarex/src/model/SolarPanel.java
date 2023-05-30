@@ -39,6 +39,10 @@ public class SolarPanel
   public SolarPanel(double serialNo){
     this.serialNo = serialNo;
   }
+  public SolarPanel(double serialNo, String cleaningTime){
+    this.serialNo = serialNo;
+    this.cleaningTime = cleaningTime;
+  }
   public double getSerial_number()
   {
     return serialNo;
@@ -54,7 +58,7 @@ public class SolarPanel
     return installationTime;
   }
 
-  public String isStatus()
+  public String getStatus()
   {
     return status;
   }

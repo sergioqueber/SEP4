@@ -1,25 +1,26 @@
 package view;
 
+import Connection.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.CategoryAxis;
-import Connection.*;
 import model.PhotovoltaicPanel;
 import model.Repairs;
 import model.SolarPanel;
+import model.ThermalPanel;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SinglePanelController implements Initializable
+public class SinglePanelThermalController implements Initializable
 {
   private Region root;
   private ViewHandler viewHandler;
@@ -32,22 +33,20 @@ public class SinglePanelController implements Initializable
   @FXML
   private TableColumn<SolarPanel,String> cleaningDate;
 
-  @FXML private Label curentGenerationLabelValue;
-
   @FXML private TextField endTextField;
 
-  @FXML private TableView<PhotovoltaicPanel> pvVariablesTable;
+  @FXML private TableView<ThermalPanel> thVariablesTable;
   @FXML
-  private TableColumn<PhotovoltaicPanel, Double> intensityColumn;
+  private TableColumn<PhotovoltaicPanel, Double> ambientTempColumn;
 
   @FXML
-  private TableColumn<PhotovoltaicPanel, Double> powerColumn;
+  private TableColumn<PhotovoltaicPanel, Double> finalTempColumn;
 
   @FXML
   private TableColumn<PhotovoltaicPanel, String> timeStampColumn;
 
   @FXML
-  private TableColumn<PhotovoltaicPanel, ?> voltageColumn;
+  private TableColumn<PhotovoltaicPanel, ?> initialTempColumn;
   @FXML
   private TableColumn<PhotovoltaicPanel, ?> solarFluxColumn;
 
@@ -74,11 +73,18 @@ public class SinglePanelController implements Initializable
   private Label angleNumberValueLabel;
   @FXML
   private Label typeNumberValueLabel;
+
   @FXML
-  private MenuItem overview;
+  private MenuBar menu;
+
+  @FXML
+  private Menu overview;
+  @FXML
+  private MenuItem openOverview;
 
 
-  public SinglePanelController()
+
+  public SinglePanelThermalController()
   {
   }
 
@@ -88,7 +94,6 @@ public class SinglePanelController implements Initializable
     this.viewHandler = viewHandler;
     this.root = root;
     this.model = model;
-    getCurrentGeneration();
     getRepairs();
     fillPanelData();
     fillCleaningTable();
@@ -117,14 +122,15 @@ public class SinglePanelController implements Initializable
   {
     String startDate = startTextField.getText();
     String endDate = endTextField.getText();
-    intensityColumn.setCellValueFactory(new PropertyValueFactory<>("intensity"));
-    voltageColumn.setCellValueFactory(new PropertyValueFactory<>("voltage"));
-    powerColumn.setCellValueFactory(new PropertyValueFactory<>("power"));
+    initialTempColumn.setCellValueFactory(new PropertyValueFactory<>("initialTemp"));
+    finalTempColumn.setCellValueFactory(new PropertyValueFactory<>("finalTemp"));
+    ambientTempColumn.setCellValueFactory(new PropertyValueFactory<>("ambientTemp"));
     solarFluxColumn.setCellValueFactory(new PropertyValueFactory<>("solarFlux"));
     timeStampColumn.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
-    pvVariablesTable.getItems().clear();
-    for (int i = 0; i < model.getPvLogValues(startDate,endDate,model.getSelectedSn()).size(); i++){
-      pvVariablesTable.getItems().add(model.getPvLogValues(startDate,endDate, model.getSelectedSn()).get(i));
+    thVariablesTable.getItems().clear();
+    for (int i = 0; i < model.getThLogValues(startDate,endDate,
+        model.getSelectedSn()).size(); i++){
+      thVariablesTable.getItems().add(model.getThLogValues(startDate,endDate,model.getSelectedSn()).get(i));
     }
   }
 
@@ -136,10 +142,6 @@ public class SinglePanelController implements Initializable
     }
   }
 
-  public void getCurrentGeneration() throws SQLException
-  {
-    curentGenerationLabelValue.setText(String.valueOf(model.getIndividualGeneration(model.getSelectedSn())));
-  }
 
   public void getRepairs()throws SQLException{
    dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
@@ -150,18 +152,17 @@ public class SinglePanelController implements Initializable
    }
   }
 
-  public void selectTimePeriod() throws SQLException
+  /*public void selectTimePeriod() throws SQLException
   {
-    ArrayList<PhotovoltaicPanel> lectures=  model.getPvLogValues(startTextField.getText(), endTextField.getText(),model.getSelectedSn());
+    ArrayList<ThermalPanel> lectures=  model.getThLogValues(startTextField.getText(), endTextField.getText(),model.getSelectedSn());
     XYChart.Series series = new XYChart.Series();
-    System.out.println(lectures.get(0).getTimestamp());
-    System.out.println(lectures.get(0).getPower());
+    System.out.println(lectures.get(0).getTimestamp());;
     for (int i = 0; i < lectures.size(); i++){
       series.getData().add(new XYChart.Data<>(lectures.get(i).getTimestamp(), lectures.get(i).getPower()));
     }
 
     graph.getData().addAll(series);
-  }
+  }*/
 
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());

@@ -140,6 +140,8 @@ public class OverviewController implements Initializable
   TableColumn<Alerts,String> descriptionColumn;
   @FXML
   Button refreshButton;
+  @FXML
+  private Button selectButton;
 
 
 
@@ -256,4 +258,18 @@ public class OverviewController implements Initializable
   public void loadManufacturers(){
     viewHandler.openView("Manufacturers");
   }
+
+  public void loadSinglePanelView(){
+    model.setSelectedSn (solarPanelTable.getSelectionModel().getSelectedItem().getSerial_number());
+    model.setSelectedType(solarPanelTable.getSelectionModel().getSelectedItem()
+        .getType());
+    if(model.getSelectedType().equals("Photovoltaic")){
+      viewHandler.openView("Single Panel Pv");
+    }
+    else if (model.getSelectedType().equals("Thermal"))
+    {
+      viewHandler.openView("Single Panel Th");
+    }
+  }
+
 }
