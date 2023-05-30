@@ -5,7 +5,7 @@ public class Repairs
   private int id;
   private Employee employee;
   private String repairDate;
-  private SolarPanel panel;
+  private SolarPanel solarPanel;
 
   public int getId()
   {
@@ -22,17 +22,17 @@ public class Repairs
     return repairDate;
   }
 
-  public SolarPanel panel()
+  public SolarPanel solarPanel()
   {
-    return panel;
+    return solarPanel;
   }
 
-  public Repairs()
+  public Repairs(int id, Employee employee, String date, SolarPanel solarPanel)
   {
     this.id = id;
     this.employee = employee;
-    this.repairDate = repairDate;
-    this.panel = panel;
+    this.repairDate = date;
+    this.solarPanel = solarPanel;
   }
 
 }
