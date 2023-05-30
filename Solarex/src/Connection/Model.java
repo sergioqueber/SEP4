@@ -125,9 +125,17 @@ public class Model
     return factoryDAO.read().get(0).getElectricityConsumption();
   }
 
-  public double getSavings(double electricityPrice)throws SQLException{
+  public int getSavings(double electricityPrice, double sellingPrice)throws SQLException{
     FactoryDAO factoryDAO = FactoryDAO.getInstance();
-    return ((factoryDAO.read().get(0).getElectricityConsumption()) *(electricityPrice - getGeneration() * electricityPrice));
+    double savings= 0;
+    if(getGeneration() > (factoryDAO.read().get(0).getElectricityConsumption()))
+    {
+      savings = (((factoryDAO.read().get(0).getElectricityConsumption()) *electricityPrice) + (getGeneration() *sellingPrice));
+    }
+    else if (getGeneration() < (factoryDAO.read().get(0).getElectricityConsumption())){
+      savings =  (((factoryDAO.read().get(0).getElectricityConsumption()) *electricityPrice) - (getGeneration() * electricityPrice));
+    }
+    return (int) savings;
   }
 
   public double getGeneration ()throws SQLException{
@@ -219,5 +227,12 @@ public class Model
     public ArrayList<SolarPanel> getCleaningLogBySn(double sn)throws SQLException{
     CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
     return cleaningLogDAO.readCleaningLog(sn);
+    }
+
+    public void newPvLecture(double intensity, double voltage, double solar_flux,
+        String timeStamp, Double sn) throws SQLException
+    {
+    PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
+    pvPanelLogDAO.update(intensity,voltage,solar_flux,timeStamp,sn);
     }
   }

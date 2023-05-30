@@ -23,9 +23,7 @@ public class SolarPanelSimulator extends Thread
       double intensity = 0.2 + (0.4 - 0.2) * random.nextDouble();
       double voltage = 19.0 + (21.0 - 19.0) * random.nextDouble();
       double solarFlux = 700.0 + (1000.0 - 700.0) * random.nextDouble();
-      System.out.println(intensity + " " + voltage + " " + solarFlux);
-
-
+      model.newPvLecture(intensity,voltage,solarFlux,,111111);
 
       try {
         Thread.sleep(waitTime);
