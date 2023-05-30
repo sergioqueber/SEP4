@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -13,16 +14,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SinglePanelThermalController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="686.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
-      <MenuBar layoutX="7.0" layoutY="1.0" prefHeight="25.0" prefWidth="811.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="180.0" layoutX="644.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="819.0">
          <menus>
             <Menu mnemonicParsing="false" text="Overview">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="openOverview" mnemonicParsing="false" onAction="#loadOverview" text="Open" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Comparison">
@@ -52,50 +52,62 @@
             </Menu>
          </menus>
       </MenuBar>
-      <LineChart layoutX="411.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
+      <LineChart fx:id="graph" layoutX="250.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
          <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <CategoryAxis fx:id="timeAxis" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis fx:id="powerOutPutAxis" side="LEFT" />
          </yAxis>
       </LineChart>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="200.0" layoutX="14.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
-      <Text layoutX="14.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heated Water Generation" textAlignment="CENTER" wrappingWidth="130.69076538085938">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="194.0" layoutX="31.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
+      <TextField fx:id="startTextField" layoutX="689.0" layoutY="130.0" prefHeight="25.0" prefWidth="62.0" />
+      <Button fx:id="applyButton" layoutX="655.0" layoutY="217.0" mnemonicParsing="false" onAction="#fillValuesTable" text="Apply" />
+      <TableView fx:id="thVariablesTable" layoutX="156.0" layoutY="296.0" prefHeight="194.0" prefWidth="320.0">
+         <columns>
+            <TableColumn fx:id="initialTempColumn" prefWidth="58.4000244140625" text="Temp0" />
+            <TableColumn fx:id="finalTempColumn" prefWidth="52.0" text="TempF" />
+            <TableColumn fx:id="ambientTempColumn" minWidth="9.5999755859375" prefWidth="67.20001220703125" text="AmbientT" />
+            <TableColumn fx:id="solarFluxColumn" prefWidth="62.39996337890625" text="Solar Flux" />
+            <TableColumn fx:id="timeStampColumn" prefWidth="79.20001220703125" text="Timestamp" />
+         </columns>
+      </TableView>
+      <TableView fx:id="repairsTable" layoutX="481.0" layoutY="296.0" prefHeight="194.0" prefWidth="149.0">
+         <columns>
+            <TableColumn fx:id="dateColumn" prefWidth="70.39999389648438" text="Date" />
+            <TableColumn fx:id="employeeIdColumn" prefWidth="81.5999755859375" text="Employee" />
+         </columns>
+      </TableView>
+      <TableView fx:id="cleaningTable" layoutX="644.0" layoutY="295.0" prefHeight="194.0" prefWidth="118.0">
+         <columns>
+            <TableColumn fx:id="cleaningDate" prefWidth="117.60001220703126" text="Cleaning date" />
+         </columns>
+      </TableView>
+      <TextField fx:id="endTextField" layoutX="689.0" layoutY="173.0" prefHeight="25.0" prefWidth="62.0" />
+      <Label layoutX="653.0" layoutY="93.0" text="Select Time Period" />
+      <Label layoutX="657.0" layoutY="134.0" text="Start" />
+      <Label layoutX="659.0" layoutY="177.0" text="End" />
+      <Label layoutX="41.0" layoutY="310.0" text="Curent Generation">
          <font>
-            <Font size="11.0" />
-         </font></Text>
-      <Text layoutX="700.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select time period" />
-      <Text layoutX="696.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" />
-      <Text layoutX="698.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" />
-      <TextField layoutX="731.0" layoutY="356.0" prefHeight="25.0" prefWidth="62.0" />
-      <Button layoutX="725.0" layoutY="437.0" mnemonicParsing="false" text="Apply" />
-      <TableView layoutX="156.0" layoutY="296.0" prefHeight="193.0" prefWidth="270.0">
-         <columns>
-            <TableColumn prefWidth="58.66668701171875" text="Intensity " />
-            <TableColumn prefWidth="48.66670227050781" text="Voltage" />
-            <TableColumn prefWidth="42.0" text="Power" />
-            <TableColumn prefWidth="47.33331298828125" text="Angle " />
-            <TableColumn prefWidth="68.66668701171875" text="Timestamp" />
-         </columns>
-      </TableView>
-      <TableView layoutX="436.0" layoutY="296.0" prefHeight="193.0" prefWidth="147.0">
-         <columns>
-            <TableColumn prefWidth="34.0" text="Date" />
-            <TableColumn prefWidth="111.99996948242188" text="Repair description" />
-         </columns>
-      </TableView>
-      <TableView layoutX="593.0" layoutY="296.0" prefHeight="193.0" prefWidth="85.0">
-         <columns>
-            <TableColumn prefWidth="83.3333740234375" text="Cleaning date" />
-         </columns>
-      </TableView>
-      <TableView layoutX="33.0" layoutY="67.0" prefHeight="200.0" prefWidth="185.0">
-         <columns>
-            <TableColumn prefWidth="87.33334732055664" text="Serial number" />
-            <TableColumn prefWidth="95.9999974568685" text="8472640128" />
-         </columns>
-      </TableView>
-      <TextField layoutX="731.0" layoutY="399.0" prefHeight="25.0" prefWidth="62.0" />
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="graphButton" layoutX="706.0" layoutY="217.0" mnemonicParsing="false" text="Graph" />
+      <Label layoutX="31.0" layoutY="69.0" text="Serial Number">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="102.0" text="Location" />
+      <Label layoutX="31.0" layoutY="134.0" text="Installation time" />
+      <Label layoutX="31.0" layoutY="169.0" text="Status" />
+      <Label layoutX="31.0" layoutY="199.0" text="Angle" />
+      <Label layoutX="31.0" layoutY="234.0" text="Type" />
+      <Label fx:id="serialNumberValueLabel" layoutX="135.0" layoutY="68.0" text="Label" />
+      <Label fx:id="locationValueLabel" layoutX="135.0" layoutY="102.0" text="Label" />
+      <Label fx:id="installationTimeValueLabel" layoutX="135.0" layoutY="136.0" text="Label" />
+      <Label fx:id="statusValueLabel" layoutX="135.0" layoutY="171.0" text="Label" />
+      <Label fx:id="angleNumberValueLabel" layoutX="135.0" layoutY="201.0" text="Label" />
+      <Label fx:id="typeNumberValueLabel" layoutX="135.0" layoutY="236.0" text="Label" />
    </children>
 </AnchorPane>

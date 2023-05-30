@@ -1,26 +1,25 @@
 package DAOTest;
 
-import model.Factory;
-import model.Model;
 import model.PhotovoltaicPanel;
+import model.ThermalPanel;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PvPanelLogDAO
+public class ThPanelLogDAO
 {
-  private static PvPanelLogDAO instance;
+  private static ThPanelLogDAO instance;
 
-  private PvPanelLogDAO() throws SQLException
+  private ThPanelLogDAO() throws SQLException
   {
     DriverManager.registerDriver(new org.postgresql.Driver());
   }
 
-  public static synchronized PvPanelLogDAO getInstance() throws SQLException
+  public static synchronized ThPanelLogDAO getInstance() throws SQLException
   {
     if (instance == null)
     {
-      instance = new PvPanelLogDAO();
+      instance = new ThPanelLogDAO();
     }
     return instance;
   }
@@ -32,26 +31,27 @@ public class PvPanelLogDAO
         "osmxbusz", "m5YUAz0vMtIcjX3bmybJc7Kaz2STNoQ-");
   }
 
-  public ArrayList<PhotovoltaicPanel> readValues(String startTime, String endTime, Double solarPanelSn) throws SQLException
+  public ArrayList<ThermalPanel> readValues(String startTime, String endTime, Double solarPanelSn) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT intensity, voltage, timestamp, solar_flux FROM solarex.photovoltaic_panel_log WHERE timestamp BETWEEN ? and ? and solar_panel_sn = ?");
+          "SELECT \"initial_temp(°C)\", \"final_temp(°C)\",\"ambient_temp(°C)\", solar_flux,timestamp FROM solarex.thermal_panel_log WHERE timestamp BETWEEN ? and ? and solar_panel_sn = ?");
       statement.setString(1, startTime);
       statement.setString(2, endTime);
       statement.setDouble(3,solarPanelSn);
       ResultSet resultSet = statement.executeQuery();
-      ArrayList<PhotovoltaicPanel> result = new ArrayList<>();
+      ArrayList<ThermalPanel> result = new ArrayList<>();
       while (resultSet.next())
       {
-        double intensity = resultSet.getDouble(1);
-        double voltage = resultSet.getDouble(2);
-        String timestamp = resultSet.getString(3);
+        double initialTemp = resultSet.getDouble(1);
+        double finalTemp = resultSet.getDouble(2);
+        double ambientTemp = resultSet.getDouble(3);
+        String timestamp = resultSet.getString(5);
         double solarFlux = resultSet.getDouble(4);
-        PhotovoltaicPanel pv = new PhotovoltaicPanel(intensity, voltage,solarFlux,
+        ThermalPanel th = new ThermalPanel(initialTemp, finalTemp,ambientTemp, solarFlux,
             timestamp);
-        result.add(pv);
+        result.add(th);
       }
       return result;
     }

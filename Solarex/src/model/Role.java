@@ -20,5 +20,7 @@ public class Role
     this.id = id;
     this.type = type;
   }
-
+  public Role(int id){
+    this.id = id;
+  }
 }

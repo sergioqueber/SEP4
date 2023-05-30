@@ -99,7 +99,7 @@ public class SetTargetsController
   }
 
   public void loadOverview(){
-    viewHandler.openView("Overview");
+    viewHandler.openView(model.getLastOverview());
   }
 
   public void resetField(){

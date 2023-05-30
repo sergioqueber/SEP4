@@ -1,21 +1,31 @@
 package view;
-
-import Connection.Model;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.CategoryAxis;
+import Connection.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import model.Alerts;
+import model.Notification;
 import model.SolarPanel;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable
@@ -130,6 +140,8 @@ public class OverviewController implements Initializable
   TableColumn<Alerts,String> descriptionColumn;
   @FXML
   Button refreshButton;
+  @FXML
+  private Button selectButton;
 
 
 
@@ -147,7 +159,7 @@ public class OverviewController implements Initializable
     fillTable();
     //refreshNotification();
     generationValueLabel.setText(String.valueOf(model.getGeneration()));
-    //electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
+    electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
     heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
     savingsValueLabel.setText(String.valueOf(model.getSavings(2.8)));
 
@@ -240,15 +252,24 @@ public class OverviewController implements Initializable
 
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
+    System.out.println("Hola");
   }
 
   public void loadManufacturers(){
     viewHandler.openView("Manufacturers");
   }
 
-  public void loadManagePanels()
-  {
-    viewHandler.openView("Manage panels");
+  public void loadSinglePanelView(){
+    model.setSelectedSn (solarPanelTable.getSelectionModel().getSelectedItem().getSerial_number());
+    model.setSelectedType(solarPanelTable.getSelectionModel().getSelectedItem()
+        .getType());
+    if(model.getSelectedType().equals("Photovoltaic")){
+      viewHandler.openView("Single Panel Pv");
+    }
+    else if (model.getSelectedType().equals("Thermal"))
+    {
+      viewHandler.openView("Single Panel Th");
+    }
   }
 
 }
