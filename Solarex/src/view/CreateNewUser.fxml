@@ -27,7 +27,7 @@
       <TextField fx:id="factoryNameTextField" layoutX="211.0" layoutY="267.0" prefHeight="26.0" prefWidth="94.0" />
       <TextField fx:id="employmentDateTextField" layoutX="418.0" layoutY="223.0" prefHeight="26.0" prefWidth="68.0" />
       <Button fx:id="createUserButton" layoutX="510.0" layoutY="358.0" mnemonicParsing="false" onAction="#createNewUser" text="Create user" />
-      <Button fx:id="backButton" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Label fx:id="passwordLabel" layoutX="115.0" layoutY="309.0" text="Password" />
       <PasswordField fx:id="passwordTextField" layoutX="212.0" layoutY="305.0" />
       <Label layoutX="106.0" layoutY="348.0" prefHeight="18.0" prefWidth="94.0" text="Admin password" />

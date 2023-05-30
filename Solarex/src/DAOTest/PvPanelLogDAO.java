@@ -121,19 +121,4 @@ public class PvPanelLogDAO
     }
   }
 
-  public void update(double intensity, double voltage, double solar_flux,
-      String timeStamp, Double sn) throws SQLException
-  {
-    try (Connection connection = getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "UPDATE photovoltaic_panel SET intensity = ?,voltage =?, solar_flux = ?, timestamp = ? WHERE solar_panel_sn = ?");
-      statement.setDouble(1, intensity);
-      statement.setDouble(2, voltage);
-      statement.setDouble(3, solar_flux);
-      statement.setString(4, timeStamp);
-      statement.setDouble(5,sn);
-      statement.executeUpdate();
-    }
-  }
 }

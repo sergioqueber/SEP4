@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -9,19 +11,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="434.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManagePanelsController">
+<AnchorPane prefHeight="497.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManagePanelsController">
    <children>
-      <MenuBar layoutX="5.0" layoutY="1.0" prefHeight="25.0" prefWidth="702.0">
+      <MenuBar layoutX="-3.0" layoutY="1.0" prefHeight="26.0" prefWidth="707.0">
          <menus>
             <Menu mnemonicParsing="false" text="Overview">
                <items>
                   <MenuItem mnemonicParsing="false" text="Close" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Comparison">
+            <Menu mnemonicParsing="false" text="Set Targets">
                <items>
                   <MenuItem mnemonicParsing="false" text="Delete" />
                </items>
@@ -48,53 +49,102 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Manufacturers">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem fx:id="manufacturersItem" mnemonicParsing="false" onAction="#loadManufacturersView" text="Open" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <Label fx:id="pvLabel" layoutX="27.0" layoutY="151.0" text="Photovoltaic panels" />
-      <TableView fx:id="pvPanelTable" layoutX="27.0" layoutY="209.0" prefHeight="164.0" prefWidth="317.0">
+      <Label fx:id="pvLabel" layoutX="25.0" layoutY="74.0" text="Photovoltaic panels" />
+      <TableView fx:id="pvPanelTable" layoutX="25.0" layoutY="132.0" prefHeight="164.0" prefWidth="317.0">
          <columns>
-            <TableColumn fx:id="pvSNC" prefWidth="69.59997367858887" text="Serial number" />
-            <TableColumn fx:id="pvLocationC" prefWidth="57.60004425048828" text="Location" />
-            <TableColumn fx:id="pvStatusC" prefWidth="48.0" text="Status" />
-            <TableColumn fx:id="pvTypeC" prefWidth="45.5999755859375" text="Type " />
-            <TableColumn fx:id="pvManufacturerC" prefWidth="95.20001220703125" text="Manufacturer" />
+            <TableColumn fx:id="pvSNC" prefWidth="79.99997329711914" text="Serial number" />
+            <TableColumn fx:id="pvLocationC" prefWidth="66.39996337890625" text="Location" />
+            <TableColumn fx:id="pvStatusC" prefWidth="49.60003662109375" text="Status" />
+            <TableColumn fx:id="pvTypeC" prefWidth="46.40000915527344" text="Type " />
+            <TableColumn fx:id="pvModelC" prefWidth="71.199951171875" text="Model" />
          </columns>
       </TableView>
-      <Label fx:id="tpLabel" layoutX="601.0" layoutY="151.0" text="Thermal panels" />
-      <TableView fx:id="tpPanelTable" layoutX="365.0" layoutY="209.0" prefHeight="164.0" prefWidth="318.0">
+      <Label fx:id="tpLabel" layoutX="599.0" layoutY="74.0" text="Thermal panels" />
+      <TableView fx:id="thPanelTable" layoutX="363.0" layoutY="132.0" prefHeight="164.0" prefWidth="318.0">
          <columns>
-            <TableColumn fx:id="tpSNC" prefWidth="69.5999755859375" text="Serial number" />
-            <TableColumn fx:id="tpLocationC" prefWidth="60.79998779296875" text="Location" />
-            <TableColumn fx:id="tpStatusC" prefWidth="46.400054931640625" text="Status" />
-            <TableColumn fx:id="tpTypeC" prefWidth="41.60003662109375" text="Type " />
-            <TableColumn fx:id="tpManufacturerC" prefWidth="103.199951171875" text="Manufacturer" />
+            <TableColumn fx:id="tpSNC" prefWidth="79.20001220703125" text="Serial number" />
+            <TableColumn fx:id="tpLocationC" prefWidth="68.0" text="Location" />
+            <TableColumn fx:id="tpStatusC" prefWidth="49.60003662109375" text="Status" />
+            <TableColumn fx:id="tpTypeC" prefWidth="52.79998779296875" text="Type " />
+            <TableColumn fx:id="tpModelC" prefWidth="64.0" text="Model" />
          </columns>
       </TableView>
-      <TextField fx:id="pvText" layoutX="27.0" layoutY="176.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
-      <TextField fx:id="tpText" layoutX="552.0" layoutY="176.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
-      <Button fx:id="pvSearch" layoutX="160.0" layoutY="176.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="tpSearch" layoutX="496.0" layoutY="176.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="addNewButton" layoutX="27.0" layoutY="384.0" mnemonicParsing="false" text="Add new" />
-      <Button fx:id="editButton" layoutX="105.0" layoutY="384.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
-      <Button fx:id="removeButton" layoutX="171.0" layoutY="384.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Remove" />
-      <Button fx:id="saveButton" layoutX="628.0" layoutY="383.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Save" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="203.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="365.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="442.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="203.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="282.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="365.0" layoutY="84.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="282.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="203.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="442.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="365.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="282.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="442.0" layoutY="84.0" stroke="BLACK" strokeType="INSIDE" width="63.0" />
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+      <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
+      <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
+      <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
+      <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
+      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
+      <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="snText" layoutX="25.0" layoutY="377.0" prefHeight="26.0" prefWidth="122.0" />
+      <TextField fx:id="locationText" layoutX="180.0" layoutY="377.0" prefHeight="26.0" prefWidth="122.0" />
+      <Label fx:id="pvLabel1" layoutX="55.0" layoutY="408.0" text="Serial number">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel11" layoutX="222.0" layoutY="408.0" text="Location">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel111" layoutX="72.0" layoutY="461.0" text="Status">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel1121" layoutX="228.0" layoutY="461.0" text="Angle">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel2" layoutX="293.0" layoutY="42.0" text="Manage Panels">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="pvCheckBox" layoutX="533.0" layoutY="390.0" mnemonicParsing="false" text="Photovoltaic ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="thCheckBox" layoutX="533.0" layoutY="433.0" mnemonicParsing="false" text="Thermal">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </CheckBox>
+      <TextField fx:id="angleText" layoutX="180.0" layoutY="430.0" prefHeight="26.0" prefWidth="122.0" />
+      <Label fx:id="pvLabel11212" layoutX="348.0" layoutY="408.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel11213" layoutX="383.0" layoutY="408.0" text="Model">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel11211" layoutX="378.0" layoutY="461.0" text="Factory">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="pvLabel112111" layoutX="478.0" layoutY="408.0" text="Panel type:">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="factoryChoiceBox" layoutX="334.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
+      <ChoiceBox fx:id="modelChoiceBox" layoutX="334.0" layoutY="377.0" prefHeight="26.0" prefWidth="121.0" />
+      <ChoiceBox fx:id="statusChoiceBox" layoutX="26.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
    </children>
 </AnchorPane>

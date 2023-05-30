@@ -22,6 +22,8 @@ public class ViewHandler
   private ManufacturersController manufacturersController;
   private CreateNewUserController createNewUserController;
   private SinglePanelThermalController singlePanelThermalController;
+  private ManagePanelsController managePanelsController;
+  private RepairsController repairsController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -55,6 +57,12 @@ public class ViewHandler
       case "Single Panel Th":
         root = loadSinglePanelThermal("SinglePanelThermal.fxml");
         break;
+      case "Manage Panels":
+        root = loadManagePanels("ManagePanels.fxml");
+        break;
+      case "Repairs":
+        root = loadRepairs("Repairs.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -70,7 +78,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("OverviewAn");
+    openView("Repairs");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -264,6 +272,63 @@ public class ViewHandler
       {
         root =  singlePanelThermalController.getRoot();
         singlePanelThermalController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
+  private Region loadManagePanels(String fxmlFile){
+    if(managePanelsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        managePanelsController = loader.getController();
+        managePanelsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  managePanelsController.getRoot();
+        managePanelsController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+  private Region loadRepairs(String fxmlFile){
+    if(repairsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        repairsController = loader.getController();
+        repairsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  repairsController.getRoot();
+        repairsController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();

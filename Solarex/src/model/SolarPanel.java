@@ -43,6 +43,25 @@ public class SolarPanel
     this.serialNo = serialNo;
     this.cleaningTime = cleaningTime;
   }
+
+  public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
+      String type)
+  {
+    this.serialNo = serialNo;
+    this.location = location;
+    this.cleaningTime = null;
+    this.status = status;
+    this.angle = angle;
+    this.model = model;
+    this.timestamp = null;
+    this.factory = factory;
+    this.type = type;
+  }
+
+  public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory)
+  {
+  }
+
   public double getSerial_number()
   {
     return serialNo;

@@ -22,7 +22,7 @@
          <menus>
             <Menu fx:id="overview" mnemonicParsing="false" text="Overview">
                <items>
-                  <MenuItem fx:id="openOverview" mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="openOverview" mnemonicParsing="false" onAction="#loadOverview" text="Open" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Comparison">
@@ -54,10 +54,10 @@
       </MenuBar>
       <LineChart fx:id="graph" layoutX="250.0" layoutY="51.0" prefHeight="231.0" prefWidth="320.0">
          <xAxis>
-            <CategoryAxis fx:id="timeAxis" side="BOTTOM" />
+            <CategoryAxis fx:id="timeAxis" label="Time" side="BOTTOM" />
          </xAxis>
          <yAxis>
-            <NumberAxis fx:id="powerOutPutAxis" side="LEFT" />
+            <NumberAxis fx:id="powerOutPutAxis" label="Power" side="LEFT" />
          </yAxis>
       </LineChart>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="194.0" layoutX="31.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="118.0" />
@@ -92,7 +92,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="curentGenerationLabelValue" layoutX="76.0" layoutY="392.0" text="Label" />
+      <Label fx:id="curentGenerationLabelValue" layoutX="67.0" layoutY="393.0" prefHeight="18.0" prefWidth="46.0" text="Label" />
       <Button fx:id="graphButton" layoutX="706.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectTimePeriod" text="Graph" />
       <Label layoutX="31.0" layoutY="69.0" text="Serial Number">
          <font>

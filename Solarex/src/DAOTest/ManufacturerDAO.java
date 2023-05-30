@@ -46,18 +46,17 @@ public class ManufacturerDAO
     return null;
   }
 
-  public Manufacturer editManufacturer(Manufacturer manufacturer) throws SQLException
+  public void editManufacturer(String select, Manufacturer manufacturer) throws SQLException
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.manufacturer SET name = ?, email = ?, phone_number = ?");
+      PreparedStatement statement = connection.prepareStatement("UPDATE solarex.manufacturer SET name = ?, email = ?, phone_number = ? WHERE name = ?");
       statement.setString(1, manufacturer.getName());
       statement.setString(2, manufacturer.getEmail());
       statement.setDouble(3, manufacturer.getPhoneNumber());
+      statement.setString(4, select);
       statement.executeUpdate();
     }
-    return manufacturer;
   }
 
   public ArrayList<Manufacturer> readManufacturers() throws SQLException
@@ -80,27 +79,51 @@ public class ManufacturerDAO
     }
   }
 
+
   public ArrayList<Manufacturer> readByName(String searchString) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * FROM solarex.manufacturer WHERE name LIKE ?");
+          "SELECT * FROM solarex.manufacturer WHERE name iLIKE ?");
       statement.setString(1, "%" + searchString + "%");
+      statement.executeQuery();
       ResultSet resultSet = statement.executeQuery();
       ArrayList<Manufacturer> result = new ArrayList<>();
       while (resultSet.next())
       {
         String name = resultSet.getString("name");
-        Manufacturer manufacturer = new Manufacturer(name);
+        String email = resultSet.getString("email");
+        double phoneNumber = resultSet.getDouble("phone_number");
+        Manufacturer manufacturer = new Manufacturer(name, email, phoneNumber);
         result.add(manufacturer);
       }
       return result;
     }
   }
 
-  public Manufacturer removeManufacturer(String name) throws SQLException
-  {
+  public ArrayList<Manufacturer> readByEmail (String searchString) throws
+      SQLException {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM solarex.manufacturer WHERE email iLIKE ?");
+      statement.setString(1, "%" + searchString + "%");
+      ResultSet resultSet = statement.executeQuery();
+      ArrayList<Manufacturer> result = new ArrayList<>();
+      while (resultSet.next())
+      {
+        String name = resultSet.getString("name");
+        String email = resultSet.getString("email");
+        double phoneNumber = resultSet.getDouble("phone_number");
+        Manufacturer manufacturer = new Manufacturer(name, email, phoneNumber);
+        result.add(manufacturer);
+      }
+      return result;
+    }
+  }
+
+  public Manufacturer removeManufacturer (String name) throws SQLException {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
@@ -112,5 +135,6 @@ public class ManufacturerDAO
     }
     return null;
   }
+
 
 }
