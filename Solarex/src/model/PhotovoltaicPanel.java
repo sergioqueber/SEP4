@@ -14,7 +14,7 @@ public class PhotovoltaicPanel extends SolarPanel
     this.power = intensity*voltage;
   }
   public PhotovoltaicPanel(SolarPanel pv){
-    super(pv.getSerial_number(),pv.getLocation(),pv.getInstallationTime(),pv.getStatus(),pv.getAngle(),pv.getModel(),pv.getFactory(),pv.getType());
+    super(pv.getSerial_number(),pv.getLocation(),pv.getStatus(),pv.getAngle(),pv.getModel(),pv.getFactory(),pv.getType());
   }
   public PhotovoltaicPanel(double intensity, double voltage, double solarFlux, String timestamp){
     super(timestamp);
@@ -23,6 +23,13 @@ public class PhotovoltaicPanel extends SolarPanel
     this.solarFlux = solarFlux;
     power = intensity*voltage;
   }
+
+  public PhotovoltaicPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
+      String type)
+  {
+    super(serialNo, location, status, angle, model, factory, type);
+  }
+
   public void setIntensity(double intensity)
   {
     this.intensity = intensity;
