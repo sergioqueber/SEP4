@@ -75,7 +75,12 @@ public class SinglePanelController implements Initializable
   @FXML
   private Label typeNumberValueLabel;
   @FXML
-  private MenuItem overview;
+  private MenuBar menu;
+
+  @FXML
+  private Menu overview;
+  @FXML
+  private MenuItem openOverview;
 
 
   public SinglePanelController()

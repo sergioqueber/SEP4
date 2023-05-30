@@ -161,7 +161,7 @@ public class OverviewController implements Initializable
     generationValueLabel.setText(String.valueOf(model.getGeneration()));
     electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
     heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
-    savingsValueLabel.setText(String.valueOf(model.getSavings(2.8)));
+    savingsValueLabel.setText(String.valueOf(model.getSavings(2.8,1.8)));
 
   }
 
