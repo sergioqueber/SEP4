@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,9 +10,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CleaningController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="174.0" layoutX="427.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="209.0" />
       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="655.0">
@@ -48,10 +50,8 @@
             </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="searchField" layoutX="27.0" layoutY="47.0" promptText="Search" />
-      <TextField fx:id="datePicker" layoutX="408.0" layoutY="46.0" />
-      <Text layoutX="369.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" />
-      <TableView layoutX="26.0" layoutY="84.0" prefHeight="151.0" prefWidth="610.0">
+      <TextField fx:id="dateField" layoutX="408.0" layoutY="46.0" promptText="Date" />
+      <TableView fx:id="cleaningTable" layoutX="26.0" layoutY="84.0" prefHeight="151.0" prefWidth="610.0">
         <columns>
           <TableColumn fx:id="snColumn" prefWidth="145.33330726623535" text="Serial number" />
           <TableColumn fx:id="locationColumn" prefWidth="133.99998474121094" text="Location" />
@@ -59,22 +59,33 @@
             <TableColumn fx:id="typeColumn" prefWidth="169.99996948242188" text="Type " />
         </columns>
       </TableView>
-      <TableView layoutX="26.0" layoutY="299.0" prefHeight="174.0" prefWidth="361.0">
+      <TableView fx:id="cleaningLogTable" layoutX="26.0" layoutY="299.0" prefHeight="174.0" prefWidth="361.0">
          <columns>
-            <TableColumn fx:id="cleaningColumn" prefWidth="106.66665077209473" text="Date of cleaning" />
-            <TableColumn fx:id="snLogColumn" prefWidth="100.66668701171875" text="Serial number" />
+            <TableColumn fx:id="cleaningLogColumn" prefWidth="106.66665077209473" text="Date of cleaning" />
+            <TableColumn fx:id="snLogCOlumn" prefWidth="100.66668701171875" text="Serial number" />
             <TableColumn fx:id="locationLogColumn" prefWidth="74.0" text="Location" />
             <TableColumn fx:id="typeLogColumn" prefWidth="77.99998982747394" text="Type " />
          </columns>
       </TableView>
-      <Button fx:id="editButton" layoutX="26.0" layoutY="250.0" mnemonicParsing="false" text="Edit" />
-      <Button fx:id="saveAddButton" layoutX="98.0" layoutY="250.0" mnemonicParsing="false" text="Save/Add" />
-      <Button fx:id="editLogButton" layoutX="26.0" layoutY="486.0" mnemonicParsing="false" text="Edit" />
-      <Button fx:id="saveLogButton" layoutX="98.0" layoutY="486.0" mnemonicParsing="false" text="Save" />
-      <Text layoutX="447.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start" wrappingWidth="35.26171875" />
-      <Text layoutX="447.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End" wrappingWidth="35.26171875" />
-      <Button fx:id="applyButton" layoutX="500.0" layoutY="423.0" mnemonicParsing="false" text="Apply" />
-      <TextField fx:id="startDate" layoutX="501.0" layoutY="340.0" prefHeight="25.0" prefWidth="112.0" />
-      <TextField fx:id="endDate" layoutX="501.0" layoutY="373.0" prefHeight="25.0" prefWidth="112.0" />
+      <Button fx:id="saveAddButton" layoutX="568.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSaveAddButtonClicked" text="Save/Add" />
+      <Button fx:id="editLogButton" layoutX="147.0" layoutY="486.0" mnemonicParsing="false" onAction="#onEditLogButton" text="Edit" />
+      <Text layoutX="438.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Get time period" wrappingWidth="88.421875" />
+      <Button fx:id="applyButton" layoutX="508.0" layoutY="425.0" mnemonicParsing="false" onAction="#onApplyButtonClicked" text="Apply" />
+      <TextField fx:id="startDateField" layoutX="451.0" layoutY="347.0" prefHeight="26.0" prefWidth="150.0" promptText="Start" />
+      <TextField fx:id="endDateField" layoutX="451.0" layoutY="386.0" prefHeight="26.0" prefWidth="150.0" promptText="End" />
+      <Button fx:id="returnButton" layoutX="333.0" layoutY="486.0" mnemonicParsing="false" onAction="#onReturnButton" text="Refresh" />
+      <Text layoutX="26.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new cleaning">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="26.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All cleanings">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Label fx:id="messageField" layoutX="26.0" layoutY="241.0" />
+      <TextField fx:id="dateLogField" layoutX="26.0" layoutY="486.0" prefHeight="26.0" prefWidth="112.0" promptText="Date" />
+      <Label fx:id="messageLogField" layoutX="26.0" layoutY="514.0" />
    </children>
 </AnchorPane>

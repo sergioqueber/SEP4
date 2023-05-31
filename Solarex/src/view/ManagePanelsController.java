@@ -32,6 +32,9 @@ public class ManagePanelsController
   @FXML private CheckBox pvCheckBox;
 
   @FXML private ChoiceBox<String> statusChoiceBox;
+
+  @FXML
+  private Label messageField;
   @FXML private Label pvLabel;
 
   @FXML private Label pvLabel1;
@@ -84,6 +87,12 @@ public class ManagePanelsController
 
   @FXML private Label tpLabel;
 
+  @FXML
+  private TableColumn<PhotovoltaicPanel, Integer> pvAngleC;
+
+  @FXML
+  private TableColumn<PhotovoltaicPanel, Integer> tpAngleC;
+
   @FXML private TableColumn<ThermalPanel, Integer> tpLocationC;
 
   @FXML private TableColumn<ThermalPanel, Double> tpModelC;
@@ -104,8 +113,20 @@ public class ManagePanelsController
   private Model model;
   private Region root;
 
+  private boolean edit;
+
   public ManagePanelsController()
   {
+  }
+
+  public void setEdit(boolean edit)
+  {
+    this.edit = edit;
+  }
+
+  public boolean getEdit()
+  {
+    return edit;
   }
 
   public Region getRoot()
@@ -126,6 +147,7 @@ public class ManagePanelsController
     statusChoiceBox.getItems().add(2, "Removed");
     fillPVPanels();
     fillTHPanels();
+    setEdit(false);
   }
 
   public void fillPVPanels() throws SQLException
@@ -133,6 +155,7 @@ public class ManagePanelsController
     pvSNC.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
     pvLocationC.setCellValueFactory(new PropertyValueFactory<>("location"));
     pvStatusC.setCellValueFactory(new PropertyValueFactory<>("status"));
+    pvAngleC.setCellValueFactory(new PropertyValueFactory<>("angle"));
     pvTypeC.setCellValueFactory(new PropertyValueFactory<>("type"));
     pvModelC.setCellValueFactory(new PropertyValueFactory<>("model"));
     pvPanelTable.getItems().clear();
@@ -147,6 +170,7 @@ public class ManagePanelsController
     tpSNC.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
     tpLocationC.setCellValueFactory(new PropertyValueFactory<>("location"));
     tpStatusC.setCellValueFactory(new PropertyValueFactory<>("status"));
+    tpAngleC.setCellValueFactory(new PropertyValueFactory<>("angle"));
     tpTypeC.setCellValueFactory(new PropertyValueFactory<>("type"));
     tpModelC.setCellValueFactory(new PropertyValueFactory<>("model"));
     thPanelTable.getItems().clear();
@@ -157,45 +181,61 @@ public class ManagePanelsController
   }
 
 
-  public void onAddNewPanelButton() throws SQLException
+  public void onSavePanelButton() throws SQLException
   {
-    Double serialNo = Double.parseDouble(snText.getText());
-    int location = Integer.parseInt(locationText.getText());
-    String status = statusChoiceBox.getValue();
-    int angle = Integer.parseInt(angleText.getText());
-    if (pvCheckBox.isSelected())
+    if (getEdit())
     {
-      if (model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getStatus()
-          .equals(status))
+      int newLocation = Integer.parseInt(locationText.getText());
+      String newStatus = statusChoiceBox.getSelectionModel().getSelectedItem();
+      int newAngle = Integer.parseInt(angleText.getText());
+      double newModelNo = modelChoiceBox.getValue().getModelNo();
+      int newFactoryId = factoryChoiceBox.getValue().getId();
+      if (pvCheckBox.isSelected())
       {
-        String type = "Photovoltaic";
-        double modelNo = model.getModels()
-            .get(modelChoiceBox.getSelectionModel().getSelectedIndex()).getModelNo();
-        int factoryId = model.getFactories()
-            .get(factoryChoiceBox.getSelectionModel().getSelectedIndex()).getId();
-        model.addPhotovoltaicPanel(serialNo, location, status, angle, modelNo,
-            factoryId, type);
+        String newType = "Photovoltaic";
+        model.editPVpanel(pvPanelTable.getSelectionModel().getSelectedItem().getSerial_number(),newLocation, newStatus, newAngle, newModelNo, newFactoryId, newType);
         fillPVPanels();
       }
+      else if (thCheckBox.isSelected())
+      {
+        String newType = "Thermal";
+        model.editTHpanel(thPanelTable.getSelectionModel().getSelectedItem().getSerial_number(),newLocation, newStatus, newAngle, newModelNo, newFactoryId, newType);
+        fillTHPanels();
+      }
     }
-    else if (thCheckBox.isSelected())
-    {
-        String type = "Thermal";
+      else
+      {
+        Double serialNo = Double.parseDouble(snText.getText());
+        int location = Integer.parseInt(locationText.getText());
+        String status = statusChoiceBox.getSelectionModel().getSelectedItem();
+        int angle = Integer.parseInt(angleText.getText());
         double modelNo = model.getModels().get(modelChoiceBox.getSelectionModel().getSelectedIndex())
             .getModelNo();
         int factoryId = model.getFactories().get(factoryChoiceBox.getSelectionModel().getSelectedIndex())
             .getId();
-        model.addThermalPanel(serialNo, location, status, angle, modelNo,
-            factoryId, type);
-        fillTHPanels();
-    }
-    snText.clear();
-    locationText.clear();
-    angleText.clear();
-    modelChoiceBox.getSelectionModel().clearSelection();
-    factoryChoiceBox.getSelectionModel().clearSelection();
-    statusChoiceBox.getSelectionModel().clearSelection();
+        if (pvCheckBox.isSelected())
+        {
+          String type = "Photovoltaic";
+          model.addPhotovoltaicPanel(serialNo, location, status, angle, modelNo,
+              factoryId, type);
+          fillPVPanels();
+        }
+        else if (thCheckBox.isSelected())
+        {
+          String type = "Thermal";
+          model.addThermalPanel(serialNo, location, status, angle, modelNo,
+              factoryId, type);
+          fillTHPanels();
+        }
+      }
+      snText.clear();
+      locationText.clear();
+      angleText.clear();
+      modelChoiceBox.getSelectionModel().clearSelection();
+      factoryChoiceBox.getSelectionModel().clearSelection();
+      statusChoiceBox.getSelectionModel().clearSelection();
   }
+
 
   public void onRemoveButton() throws SQLException
   {
@@ -214,6 +254,46 @@ public class ManagePanelsController
     fillPVPanels();
     fillTHPanels();
 
+  }
+
+  public void onEditButtonClicked() throws SQLException
+  {
+    setEdit(true);
+    if(pvPanelTable.getSelectionModel().isSelected(pvPanelTable.getSelectionModel().getSelectedIndex()))
+    {
+      messageField.setText("");
+      snText.setText(String.valueOf(
+          model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getSerial_number()));
+      locationText.setText(String.valueOf(
+          model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getLocation()));
+      statusChoiceBox.setValue(String.valueOf(
+          model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getStatus()));
+      angleText.setText(String.valueOf(
+          model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getAngle()));
+      modelChoiceBox.setValue(model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getModel());
+      factoryChoiceBox.setValue(model.getAllPVPanels().get(pvPanelTable.getSelectionModel().getSelectedIndex()).getFactory());
+      pvCheckBox.setSelected(true);
+
+    }
+    else if (thPanelTable.getSelectionModel().isSelected(thPanelTable.getSelectionModel().getSelectedIndex()))
+    {
+      messageField.setText("");
+      snText.setText(String.valueOf(
+          model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getSerial_number()));
+      locationText.setText(String.valueOf(
+          model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getLocation()));
+      statusChoiceBox.setValue(String.valueOf(
+          model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getStatus()));
+      angleText.setText(String.valueOf(
+          model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getAngle()));
+      modelChoiceBox.setValue(model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getModel());
+      factoryChoiceBox.setValue(model.getAllTHPanels().get(thPanelTable.getSelectionModel().getSelectedIndex()).getFactory());
+      thCheckBox.setSelected(true);
+    }
+    else
+    {
+      messageField.setText("Select a solar panel from the table in order to proceed.");
+    }
   }
 
 
@@ -239,6 +319,16 @@ public class ManagePanelsController
   public void loadManufacturersView()
   {
     viewHandler.openView("Manufacturers");
+  }
+
+  public void onUpdatePVButton()
+  {
+
+  }
+
+  public void onUpdateTHButton()
+  {
+
   }
 
 }

@@ -22,7 +22,7 @@
                   <MenuItem mnemonicParsing="false" text="Close" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Comparison">
+            <Menu mnemonicParsing="false" text="Set Targets">
                <items>
                   <MenuItem mnemonicParsing="false" text="Delete" />
                </items>
@@ -57,29 +57,31 @@
       <Label fx:id="pvLabel" layoutX="25.0" layoutY="74.0" text="Photovoltaic panels" />
       <TableView fx:id="pvPanelTable" layoutX="25.0" layoutY="132.0" prefHeight="164.0" prefWidth="317.0">
          <columns>
-            <TableColumn fx:id="pvSNC" prefWidth="79.99997329711914" text="Serial number" />
-            <TableColumn fx:id="pvLocationC" prefWidth="66.39996337890625" text="Location" />
-            <TableColumn fx:id="pvStatusC" prefWidth="49.60003662109375" text="Status" />
-            <TableColumn fx:id="pvTypeC" prefWidth="46.40000915527344" text="Type " />
-            <TableColumn fx:id="pvModelC" prefWidth="71.199951171875" text="Model" />
+            <TableColumn fx:id="pvSNC" prefWidth="60.80002212524414" text="Serial number" />
+            <TableColumn fx:id="pvLocationC" prefWidth="56.800018310546875" text="Location" />
+            <TableColumn fx:id="pvStatusC" prefWidth="46.4000244140625" text="Status" />
+            <TableColumn fx:id="pvAngleC" prefWidth="48.800048828125" text="Angle" />
+            <TableColumn fx:id="pvTypeC" prefWidth="48.00004577636719" text="Type " />
+            <TableColumn fx:id="pvModelC" prefWidth="50.4000244140625" text="Model" />
          </columns>
       </TableView>
       <Label fx:id="tpLabel" layoutX="599.0" layoutY="74.0" text="Thermal panels" />
       <TableView fx:id="thPanelTable" layoutX="363.0" layoutY="132.0" prefHeight="164.0" prefWidth="318.0">
          <columns>
-            <TableColumn fx:id="tpSNC" prefWidth="79.20001220703125" text="Serial number" />
-            <TableColumn fx:id="tpLocationC" prefWidth="68.0" text="Location" />
-            <TableColumn fx:id="tpStatusC" prefWidth="49.60003662109375" text="Status" />
-            <TableColumn fx:id="tpTypeC" prefWidth="52.79998779296875" text="Type " />
-            <TableColumn fx:id="tpModelC" prefWidth="64.0" text="Model" />
+            <TableColumn fx:id="tpSNC" prefWidth="61.5999755859375" text="Serial number" />
+            <TableColumn fx:id="tpLocationC" prefWidth="56.79998779296875" text="Location" />
+            <TableColumn fx:id="tpStatusC" prefWidth="49.5999755859375" text="Status" />
+            <TableColumn fx:id="tpAngleC" prefWidth="47.9998779296875" text="Angle" />
+            <TableColumn fx:id="tpTypeC" prefWidth="51.2000732421875" text="Type " />
+            <TableColumn fx:id="tpModelC" prefWidth="49.60001220703123" text="Model" />
          </columns>
       </TableView>
       <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
       <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
       <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
       <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
-      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
+      <Button fx:id="saveButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onSavePanelButton" prefHeight="26.0" prefWidth="52.0" text="Save" />
+      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" onAction="#onEditButtonClicked" prefHeight="26.0" prefWidth="52.0" text="Edit" />
       <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
          <font>
             <Font size="14.0" />
@@ -146,5 +148,6 @@
       <ChoiceBox fx:id="factoryChoiceBox" layoutX="334.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
       <ChoiceBox fx:id="modelChoiceBox" layoutX="334.0" layoutY="377.0" prefHeight="26.0" prefWidth="121.0" />
       <ChoiceBox fx:id="statusChoiceBox" layoutX="26.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
+      <Label fx:id="messageField" layoutX="26.0" layoutY="308.0" />
    </children>
 </AnchorPane>

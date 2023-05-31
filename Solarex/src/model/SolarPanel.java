@@ -31,7 +31,24 @@ public class SolarPanel
     this.type = type;
   }
 
+  public SolarPanel(double serialNo, String cleaningTime)
+  {
+    this.serialNo = serialNo;
+    this.cleaningTime = cleaningTime;
+  }
 
+  public SolarPanel(double serialNo, String cleaningTime, int location, String type)
+  {
+    this.serialNo = serialNo;
+    this.location = location;
+    this.cleaningTime = cleaningTime;
+    this.type = type;
+  }
+
+  public SolarPanel(double serialNo)
+  {
+    this.serialNo = serialNo;
+  }
   public SolarPanel(String timestamp){
     this.timestamp = timestamp;
   }

@@ -1,32 +1,9 @@
 package view;
+
 import Connection.Model;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.CategoryAxis;
-import Connection.*;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import model.Alerts;
-import model.Notification;
-import model.SolarPanel;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 import java.sql.SQLException;
 
@@ -102,7 +79,8 @@ public class SetTargetsController
     viewHandler.openView(model.getLastOverview());
   }
 
-  public void resetField(){
+  public void resetField()
+  {
     pvTargetTextField.setText("");
     thTargetTextField.setText("");
   }

@@ -15,6 +15,14 @@ public class ThermalPanel extends SolarPanel
     this.ambientTemp = ambientTemp;
   }
 
+  public ThermalPanel(double initialTemp, double finalTemp, double ambientTemp, double solarFlux, String timestamp)
+  {
+    super(timestamp);
+    this.initialTemp = initialTemp;
+    this.finalTemp = finalTemp;
+    this.ambientTemp = ambientTemp;
+  }
+
   public double getInitialTemp()
   {
     return initialTemp;

@@ -121,8 +121,7 @@ public class ManufacturersController
     }
     Manufacturer manufacturer = new Manufacturer();
     if(getEdit())
-       {
-         String newName = nameText.getText();
+       {String newName = nameText.getText();
         String newEmail = emailText.getText();
         String newPhoneNo = phoneNoText.getText();
         Manufacturer newManufacturer = new Manufacturer();
