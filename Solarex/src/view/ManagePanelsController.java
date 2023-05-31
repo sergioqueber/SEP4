@@ -305,6 +305,25 @@ public class ManagePanelsController
     }
   }
 
+  public void onTHSearchButton() throws SQLException
+  {
+    tpSNC.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
+    tpLocationC.setCellValueFactory(new PropertyValueFactory<>("location"));
+    tpStatusC.setCellValueFactory(new PropertyValueFactory<>("status"));
+    tpTypeC.setCellValueFactory(new PropertyValueFactory<>("type"));
+    tpModelC.setCellValueFactory(new PropertyValueFactory<>("model"));
+    thPanelTable.getItems().clear();
+    if (tpText.getText() != null)
+    {
+      double sn = Double.parseDouble(tpText.getText());
+      for (int i = 0; i < model.getPanelsBySerialNo(sn).size(); i++)
+      {
+        ThermalPanel thermalPanel = new ThermalPanel(model.getPanelsBySerialNo(sn).get(i));
+        thPanelTable.getItems().add(thermalPanel);
+      }
+    }
+  }
+
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }

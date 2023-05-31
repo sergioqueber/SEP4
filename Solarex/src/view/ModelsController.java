@@ -141,7 +141,6 @@ public class ModelsController
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }
-
   public void loadCleaning()
   {
     viewHandler.openView("Cleaning");

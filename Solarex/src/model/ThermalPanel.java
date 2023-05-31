@@ -23,6 +23,9 @@ public class ThermalPanel extends SolarPanel
     this.ambientTemp = ambientTemp;
   }
 
+  public ThermalPanel(SolarPanel pv){
+    super(pv.getSerial_number(),pv.getLocation(),pv.getStatus(),pv.getAngle(),pv.getModel(),pv.getFactory(),pv.getType());
+  }
 
   public double getInitialTemp()
   {

@@ -38,7 +38,7 @@
          </columns>
       </TableView>
       <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
-      <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
+      <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" onAction="#onTHSearchButton" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
       <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
       <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
       <Button fx:id="saveButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onSavePanelButton" prefHeight="26.0" prefWidth="52.0" text="Save" />
