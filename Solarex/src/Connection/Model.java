@@ -144,11 +144,17 @@ public class Model
     ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
     manufacturers.editManufacturer(select, manufacturer);
   }
-  public Manufacturer deleteManufacturer(Manufacturer manufacturer)
+  public Manufacturer deleteManufacturer(String name)
       throws SQLException
   {
     ManufacturerDAO manufacturers = ManufacturerDAO.getInstance();
-    return manufacturers.removeManufacturer(manufacturer.getName());
+    return manufacturers.removeManufacturer(name);
+  }
+
+  public ArrayList<Manufacturer> getManufacturersLog() throws SQLException
+  {
+    ManufacturerLogDAO manufacturerLogDAO = ManufacturerLogDAO.getInstance();
+    return manufacturerLogDAO.readManufacturersLog();
   }
 
   public double getHeatingConsumption() throws SQLException
@@ -283,6 +289,29 @@ public class Model
     RepairsDAO repairsDAO = RepairsDAO.getInstance();
     return repairsDAO.readRepairsBySn(sn);
   }
+  public ArrayList<Repairs> getRepairs() throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.readRepairs();
+  }
+  public ArrayList<Repairs> getRepairsByDate(String startDate, String endDate) throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.readRepairsByDate(startDate,endDate);
+  }
+  public void deleteRepairById(int id) throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    repairsDAO.removeRepair(id);
+  }
+
+  public Repairs registerNewRepair(int employeeId, String dateOfRepair, double sn)
+      throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.createRepair(employeeId,dateOfRepair,sn);
+  }
+
 
   public ArrayList<SolarPanel> getCleaningLogBySn(double sn) throws SQLException
   {

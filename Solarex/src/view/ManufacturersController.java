@@ -67,6 +67,17 @@ public class ManufacturersController
   private Menu setTargets;
   @FXML
   private MenuItem openSetTargets;
+  @FXML
+  private TableColumn<?, ?> emailColumn1;
+  @FXML
+  private TableColumn<?, ?> manufacturerColumn1;
+  @FXML
+  private TableColumn<?, ?> phoneNoColumn1;
+  @FXML
+  private TableView<Manufacturer> manufacturerTable1;
+  @FXML
+  private Button refresh;
+
 
   private ViewHandler viewHandler;
   private Model model;
@@ -83,6 +94,7 @@ public class ManufacturersController
     this.model = model;
     this.root = root;
     fillManufacturers();
+    fillManufacturersLog();
     choiceBox.getItems().add(0, "Name");
     choiceBox.getItems().add(1, "Email");
 
@@ -102,6 +114,18 @@ public class ManufacturersController
     {
       System.out.println(model.getManufacturers().get(i));
       manufacturerTable.getItems().add(model.getManufacturers().get(i));
+    }
+  }
+  public void fillManufacturersLog () throws SQLException
+  {
+    manufacturerColumn1.setCellValueFactory(new PropertyValueFactory<>("name"));
+    emailColumn1.setCellValueFactory(new PropertyValueFactory<>("email"));
+    phoneNoColumn1.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+    manufacturerTable1.getItems().clear();
+    for (int i = 0; i < model.getManufacturersLog().size(); i++)
+    {
+      //System.out.println(model.getManufacturersLog().get(i));
+      manufacturerTable1.getItems().add(model.getManufacturersLog().get(i));
     }
   }
 
@@ -199,11 +223,11 @@ public class ManufacturersController
     manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
     phoneNoColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-    if (manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
-    {
-      model.getManufacturers().remove(manufacturerTable.getSelectionModel().getSelectedIndex());
-      model.deleteManufacturer(model.getManufacturers().get(manufacturerTable.getSelectionModel().getSelectedIndex()));
-    }
+    //if (manufacturerTable.getSelectionModel().isSelected(manufacturerTable.getSelectionModel().getSelectedIndex()))
+    //{
+    System.out.println(manufacturerTable.getSelectionModel().getSelectedItem().getName());
+      model.deleteManufacturer(manufacturerTable.getSelectionModel().getSelectedItem().getName());
+   //}
     manufacturerTable.getItems().clear();
     fillManufacturers();
   }
@@ -226,6 +250,12 @@ public class ManufacturersController
     {
       messageField.setText("Select a manufacturer from the table in order to proceed.");
     }
+  }
+
+  public void refresh() throws SQLException
+  {
+    fillManufacturers();
+    fillManufacturersLog();
   }
 
   private boolean edit = false;

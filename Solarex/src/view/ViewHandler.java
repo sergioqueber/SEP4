@@ -1,6 +1,7 @@
 package view;
 
 import Connection.Model;
+import DAOTest.ModelDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
@@ -24,6 +25,7 @@ public class ViewHandler
   private SinglePanelThermalController singlePanelThermalController;
   private ManagePanelsController managePanelsController;
   private RepairsController repairsController;
+  private ModelsController modelsController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -63,6 +65,9 @@ public class ViewHandler
       case "Repairs":
         root = loadRepairs("Repairs.fxml");
         break;
+      case "Models":
+        root = loadModelsController("Models.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -78,7 +83,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Repairs");
+    openView("Models");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -336,4 +341,33 @@ public class ViewHandler
     }
     return root;
   }
+  private Region loadModelsController(String fxmlFile){
+    if(modelsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        modelsController = loader.getController();
+        modelsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  modelsController.getRoot();
+        modelsController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
 }

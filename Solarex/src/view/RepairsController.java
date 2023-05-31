@@ -21,6 +21,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import model.Alerts;
 import model.Notification;
+import model.Repairs;
 import model.SolarPanel;
 import java.net.URL;
 import java.sql.SQLException;
@@ -69,7 +70,7 @@ public class RepairsController
   private Menu overview;
 
   @FXML
-  private TableView<?> repairsTable;
+  private TableView<Repairs> repairsTable;
 
   @FXML
   private Button saveButton;
@@ -105,6 +106,12 @@ public class RepairsController
   private TableColumn<?, ?> typeColumn;
   @FXML
   private Button refreshButton;
+  @FXML
+  private Button refreshRepairsButton;
+  @FXML
+  private TextField employeeIdTextField;
+  @FXML
+  private TextField dateTextField;
 
   private Region root;
   private ViewHandler viewHandler;
@@ -118,6 +125,7 @@ public class RepairsController
     this.root = root;
     this.model = model;
     fillSolarPanelsTable();
+    fillRepairsTable();
   }
   public Region getRoot(){
     return root;
@@ -164,6 +172,42 @@ public class RepairsController
       }
     }
     resetFields();
+  }
+  public void fillRepairsTable() throws SQLException
+  {
+    dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
+    snColumnRepairs.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+    employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
+    repairsTable.getItems().clear();
+    for(int i = 0; i < model.getRepairs().size(); i++){
+      repairsTable.getItems().add(model.getRepairs().get(i));
+    }
+  }
+
+  public void filterRepairsTable() throws SQLException{
+    String startDate = startDateTextField.getText();
+    String endDate = endDateTextField.getText();
+    dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
+    snColumnRepairs.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
+    employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
+    repairsTable.getItems().clear();
+    for(int i = 0; i < model.getRepairsByDate(startDate,endDate).size(); i++){
+      repairsTable.getItems().add(model.getRepairsByDate(startDate,endDate).get(i));
+    }
+    resetFields();
+  }
+  public void addNewRepair() throws SQLException{
+    int employeeId = Integer.parseInt(employeeIdTextField.getText());
+    String date = dateTextField.getText();
+    double sn = solarPanelsTable.getSelectionModel().getSelectedItem().getSerial_number();
+    model.registerNewRepair(employeeId,date,sn);
+    fillRepairsTable();
+    resetFields();
+  }
+  public void removeRepair() throws SQLException{
+    int id = model.getRepairs().get(repairsTable.getSelectionModel().getSelectedIndex()).getId();
+    model.deleteRepairById(id);
+    fillRepairsTable();
   }
   public void resetFields(){
     searchTextField.setText("");

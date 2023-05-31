@@ -128,10 +128,9 @@ public class ManufacturerDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "DELETE FROM solarex.manufacturer WHERE name LIKE ?");
-      {
-        statement.setString(1, "%" + name + "%");
+        statement.setString(1,name );
         statement.executeUpdate();
-      }
+      System.out.println("Executed");
     }
     return null;
   }

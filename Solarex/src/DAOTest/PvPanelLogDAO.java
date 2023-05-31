@@ -111,7 +111,8 @@ public class PvPanelLogDAO
         {
           if (result.get(j).getTimestamp().equals(dates.get(i)))
           {
-            total = total + result.get(j).getPower();
+            if(result.get(j).getStatus().equals("Active"))
+              total = total + result.get(j).getPower();
           }
         }
         dailyEnergy.add(total);
