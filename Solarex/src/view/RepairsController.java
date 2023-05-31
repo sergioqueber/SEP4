@@ -106,7 +106,7 @@ public class RepairsController
     this.root = root;
     this.model = model;
     fillSolarPanelsTable();
-    //fillRepairsTable();
+    fillRepairsTable();
   }
   public Region getRoot(){
     return root;
@@ -154,7 +154,6 @@ public class RepairsController
     }
     resetFields();
   }
-  /*
   public void fillRepairsTable() throws SQLException
   {
     dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
@@ -191,8 +190,6 @@ public class RepairsController
     model.deleteRepairById(id);
     fillRepairsTable();
   }
-
-   */
   public void resetFields(){
     searchTextField.setText("");
     locationCheckbox.setSelected(false);
