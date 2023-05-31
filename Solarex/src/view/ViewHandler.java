@@ -1,6 +1,7 @@
 package view;
 
 import Connection.Model;
+import DAOTest.ModelDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
@@ -22,9 +23,9 @@ public class ViewHandler
   private ManufacturersController manufacturersController;
   private CreateNewUserController createNewUserController;
   private SinglePanelThermalController singlePanelThermalController;
-
   private ManagePanelsController managePanelsController;
-  private CleaningController cleaningController;
+  private RepairsController repairsController;
+  private ModelsController modelsController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -58,14 +59,15 @@ public class ViewHandler
       case "Single Panel Th":
         root = loadSinglePanelThermal("SinglePanelThermal.fxml");
         break;
-      case "Manage panels":
+      case "Manage Panels":
         root = loadManagePanels("ManagePanels.fxml");
         break;
-      case "Cleaning":
-        root = loadCleaning("Cleaning.fxml");
+      case "Repairs":
+        root = loadRepairs("Repairs.fxml");
         break;
-
-
+      case "Models":
+        root = loadModelsController("Models.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -81,7 +83,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Cleaning");
+    openView("Models");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -311,17 +313,16 @@ public class ViewHandler
     }
     return root;
   }
-
-  private Region loadCleaning(String fxmlFile){
-    if(cleaningController == null)
+  private Region loadRepairs(String fxmlFile){
+    if(repairsController == null)
     {
       try
       {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlFile));
         root = loader.load();
-        cleaningController = loader.getController();
-        cleaningController.init(this, root, model);
+        repairsController = loader.getController();
+        repairsController.init(this, root, model);
       }
       catch (Exception e)
       {
@@ -331,8 +332,8 @@ public class ViewHandler
     else{
       try
       {
-        root =  cleaningController.getRoot();
-        cleaningController.init(this,root, model);
+        root =  repairsController.getRoot();
+        repairsController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();
@@ -340,4 +341,33 @@ public class ViewHandler
     }
     return root;
   }
+  private Region loadModelsController(String fxmlFile){
+    if(modelsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        modelsController = loader.getController();
+        modelsController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  modelsController.getRoot();
+        modelsController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
 }

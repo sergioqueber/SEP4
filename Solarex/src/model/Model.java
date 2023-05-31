@@ -82,6 +82,6 @@ public class Model
 
 
   public String toString(){
-    return "Area" + area;
+    return "" + modelNo;
   };
 }

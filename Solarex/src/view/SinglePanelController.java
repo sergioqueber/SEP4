@@ -81,6 +81,10 @@ public class SinglePanelController implements Initializable
   private Menu overview;
   @FXML
   private MenuItem openOverview;
+  @FXML
+  private Menu setTargets;
+  @FXML
+  private MenuItem openSetTargets;
 
 
   public SinglePanelController()
@@ -171,4 +175,8 @@ public class SinglePanelController implements Initializable
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }
+  public void loadSetTargets(){
+    viewHandler.openView("Set Targets");
+  }
+
 }

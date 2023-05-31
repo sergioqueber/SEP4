@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OverviewController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="498.0" layoutX="578.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="124.0" />
       <MenuBar fx:id="menu" layoutY="1.0" prefHeight="25.0" prefWidth="702.0">
@@ -120,7 +120,7 @@
       <Button fx:id="searchButton" layoutX="21.0" layoutY="38.0" mnemonicParsing="false" onAction="#search" text="Seach" />
       <Label fx:id="generationValueLabel" layoutX="48.0" layoutY="452.0" prefHeight="53.0" prefWidth="55.0" text="Label">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </Label>
       <Line endX="-12.5" endY="-23.0" layoutX="74.0" layoutY="376.0" startX="28.0" startY="-23.0" />

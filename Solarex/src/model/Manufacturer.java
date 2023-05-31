@@ -50,5 +50,8 @@ public class Manufacturer
     this.phoneNumber = phoneNumber;
     this.name = name;
   }
+  public String toString(){
+    return "" + name;
+  }
 
 }

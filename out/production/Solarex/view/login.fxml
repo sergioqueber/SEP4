@@ -11,6 +11,7 @@
    <children>
       <Button fx:id="continueButton" layoutX="281.0" layoutY="273.0" mnemonicParsing="false" onAction="#logIn" text="Continue" />
       <TextField fx:id="idTextField" layoutX="269.0" layoutY="154.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="269.0" layoutY="200.0" />
       <Label fx:id="idLabel" layoutX="211.0" layoutY="158.0" text="Id" />
       <Label fx:id="passwordLabel" layoutX="211.0" layoutY="204.0" text="Password" />
       <Label fx:id="welcomeLabel" layoutX="211.0" layoutY="104.0" text="Welcome, please log in to start">
@@ -19,6 +20,5 @@
          </font>
       </Label>
       <Button fx:id="newUserButton" layoutX="274.0" layoutY="312.0" mnemonicParsing="false" onAction="#loadNewUser" text="Create User" />
-      <PasswordField fx:id="passwordTextField" layoutX="269.0" layoutY="200.0" />
    </children>
 </AnchorPane>

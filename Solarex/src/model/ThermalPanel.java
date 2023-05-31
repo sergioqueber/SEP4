@@ -23,6 +23,12 @@ public class ThermalPanel extends SolarPanel
     this.ambientTemp = ambientTemp;
   }
 
+  public ThermalPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
+      String type)
+  {
+    super(serialNo,location,status,angle,model,factory,type);
+  }
+
   public double getInitialTemp()
   {
     return initialTemp;

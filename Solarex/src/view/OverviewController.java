@@ -1,21 +1,31 @@
 package view;
-
-import Connection.Model;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.CategoryAxis;
+import Connection.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import model.Alerts;
+import model.Notification;
 import model.SolarPanel;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class OverviewController implements Initializable
@@ -36,6 +46,10 @@ public class OverviewController implements Initializable
   private Menu manufacturers;
   @FXML
   private MenuItem manufacturerItem;
+  @FXML
+  private Menu managePanels;
+  @FXML
+  private MenuItem openManagePanels;
 
   @FXML
   private Label consumptionLabel;
@@ -48,9 +62,6 @@ public class OverviewController implements Initializable
 
   @FXML
   private TableColumn<?, ?> locationColumn;
-
-  @FXML
-  private Menu managePanels;
 
   @FXML
   private MenuBar menu;
@@ -219,7 +230,7 @@ public class OverviewController implements Initializable
     solarPanelTable.getItems().clear();
     for (int i = 0; i < model.getAllPanels().size() ; i++)
     {
-      System.out.println(model.getAllPanels().get(i));
+      //System.out.println(model.getAllPanels().get(i));
       solarPanelTable.getItems().add(model.getAllPanels().get(i));
     }
   }
@@ -232,22 +243,27 @@ public class OverviewController implements Initializable
     for (int i = 0; i < model.getAlerts().size(); i++)
     {
       alertsTableView.getItems().add(model.getAlerts().get(i));
-      System.out.println(model.getAlerts().get(i));
+      //System.out.println(model.getAlerts().get(i));
     }
   }
 
   public void resetFields(){
     textFieldSeach.setText("");
+    locationCheckBox.setSelected(false);
+    SNCheckBox.setSelected(false);
   }
 
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
+    //System.out.println("Hola");
   }
 
   public void loadManufacturers(){
     viewHandler.openView("Manufacturers");
   }
-
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
   public void loadSinglePanelView(){
     model.setSelectedSn (solarPanelTable.getSelectionModel().getSelectedItem().getSerial_number());
     model.setSelectedType(solarPanelTable.getSelectionModel().getSelectedItem()
@@ -259,16 +275,6 @@ public class OverviewController implements Initializable
     {
       viewHandler.openView("Single Panel Th");
     }
-  }
-
-  public void loadManagePanels()
-  {
-    viewHandler.openView("Manage panels");
-  }
-
-  public void loadCleaning()
-  {
-    viewHandler.openView("Cleaning");
   }
 
 }
