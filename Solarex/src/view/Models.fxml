@@ -60,11 +60,12 @@
             <TableColumn fx:id="manufacturerColumn" prefWidth="98.39996337890625" text="Manufacturer" />
         </columns>
       </TableView>
-      <Button fx:id="addButton" layoutX="48.0" layoutY="328.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="addButton" layoutX="48.0" layoutY="328.0" mnemonicParsing="false" onAction="#addModel" text="Add" />
       <Button fx:id="removeButton" layoutX="99.0" layoutY="328.0" mnemonicParsing="false" text="Remove " />
       <TextField fx:id="modelNoTextField" layoutX="48.0" layoutY="64.0" promptText="Model No" />
-      <TextField fx:id="lengthTextField" layoutX="210.0" layoutY="64.0" promptText="Length" />
-      <TextField fx:id="widthTextField" layoutX="372.0" layoutY="64.0" promptText="Width" />
+      <TextField fx:id="lengthTextField" layoutX="210.0" layoutY="64.0" prefHeight="26.0" prefWidth="79.0" promptText="Length" />
+      <TextField fx:id="widthTextField" layoutX="300.0" layoutY="64.0" prefHeight="26.0" prefWidth="79.0" promptText="Width" />
       <ChoiceBox fx:id="manufacturerChoiceBox" layoutX="530.0" layoutY="64.0" prefWidth="150.0" />
+      <TextField fx:id="efficiencyTextField" layoutX="386.0" layoutY="64.0" prefHeight="26.0" prefWidth="130.0" promptText="Efficiency" />
    </children>
 </AnchorPane>

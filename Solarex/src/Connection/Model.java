@@ -104,12 +104,18 @@ public class Model
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readTh();
   }
+
+  //-------------------
   public ArrayList<model.Model> getModels() throws SQLException
   {
     ModelDAO models = ModelDAO.getInstance();
     return models.readModels();
   }
-  //-------------------
+  public void addModel(double modelNo, double length, double width, Manufacturer manufacturer, double efficiency) throws SQLException
+  {
+    ModelDAO models = ModelDAO.getInstance();
+    models.createModel(modelNo,length,width,manufacturer,efficiency);
+  }
   public ArrayList<Factory> getFactories() throws SQLException
   {
     FactoryDAO factoryDAO = FactoryDAO.getInstance();

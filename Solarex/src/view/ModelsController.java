@@ -28,7 +28,7 @@ public class ModelsController
   private TextField lengthTextField;
 
   @FXML
-  private ChoiceBox<?> manufacturerChoiceBox;
+  private ChoiceBox<Manufacturer> manufacturerChoiceBox;
 
   @FXML
   private TableColumn<?, ?> manufacturerColumn;
@@ -56,6 +56,8 @@ public class ModelsController
 
   @FXML
   private TextField widthTextField;
+  @FXML
+  private TextField efficiencyTextField;
 
   private ViewHandler viewHandler;
   private Model model;
@@ -68,6 +70,7 @@ public class ModelsController
     this.viewHandler = viewHandler;
     this.model = model;
     this.root = root;
+    manufacturerChoiceBox.getItems().addAll(model.getManufacturers());
     fillModelsTable();
   }
 
@@ -87,6 +90,20 @@ public class ModelsController
       modelsTable.getItems().add(model.getModels().get(i));
     }
   }
+
+  public void addModel() throws SQLException
+  {
+    double modelNo = Double.parseDouble(modelNoTextField.getText());
+    double length = Double.parseDouble(lengthTextField.getText());
+    double width = Double.parseDouble(widthTextField.getText());
+    Manufacturer manufacturer = manufacturerChoiceBox.getValue();
+    double efficiency =  Double.parseDouble(efficiencyTextField.getText());
+    model.addModel(modelNo,length,width,manufacturer,efficiency);
+    fillModelsTable();
+
+
+  }
+
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
     //System.out.println("Hola");
