@@ -55,6 +55,13 @@ public class Model
     return models.readModels();
   }
 
+  public void addModel(double modelNo, double length, double width, Manufacturer manufacturer, double efficiency) throws SQLException
+  {
+    ModelDAO models = ModelDAO.getInstance();
+    models.createModel(modelNo, length, width, manufacturer, efficiency);
+
+  }
+
   public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location,
       String status, int angle, double modelNo, int factoryId, String type)
       throws SQLException
