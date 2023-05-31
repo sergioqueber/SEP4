@@ -95,36 +95,35 @@ public class SolarPanelDAO
     }
   }
 
-  public void updatePv(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public void updatePv(double intensity, double voltage, double solar_flux,
+      String timeStamp, Double sn) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?,\"angle(°)\" = ?,model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
-      statement.setInt(1, location);
-      statement.setString(2, status);
-      statement.setInt(3, angle);
-      statement.setDouble(4, modelNo);
-      statement.setInt(5, factoryId);
-      statement.setString(6,type);
-      statement.setDouble(7, serialNo);
+          "UPDATE solarex.photovoltaic_panel SET intensity = ?,voltage =?, solar_flux = ?, timestamp = ? WHERE solar_panel_sn = ?");
+      statement.setDouble(1, intensity);
+      statement.setDouble(2, voltage);
+      statement.setDouble(3, solar_flux);
+      statement.setString(4, timeStamp);
+      statement.setDouble(5,sn);
       statement.executeUpdate();
     }
   }
 
-  public void updateTh(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public void updateTh(double initialTemp, double finalTemp,double ambientTemp, double solar_flux,
+      String timeStamp, Double sn) throws SQLException
   {
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?,\"angle(°)\" = ?,model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
-      statement.setInt(1, location);
-      statement.setString(2, status);
-      statement.setInt(3, angle);
-      statement.setDouble(4, modelNo);
-      statement.setInt(5, factoryId);
-      statement.setString(6,type);
-      statement.setDouble(7, serialNo);
+          "UPDATE solarex.thermal_panel SET \"initial_temp(°C)\" = ?, \"final_temp(°C)\"=?, \"ambient_temp(°C)\" = ?, solar_flux = ?,timestamp = ? WHERE solar_panel_sn = ?");
+      statement.setDouble(1, initialTemp);
+      statement.setDouble(2, finalTemp);
+      statement.setDouble(3,ambientTemp);
+      statement.setDouble(4, solar_flux);
+      statement.setString(5, timeStamp);
+      statement.setDouble(6,sn);
       statement.executeUpdate();
     }
   }
