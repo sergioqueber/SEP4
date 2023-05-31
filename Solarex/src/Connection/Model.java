@@ -356,4 +356,18 @@ public class Model
     return cleaningLogDAO.getCleaningTimes();
   }
 
+  public void newPvLecture(double intensity, double voltage, double solar_flux,
+      String timeStamp, Double sn) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    solarPanelDAO.updatePV(intensity, voltage, solar_flux, timeStamp, sn);
+  }
+
+  public void newThLecture(double initialTemp, double finalTemp,double ambientTemp, double solar_flux,
+      String timeStamp, Double sn) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    solarPanelDAO.updateTH(initialTemp, finalTemp, ambientTemp, solar_flux, timeStamp,sn);
+  }
+
 }
