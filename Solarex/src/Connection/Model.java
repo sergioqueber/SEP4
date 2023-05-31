@@ -318,6 +318,31 @@ public class Model
     return repairsDAO.readRepairsBySn(sn);
   }
 
+  public ArrayList<Repairs> getRepairs() throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.readRepairs();
+  }
+  public ArrayList<Repairs> getRepairsByDate(String startDate, String endDate) throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.readRepairsByDate(startDate,endDate);
+  }
+  public void deleteRepairById(int id) throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    repairsDAO.removeRepair(id);
+  }
+
+  public Repairs registerNewRepair(int employeeId, String dateOfRepair, double sn)
+      throws SQLException
+  {
+    RepairsDAO repairsDAO = RepairsDAO.getInstance();
+    return repairsDAO.createRepair(employeeId,dateOfRepair,sn);
+  }
+
+
+
   public ArrayList<SolarPanel> getCleaningLogBySn(double sn) throws SQLException
   {
     CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
