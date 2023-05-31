@@ -325,13 +325,6 @@ public class Model
     return cleaningLogDAO.readCleaningLog(sn);
   }
 
-  public void newPvLecture(double intensity, double voltage, double solar_flux,
-      String timeStamp, Double sn) throws SQLException
-  {
-    PvPanelLogDAO pvPanelLogDAO = PvPanelLogDAO.getInstance();
-    pvPanelLogDAO.update(intensity, voltage, solar_flux, timeStamp, sn);
-  }
-
   public ArrayList<SolarPanel> getCleaningLog() throws SQLException
   {
     CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
@@ -360,14 +353,14 @@ public class Model
       String timeStamp, Double sn) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    solarPanelDAO.updatePV(intensity, voltage, solar_flux, timeStamp, sn);
+    solarPanelDAO.updatePv(intensity, voltage, solar_flux, timeStamp, sn);
   }
 
   public void newThLecture(double initialTemp, double finalTemp,double ambientTemp, double solar_flux,
       String timeStamp, Double sn) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
-    solarPanelDAO.updateTH(initialTemp, finalTemp, ambientTemp, solar_flux, timeStamp,sn);
+    solarPanelDAO.updateTh(initialTemp, finalTemp, ambientTemp, solar_flux, timeStamp,sn);
   }
 
 }

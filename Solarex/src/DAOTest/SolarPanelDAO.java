@@ -66,7 +66,6 @@ public class SolarPanelDAO
       statement.executeUpdate();
       return new ThermalPanel(serialNo, location, status, angle, new Model(modelNo),
           new Factory(factoryId), type);
-
     }
   }
 
@@ -96,7 +95,7 @@ public class SolarPanelDAO
     }
   }
 
-  public void updatePV(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public void updatePv(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     try (Connection connection = getConnection())
     {
@@ -113,7 +112,7 @@ public class SolarPanelDAO
     }
   }
 
-  public void updateTH(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  public void updateTh(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     try (Connection connection = getConnection())
     {
