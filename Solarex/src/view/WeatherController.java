@@ -35,6 +35,9 @@ public class WeatherController {
 
   }
 
+  public WeatherController()
+  {}
+
 
   public Region getRoot()
   {
