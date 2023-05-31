@@ -1,4 +1,5 @@
 package view;
+
 import Connection.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -6,7 +7,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Manufacturer;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 
@@ -38,6 +38,9 @@ public class ModelsController
 
   @FXML
   private TextField modelNoTextField;
+
+  @FXML
+  private Label messageText;
 
   @FXML
   private TableView<model.Model> modelsTable;
@@ -85,6 +88,7 @@ public class ModelsController
     widthColumn.setCellValueFactory(new PropertyValueFactory<>("width"));
     lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
     areaColumn.setCellValueFactory(new PropertyValueFactory<>("area"));
+    manufacturerColumn.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
     modelsTable.getItems().clear();
     for(int i = 0; i <model.getModels().size(); i++){
       modelsTable.getItems().add(model.getModels().get(i));
@@ -93,20 +97,39 @@ public class ModelsController
 
   public void addModel() throws SQLException
   {
+    if (modelNoTextField.getText() == null || lengthTextField.getText() == null || widthTextField.getText() == null || manufacturerChoiceBox.getValue() == null || efficiencyTextField.getText() == null)
+    {
+      messageText.setText("Please fill out all the fields in order to proceed.");
+    }
     double modelNo = Double.parseDouble(modelNoTextField.getText());
     double length = Double.parseDouble(lengthTextField.getText());
     double width = Double.parseDouble(widthTextField.getText());
-    Manufacturer manufacturer = manufacturerChoiceBox.getValue();
+    Manufacturer manufacturer = manufacturerChoiceBox.getSelectionModel().getSelectedItem();
     double efficiency =  Double.parseDouble(efficiencyTextField.getText());
-    model.addModel(modelNo,length,width,manufacturer,efficiency);
+    model.addModel(modelNo, length,width,manufacturer,efficiency);
     fillModelsTable();
+    modelNoTextField.clear();
+    lengthTextField.clear();
+    widthTextField.clear();
+    manufacturerChoiceBox.getSelectionModel().clearSelection();
+    efficiencyTextField.clear();
+  }
 
-
+  public void onRemoveButton() throws SQLException
+  {
+    if(modelsTable.getSelectionModel().getSelectedItem() == null)
+    {
+      messageText.setText("Please select a manufacturer from the table to continue.");
+    }
+    else
+    {
+      model.removeModel(modelsTable.getSelectionModel().getSelectedItem().getModelNo());
+      fillModelsTable();
+    }
   }
 
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
-    //System.out.println("Hola");
   }
 
   public void loadManufacturers(){
@@ -118,4 +141,20 @@ public class ModelsController
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }
+
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
+  }
+
 }

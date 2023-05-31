@@ -59,7 +59,6 @@ public class Model
   {
     ModelDAO models = ModelDAO.getInstance();
     models.createModel(modelNo, length, width, manufacturer, efficiency);
-
   }
 
   public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location,
@@ -362,5 +361,12 @@ public class Model
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     solarPanelDAO.updateTh(initialTemp, finalTemp, ambientTemp, solar_flux, timeStamp,sn);
   }
+
+  public void removeModel(double modelNo) throws SQLException
+  {
+    ModelDAO modelDAO = ModelDAO.getInstance();
+    modelDAO.deleteModel(modelNo);
+  }
+
 
 }

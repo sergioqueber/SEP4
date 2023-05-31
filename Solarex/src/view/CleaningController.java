@@ -159,7 +159,34 @@ public class CleaningController{
   }
 
 
+  public void loadOverview(){
+    viewHandler.openView(model.getLastOverview());
+  }
+  public void loadSetTargets(){
+    viewHandler.openView("Set Targets");
+  }
 
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
+  }
+
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
+  }
+  public void loadModels()
+  {
+    viewHandler.openView("Models");
+  }
 
 }
 

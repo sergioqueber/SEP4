@@ -1,33 +1,14 @@
 package view;
-import javafx.application.Application;
+
+import Connection.Model;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.CategoryAxis;
-import Connection.*;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import model.Alerts;
-import model.Notification;
 import model.Repairs;
 import model.SolarPanel;
-import java.net.URL;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 public class RepairsController
 {
   @FXML
@@ -125,7 +106,7 @@ public class RepairsController
     this.root = root;
     this.model = model;
     fillSolarPanelsTable();
-    fillRepairsTable();
+    //fillRepairsTable();
   }
   public Region getRoot(){
     return root;
@@ -173,6 +154,7 @@ public class RepairsController
     }
     resetFields();
   }
+  /*
   public void fillRepairsTable() throws SQLException
   {
     dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
@@ -209,9 +191,44 @@ public class RepairsController
     model.deleteRepairById(id);
     fillRepairsTable();
   }
+
+   */
   public void resetFields(){
     searchTextField.setText("");
     locationCheckbox.setSelected(false);
     snCheckBox.setSelected(false);
   }
+
+  public void loadOverview(){
+    viewHandler.openView(model.getLastOverview());
+  }
+
+  public void loadSetTargets(){
+    viewHandler.openView("Set Targets");
+  }
+
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
+  }
+
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+
+  public void loadModels()
+  {
+    viewHandler.openView("Models");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+
+
 }

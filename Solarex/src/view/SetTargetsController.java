@@ -79,6 +79,28 @@ public class SetTargetsController
     viewHandler.openView(model.getLastOverview());
   }
 
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
+  }
+
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadModels()
+  {
+    viewHandler.openView("Models");
+  }
+
   public void resetField()
   {
     pvTargetTextField.setText("");

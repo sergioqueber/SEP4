@@ -231,4 +231,35 @@ public class ManufacturersController
   }
 
 
+  public void loadOverview(){
+    viewHandler.openView(model.getLastOverview());
+  }
+  public void loadSetTargets(){
+   viewHandler.openView("Set Targets");
+  }
+
+  public void loadCleaning()
+  {
+   viewHandler.openView("Cleaning");
+  }
+
+  public void loadModels()
+  {
+  viewHandler.openView("Models");
+  }
+
+  public void loadManagePanels(){
+   viewHandler.openView("Manage Panels");
+  }
+
+  public void loadRepairs()
+  {
+  viewHandler.openView("Repairs");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
 }

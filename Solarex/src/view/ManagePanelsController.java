@@ -239,21 +239,10 @@ public class ManagePanelsController
 
   public void onRemoveButton() throws SQLException
   {
-    if (pvPanelTable.getSelectionModel().isSelected(pvPanelTable.getSelectionModel().getSelectedIndex()))
-    {
-      model.getAllPVPanels().remove(pvPanelTable.getSelectionModel().getSelectedIndex());
-      model.deletePVPanel(model.getAllPVPanels().remove(pvPanelTable.getSelectionModel().getSelectedIndex()));
-    }
-    else if (thPanelTable.getSelectionModel().isSelected(thPanelTable.getSelectionModel().getSelectedIndex()))
-    {
-      model.getAllTHPanels().remove(thPanelTable.getSelectionModel().getSelectedIndex());
-      model.deleteTHPanel(model.getAllTHPanels().remove(thPanelTable.getSelectionModel().getSelectedIndex()));
-    }
-    pvPanelTable.getItems().clear();
-    thPanelTable.getItems().clear();
+    model.deletePVPanel(pvPanelTable.getSelectionModel().getSelectedItem());
+    model.deleteTHPanel(thPanelTable.getSelectionModel().getSelectedItem());
     fillPVPanels();
     fillTHPanels();
-
   }
 
   public void onEditButtonClicked() throws SQLException
@@ -316,20 +305,35 @@ public class ManagePanelsController
     }
   }
 
-  public void loadManufacturersView()
+  public void loadOverview(){
+    viewHandler.openView(model.getLastOverview());
+  }
+
+  public void loadSetTargets(){
+    viewHandler.openView("Set Targets");
+  }
+
+  public void loadCleaning()
   {
+    viewHandler.openView("Cleaning");
+  }
+  public void loadManufacturers(){
     viewHandler.openView("Manufacturers");
   }
-
-  public void onUpdatePVButton()
+  public void loadRepairs()
   {
-
+    viewHandler.openView("Repairs");
+  }
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
   }
 
-  public void onUpdateTHButton()
+  public void loadModels()
   {
-
+    viewHandler.openView("Models");
   }
+
 
 }
 

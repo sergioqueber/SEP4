@@ -1,7 +1,6 @@
 package view;
 
 import Connection.Model;
-import DAOTest.ModelDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
@@ -26,6 +25,7 @@ public class ViewHandler
   private ManagePanelsController managePanelsController;
   private RepairsController repairsController;
   private ModelsController modelsController;
+  private WeatherController weatherController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -66,7 +66,10 @@ public class ViewHandler
         root = loadRepairs("Repairs.fxml");
         break;
       case "Models":
-        root = loadModelsController("Models.fxml");
+        root = loadModels("Models.fxml");
+        break;
+      case "Weather":
+        root = loadWeather("Weather.fxml");
         break;
     }
     currentScene.setRoot(root);
@@ -83,7 +86,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Models");
+    openView("Manage Panels");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -341,7 +344,38 @@ public class ViewHandler
     }
     return root;
   }
-  private Region loadModelsController(String fxmlFile){
+
+  private Region loadWeather(String fxmlFile){
+    if(weatherController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        weatherController = loader.getController();
+        weatherController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  weatherController.getRoot();
+        weatherController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+
+  private Region loadModels(String fxmlFile)
+  {
     if(modelsController == null)
     {
       try
