@@ -124,16 +124,19 @@ public class CleaningLogDAO
     }
   }
 
-  public void editCleaningLogTime(double sn, String cleaningDate) throws SQLException
+ /* public void editCleaningLogTime(double id, String cleaningDate) throws SQLException
   {
     try(Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("UPDATE solarex.cleaning_log SET cleaning_time = ? WHERE serial_number = ?");
+      PreparedStatement statement = connection.prepareStatement("UPDATE solarex.cleaning_log SET cleaning_time = ? WHERE id = ?");
       statement.setString(1, cleaningDate);
-      statement.setDouble(2, sn);
+
       statement.executeUpdate();
+
     }
   }
+
+  */
 
 
 

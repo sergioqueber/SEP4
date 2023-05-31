@@ -361,11 +361,14 @@ public class Model
     cleaningLogDAO.addCleaningTime(sn, date);
   }
 
-  public void editLogCleaning(double sn, String date) throws SQLException
+  /*
+  public void editLogCleaning(double id, String date) throws SQLException
   {
     CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
-    cleaningLogDAO.editCleaningLogTime(sn, date);
+    cleaningLogDAO.editCleaningLogTime(id, date);
   }
+
+   */
 
   public ArrayList<SolarPanel> getLastCleaning() throws SQLException
   {

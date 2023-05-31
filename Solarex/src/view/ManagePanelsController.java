@@ -109,6 +109,27 @@ public class ManagePanelsController
 
   @FXML private TableColumn<ThermalPanel, String> tpTypeC;
 
+  @FXML
+  private MenuItem managePanelsItem;
+  @FXML
+  private MenuItem repairsItem;
+  @FXML
+  private MenuItem openModels;
+  @FXML
+  private MenuItem weatherItem;
+
+  @FXML private Menu setTargets;
+
+  @FXML
+  private MenuItem openOverview;
+
+  @FXML
+  private MenuItem openSetTargets;
+
+  @FXML
+  private MenuItem manufacturerItem;
+  @FXML
+  private MenuItem cleaningItem;
   private ViewHandler viewHandler;
   private Model model;
   private Region root;

@@ -170,8 +170,10 @@ public class SinglePanelThermalController implements Initializable
     graph.getData().addAll(series);
   }
 
-
  */
+
+
+
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }

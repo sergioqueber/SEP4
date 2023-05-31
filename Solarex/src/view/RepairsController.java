@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import model.Employee;
 import model.Repairs;
 import model.SolarPanel;
 
@@ -17,6 +18,39 @@ public class RepairsController
   @FXML
   private Menu cleaning;
 
+  @FXML private MenuItem cleaningItem;
+
+  @FXML
+  private MenuItem managePanelsItem;
+
+  @FXML
+  private MenuItem manufacturerItem;
+
+  @FXML
+  private MenuItem modelsItem;
+
+  @FXML
+  private MenuItem openOverview;
+
+  @FXML
+  private MenuItem openSetTargets;
+
+  @FXML
+  private MenuItem repairsItem;
+
+  @FXML
+  private Button returnButton;
+
+  @FXML
+  private Button saveAddButton;
+
+  @FXML
+  private Menu setTargets;
+
+
+  @FXML
+  private MenuItem weatherItem;
+
   @FXML
   private TableColumn<?, ?> dateColumn;
 
@@ -24,7 +58,7 @@ public class RepairsController
   private Button editButton;
 
   @FXML
-  private TableColumn<?, ?> employeeIdColumn;
+  private TableColumn<Employee, Double> employeeIdColumn;
 
   @FXML
   private TextField endDateTextField;
@@ -33,7 +67,7 @@ public class RepairsController
   private CheckBox locationCheckbox;
 
   @FXML
-  private TableColumn<?, ?> locationColumn;
+  private TableColumn<Repairs, Integer> locationColumn;
 
   @FXML
   private MenuBar menuBar;
@@ -41,11 +75,6 @@ public class RepairsController
   @FXML
   private MenuItem openCleaning;
 
-  @FXML
-  private MenuItem openOverview;
-
-  @FXML
-  private MenuItem openSetTargets;
 
   @FXML
   private Menu overview;
@@ -62,8 +91,6 @@ public class RepairsController
   @FXML
   private TextField searchTextField;
 
-  @FXML
-  private Menu setTargets;
 
   @FXML
   private CheckBox snCheckBox;
@@ -108,6 +135,12 @@ public class RepairsController
     fillSolarPanelsTable();
     fillRepairsTable();
   }
+
+  public void setRoot(Region root)
+  {
+    this.root = root;
+  }
+
   public Region getRoot(){
     return root;
   }

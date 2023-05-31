@@ -27,6 +27,8 @@ public class ViewHandler
   private ModelsController modelsController;
   private WeatherController weatherController;
 
+  private CleaningController cleaningController;
+
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
     this.model = model;
@@ -68,6 +70,9 @@ public class ViewHandler
       case "Models":
         root = loadModelsView("Models.fxml");
         break;
+      case "Cleaning":
+        root = loadCleaning("Cleaning.fxml");
+        break;
       case "Weather":
         root = loadWeather("Weather.fxml");
         break;
@@ -86,7 +91,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Manage Panels");
+    openView("Manufacturers");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -374,6 +379,35 @@ public class ViewHandler
     return root;
   }
 
+  private Region loadCleaning(String fxmlFile)
+  {
+    if(cleaningController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        cleaningController = loader.getController();
+        cleaningController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  cleaningController.getRoot();
+        cleaningController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
   private Region loadModelsView(String fxmlFile)
   {
     if(modelsController == null)

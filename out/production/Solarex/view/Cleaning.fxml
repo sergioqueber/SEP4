@@ -30,11 +30,12 @@
             <TableColumn fx:id="cleaningLogColumn" prefWidth="106.66665077209473" text="Date of cleaning" />
             <TableColumn fx:id="snLogCOlumn" prefWidth="100.66668701171875" text="Serial number" />
             <TableColumn fx:id="locationLogColumn" prefWidth="74.0" text="Location" />
-            <TableColumn fx:id="typeLogColumn" prefWidth="77.99998982747394" text="Type " />
+            <TableColumn fx:id="typeLogColumn" prefWidth="48.800048828125" text="Type " />
+            <TableColumn fx:id="idColumn" prefWidth="28.800012207031273" text="ID" />
          </columns>
       </TableView>
       <Button fx:id="saveAddButton" layoutX="568.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSaveAddButtonClicked" text="Save/Add" />
-      <Button fx:id="editLogButton" layoutX="147.0" layoutY="486.0" mnemonicParsing="false" onAction="#onEditLogButton" text="Edit" />
+      <Button fx:id="editLogButton" layoutX="147.0" layoutY="486.0" mnemonicParsing="false" text="Edit" />
       <Text layoutX="438.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Get time period" wrappingWidth="88.421875" />
       <Button fx:id="applyButton" layoutX="508.0" layoutY="425.0" mnemonicParsing="false" onAction="#onApplyButtonClicked" text="Apply" />
       <TextField fx:id="startDateField" layoutX="451.0" layoutY="347.0" prefHeight="26.0" prefWidth="150.0" promptText="Start" />
@@ -67,7 +68,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Cleaning">
                <items>
-                  <MenuItem fx:id="cleaningItem" mnemonicParsing="false" text="Open" />
+                  <MenuItem fx:id="cleaningItem" disable="true" mnemonicParsing="false" text="Open" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Repairs">

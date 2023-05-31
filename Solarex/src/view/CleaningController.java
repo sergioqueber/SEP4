@@ -12,40 +12,70 @@ import java.util.ArrayList;
 
 public class CleaningController{
 
+  @FXML
+  private Button applyButton;
+
+  @FXML
+  private MenuItem cleaningItem;
+
+
+  @FXML
+  private TextField dateField;
+
+  @FXML
+  private TextField dateLogField;
+
+  @FXML
+  private Button editLogButton;
+
+  @FXML
+  private MenuItem managePanelsItem;
+
+  @FXML
+  private MenuItem manufacturerItem;
+
+  @FXML
+  private Label messageField;
+
+  @FXML
+  private Label messageLogField;
+
+  @FXML
+  private TableColumn<SolarPanel, Double> idColumn;
+
+  @FXML
+  private MenuItem modelsItem;
+
+  @FXML
+  private MenuItem openOverview;
+
+  @FXML
+  private MenuItem openSetTargets;
+
+  @FXML
+  private MenuItem repairsItem;
+
+  @FXML
+  private Button returnButton;
+
+  @FXML
+  private Button saveAddButton;
+
+  @FXML
+  private Menu setTargets;
+
+
+  @FXML
+  private MenuItem weatherItem;
+
+  @FXML TableView<SolarPanel> cleaningTable;
+
+  @FXML TableView<SolarPanel> cleaningLogTable;
     @FXML
-    private Button applyButton;
+    private TableColumn<SolarPanel, String> lastCleanedColumn;
 
     @FXML
     private TableColumn<SolarPanel, String> cleaningLogColumn;
-
-    @FXML
-    private TableView<SolarPanel> cleaningLogTable;
-
-    @FXML
-    private TableView<SolarPanel> cleaningTable;
-
-    @FXML
-    private TextField dateField;
-
-    @FXML
-    private TextField dateLogField;
-
-    @FXML
-    private Button editButton;
-
-    @FXML
-    private Label messageField;
-    @FXML
-    private Label messageLogField;
-
-    @FXML
-    private Button editLogButton;
-
-    @FXML
-    private TextField endDateField;
-
-    @FXML
-    private TableColumn<SolarPanel, String> lastCleanedColumn;
 
     @FXML
     private TableColumn<SolarPanel, String> locationColumn;
@@ -61,6 +91,9 @@ public class CleaningController{
 
     @FXML
     private TextField startDateField;
+
+    @FXML
+    private TextField endDateField;
 
     @FXML
     private TableColumn<SolarPanel, String> typeColumn;
@@ -111,6 +144,7 @@ public class CleaningController{
     snColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
     locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
     typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+    idColumn.setCellValueFactory(new PropertyValueFactory<>(""));
     cleaningTable.getItems().clear();
     for (int i = 0; i < model.getLastCleaning().size(); i++){
       cleaningTable.getItems().add(model.getLastCleaning().get(i));
@@ -143,20 +177,19 @@ public class CleaningController{
     fillCleaningLogTable();
   }
 
-  public void onEditLogButton() throws SQLException
+  /*public void onEditLogButton() throws SQLException
   {
-    /*
    if(cleaningLogTable.getSelectionModel().getSelectedItem() == null){
       messageLogField.setText("Please select a date in the solar panel to edit.");
     }
-    model.editLogCleaning(cleaningLogTable.getSelectionModel().getSelectedItem().getSerial_number(), dateLogField.getText());
+    model.editLogCleaning(cleaningLogTable.getSelectionModel().getSelectedItem()., dateLogField.getText());
     dateLogField.clear();
     fillCleaningLogTable();
     fillCleaningTable();
 
-
-     */
   }
+
+   */
 
 
   public void loadOverview(){

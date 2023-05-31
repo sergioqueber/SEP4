@@ -56,4 +56,5 @@ public class ThermalPanel extends SolarPanel
   {
     this.ambientTemp = ambientTemp;
   }
+
 }

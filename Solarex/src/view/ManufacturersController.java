@@ -15,8 +15,19 @@ public class ManufacturersController
   @FXML
   private ChoiceBox<String> choiceBox;
 
+  @FXML private Menu setTargets;
+
   @FXML
   private Button editButton;
+
+  @FXML
+  private TableColumn<String, String> cleaningLogColumn;
+
+  @FXML
+  private TableView<String> cleaningLogTable;
+
+  @FXML
+  private TableView<String> cleaningTable;
 
   @FXML
   private Label messageField;
@@ -56,6 +67,24 @@ public class ManufacturersController
 
   @FXML
   private Button searchButton;
+
+
+  @FXML private MenuItem openSetTargets;
+
+  @FXML private MenuItem openOverview;
+
+  @FXML private MenuItem cleaningItem;
+
+  @FXML private MenuItem repairsItem;
+
+  @FXML private MenuItem weatherItem;
+
+  @FXML private MenuItem managePanelsItem;
+
+  @FXML private MenuItem modelsItem;
+
+  @FXML private MenuItem manufacturerItem;
+
 
   @FXML
   private TextField searchField;

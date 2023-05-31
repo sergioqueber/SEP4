@@ -13,16 +13,16 @@ import java.sql.SQLException;
 public class ModelsController
 {
   @FXML
-  private TableColumn<?, ?> widthColumn;
+  private TableColumn<Double, Double> widthColumn;
 
   @FXML
   private Button addButton;
 
   @FXML
-  private TableColumn<?, ?> areaColumn;
+  private TableColumn<Double, Double> areaColumn;
 
   @FXML
-  private TableColumn<?, ?> lengthColumn;
+  private TableColumn<Double, Double> lengthColumn;
 
   @FXML
   private TextField lengthTextField;
@@ -31,10 +31,10 @@ public class ModelsController
   private ChoiceBox<Manufacturer> manufacturerChoiceBox;
 
   @FXML
-  private TableColumn<?, ?> manufacturerColumn;
+  private TableColumn<Manufacturer, String> manufacturerColumn;
 
   @FXML
-  private TableColumn<?, ?> modelNoColumn;
+  private TableColumn<Model, String> modelNoColumn;
 
   @FXML
   private TextField modelNoTextField;
@@ -46,10 +46,28 @@ public class ModelsController
   private TableView<model.Model> modelsTable;
 
   @FXML
+  private MenuItem managePanelsItem;
+
+  @FXML
+  private MenuItem manufacturerItem;
+
+  @FXML
+  private MenuItem modelsItem;
+
+  @FXML
   private MenuItem openOverview;
 
   @FXML
   private MenuItem openSetTargets;
+
+  @FXML
+  private MenuItem repairsItem;
+
+  @FXML
+  private MenuItem weatherItem;
+
+  @FXML
+  private MenuItem cleaningItem;
 
   @FXML
   private Button removeButton;
@@ -61,6 +79,7 @@ public class ModelsController
   private TextField widthTextField;
   @FXML
   private TextField efficiencyTextField;
+
 
   private ViewHandler viewHandler;
   private Model model;
@@ -130,6 +149,11 @@ public class ModelsController
 
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
+  }
+
+  public void loadModels()
+  {
+    viewHandler.openView("Models");
   }
 
   public void loadManufacturers(){
