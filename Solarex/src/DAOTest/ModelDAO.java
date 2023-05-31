@@ -21,6 +21,11 @@ public class ModelDAO
     return instance;
   }
 
+  private ModelDAO() throws SQLException
+  {
+    DriverManager.registerDriver(new org.postgresql.Driver());
+  }
+
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection("jdbc:postgresql://balarama.db.elephantsql.com:5432/osmxbusz", "osmxbusz", "m5YUAz0vMtIcjX3bmybJc7Kaz2STNoQ-");

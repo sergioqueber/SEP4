@@ -1,7 +1,5 @@
 package DAOTest;
 
-import model.Factory;
-import model.Model;
 import model.PhotovoltaicPanel;
 
 import java.sql.*;

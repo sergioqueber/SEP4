@@ -35,7 +35,7 @@ public class PhotovoltaicPanel extends SolarPanel
     this.voltage = voltage;
   }
 
-  public void setPower()
+  public void setPower(double power)
   {
     this.power = power;
   }

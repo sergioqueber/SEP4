@@ -8,7 +8,9 @@ public class Manufacturer
 
   public Manufacturer()
   {
-
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.name = name;
   }
   public Manufacturer(String name)
   {

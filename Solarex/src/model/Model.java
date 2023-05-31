@@ -22,7 +22,14 @@ public class Model
     this.modelNo = modelNo;
   }
 
-  public Model(){
+  public Model()
+  {
+    this.modelNo = modelNo;
+    this.length = length;
+    this.width = width;
+    this.area = getArea();
+    this.manufacturer = manufacturer;
+    this.efficiency = efficiency;
   }
 
   public void setModelNo(double modelNo)
@@ -80,8 +87,8 @@ public class Model
     return efficiency;
   }
 
-
   public String toString(){
     return "" + modelNo;
   };
+
 }

@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
@@ -17,7 +16,6 @@ import model.ThermalPanel;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SinglePanelThermalController implements Initializable
@@ -155,19 +153,25 @@ public class SinglePanelThermalController implements Initializable
      repairsTable.getItems().add(model.getRepairsBySn(model.getSelectedSn()).get(i));
    }
   }
-
-  /*public void selectTimePeriod() throws SQLException
+/*
+  public void selectTimePeriod() throws SQLException
   {
-    ArrayList<ThermalPanel> lectures=  model.getThLogValues(startTextField.getText(), endTextField.getText(),model.getSelectedSn());
+    ArrayList<ThermalPanel> lectures = model.getThLogValues(startTextField.getText(), endTextField.getText(),
+        model.getSelectedSn());
     XYChart.Series series = new XYChart.Series();
-    System.out.println(lectures.get(0).getTimestamp());;
-    for (int i = 0; i < lectures.size(); i++){
-      series.getData().add(new XYChart.Data<>(lectures.get(i).getTimestamp(), lectures.get(i).getPower()));
+    System.out.println(lectures.get(0).getTimestamp());
+    ;
+    for (int i = 0; i < lectures.size(); i++)
+    {
+      series.getData().add(new XYChart.Data<>(lectures.get(i).getTimestamp(),
+          lectures.get(i).getPower()));
     }
 
     graph.getData().addAll(series);
-  }*/
+  }
 
+
+ */
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }

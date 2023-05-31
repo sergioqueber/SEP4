@@ -7,6 +7,7 @@ public class Alerts
   private int id;
   private int notificationId;
   private double solarPanelSn;
+  private ArrayList<Notification> alerts;
 
   public Alerts(int id, int notificationId, double solarPanelSn)
   {
@@ -14,6 +15,7 @@ public class Alerts
     this.notificationId = notificationId;
     this.solarPanelSn = solarPanelSn;
   }
+
 
   public int getId()
   {
@@ -44,12 +46,8 @@ public class Alerts
   {
     this.solarPanelSn = solarPanelSn;
   }
-  /*private ArrayList<Notification> alerts;
 
-  public Alerts()
-  {
-    this.alerts = new ArrayList<Notification>();
-  }
+
   public void addNotification(Notification notification)
   {
     this.alerts.add(notification);
@@ -68,8 +66,11 @@ public class Alerts
   public Notification getNotification (int index)
   {
     return alerts.get(index);
-  }*/
+  }
 
-
-
+  @Override public String toString()
+  {
+    return "Alerts{" + "id = " + id + ", notificationId = " + notificationId
+        + ", solarPanelSn = " + solarPanelSn + ", alerts = " + alerts + '}';
+  }
 }

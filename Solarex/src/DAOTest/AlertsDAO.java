@@ -1,7 +1,6 @@
 package DAOTest;
 
 import model.Alerts;
-import model.Notification;
 import model.PhotovoltaicPanel;
 
 import java.sql.*;
