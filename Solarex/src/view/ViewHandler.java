@@ -66,7 +66,7 @@ public class ViewHandler
         root = loadRepairs("Repairs.fxml");
         break;
       case "Models":
-        root = loadModels("Models.fxml");
+        root = loadModelsView("Models.fxml");
         break;
       case "Weather":
         root = loadWeather("Weather.fxml");
@@ -374,7 +374,7 @@ public class ViewHandler
     return root;
   }
 
-  private Region loadModels(String fxmlFile)
+  private Region loadModelsView(String fxmlFile)
   {
     if(modelsController == null)
     {

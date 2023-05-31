@@ -144,7 +144,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Models">
                <items>
-                  <MenuItem fx:id="modelsItem" mnemonicParsing="false" onAction="#loadModels" text="Open" />
+                  <MenuItem fx:id="modelsItem" mnemonicParsing="false" onAction="#loadModelsView" text="Open" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Manufacturers">

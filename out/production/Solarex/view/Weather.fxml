@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="445.0" prefWidth="712.0" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WeatherController">
+   <children>
+      <Label fx:id="title" layoutX="283.0" layoutY="48.0" text="Weather forecast">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="messageField" layoutX="26.0" layoutY="308.0" />
+      <Label fx:id="message" layoutX="191.0" layoutY="148.0" text="Please connect the application to a weather forecast.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Circle fill="#fff31f" layoutX="351.0" layoutY="308.0" radius="36.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="93.0" endY="8.0" layoutX="222.0" layoutY="273.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="93.0" endY="8.0" layoutX="324.0" layoutY="357.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="101.20001220703125" endY="-19.5999755859375" layoutX="335.0" layoutY="331.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="101.20001220703125" endY="-19.5999755859375" layoutX="202.0" layoutY="330.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="95.0" endY="-46.0" layoutX="327.0" layoutY="300.0" startX="61.0" startY="-18.79998779296875" />
+      <Line endX="61.20001220703125" endY="-56.399993896484375" layoutX="290.0" layoutY="283.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="61.20001220703125" endY="-56.399993896484375" layoutX="290.0" layoutY="409.0" startX="61.20002746582031" startY="-19.600006103515625" />
+      <Line endX="95.0" endY="-46.0" layoutX="223.0" layoutY="384.0" startX="61.0" startY="-18.79998779296875" />
+      <MenuBar layoutX="-2.0" layoutY="-1.0" prefHeight="29.0" prefWidth="714.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Overview">
+               <items>
+                  <MenuItem fx:id="openOverview" mnemonicParsing="false" onAction="#loadOverview" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="setTargets" mnemonicParsing="false" text="Set Targets">
+               <items>
+                  <MenuItem fx:id="openSetTargets" mnemonicParsing="false" onAction="#loadSetTargets" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Cleaning">
+               <items>
+                  <MenuItem fx:id="cleaningItem" mnemonicParsing="false" onAction="#loadCleaning" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Repairs">
+               <items>
+                  <MenuItem fx:id="repairsItem" mnemonicParsing="false" onAction="#loadRepairs" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Weather">
+               <items>
+                  <MenuItem fx:id="weatherItem" mnemonicParsing="false" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Manage Panels">
+               <items>
+                  <MenuItem fx:id="managePanelsItem" mnemonicParsing="false" onAction="#loadManagePanels" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Models">
+               <items>
+                  <MenuItem fx:id="modelsItem" mnemonicParsing="false" onAction="#loadModels" text="Open" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Manufacturers">
+               <items>
+                  <MenuItem fx:id="manufacturerItem" mnemonicParsing="false" onAction="#loadManufacturers" text="Open" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</fx:root>

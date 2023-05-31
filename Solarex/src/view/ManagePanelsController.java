@@ -329,7 +329,7 @@ public class ManagePanelsController
     viewHandler.openView("Weather");
   }
 
-  public void loadModels()
+  public void loadModelsView()
   {
     viewHandler.openView("Models");
   }
