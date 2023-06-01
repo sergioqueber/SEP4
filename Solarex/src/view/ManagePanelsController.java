@@ -366,10 +366,6 @@ public class ManagePanelsController
     viewHandler.openView("Cleaning");
   }
 
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
-  }
 
   public void loadRepairs()
   {

@@ -188,21 +188,6 @@ public class CleaningController {
     fillCleaningLogTable();
   }
 
-  public void onEditLogButton() throws SQLException
-  {
-    /*
-   if(cleaningLogTable.getSelectionModel().getSelectedItem() == null){
-      messageLogField.setText("Please select a date in the solar panel to edit.");
-    }
-    model.editLogCleaning(cleaningLogTable.getSelectionModel().getSelectedItem().getSerial_number(), dateLogField.getText());
-    dateLogField.clear();
-    fillCleaningLogTable();
-    fillCleaningTable();
-
-
-     */
-  }
-
 
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
@@ -217,11 +202,6 @@ public class CleaningController {
 
   public void loadManagePanels(){
     viewHandler.openView("Manage Panels");
-  }
-
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
   }
 
   public void loadRepairs()

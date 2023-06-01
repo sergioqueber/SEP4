@@ -313,11 +313,6 @@ public class ManufacturersController
     viewHandler.openView("Cleaning");
   }
 
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
-  }
-
   public void loadRepairs()
   {
     viewHandler.openView("Repairs");

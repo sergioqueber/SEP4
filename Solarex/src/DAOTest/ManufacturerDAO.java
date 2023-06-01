@@ -50,7 +50,8 @@ public class ManufacturerDAO
   {
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("UPDATE solarex.manufacturer SET name = ?, email = ?, phone_number = ? WHERE name = ?");
+      PreparedStatement statement = connection.prepareStatement(
+          "UPDATE solarex.manufacturer SET name = ?, email = ?, phone_number = ? WHERE name = ?");
       statement.setString(1, manufacturer.getName());
       statement.setString(2, manufacturer.getEmail());
       statement.setDouble(3, manufacturer.getPhoneNumber());

@@ -133,7 +133,7 @@
             </Menu>
             <Menu fx:id="weather" mnemonicParsing="false" text="Weather">
                <items>
-                  <MenuItem fx:id="openWeather" mnemonicParsing="false" onAction="#loadWeather" text="Action 1" />
+                  <MenuItem fx:id="openWeather" mnemonicParsing="false" text="Action 1" />
                </items>
             </Menu>
             <Menu fx:id="managePanels" disable="true" mnemonicParsing="false" text="Manage Panels">

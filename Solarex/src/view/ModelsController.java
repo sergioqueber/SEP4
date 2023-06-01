@@ -1,4 +1,5 @@
 package view;
+
 import Connection.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -6,7 +7,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import model.Manufacturer;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 
@@ -163,11 +163,6 @@ public class ModelsController
   public void loadCleaning()
   {
     viewHandler.openView("Cleaning");
-  }
-
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
   }
 
   public void loadRepairs()

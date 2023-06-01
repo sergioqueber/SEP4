@@ -126,11 +126,6 @@ public class SetTargetsController
     viewHandler.openView("Manage Panels");
   }
 
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
-  }
-
   public void loadModels()
   {
     viewHandler.openView("Models");

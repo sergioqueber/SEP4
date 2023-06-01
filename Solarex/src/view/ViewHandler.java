@@ -1,7 +1,6 @@
 package view;
 
 import Connection.Model;
-import DAOTest.ModelDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
@@ -15,11 +14,9 @@ public class ViewHandler
   private Model model;
 
   private OverviewController overviewController;
-
   private SetTargetsController setTargetsController;
   private LogInController logInController;
   private SinglePanelController singlePanelController;
-
   private ManufacturersController manufacturersController;
   private CreateNewUserController createNewUserController;
   private SinglePanelThermalController singlePanelThermalController;
@@ -69,6 +66,7 @@ public class ViewHandler
       case "Cleaning":
         root = loadCleaning("Cleaning.fxml");
         break;
+
     }
     currentScene.setRoot(root);
     String title = "";
@@ -81,6 +79,8 @@ public class ViewHandler
     primaryStage.setHeight(root.getPrefHeight());
     primaryStage.show();
   }
+
+
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -399,5 +399,6 @@ public class ViewHandler
     }
     return root;
   }
+
 
 }

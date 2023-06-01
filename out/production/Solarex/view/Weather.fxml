@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="445.0" prefWidth="712.0" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WeatherController">
+<AnchorPane prefHeight="445.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WeatherController">
    <children>
       <Label fx:id="title" layoutX="283.0" layoutY="48.0" text="Weather forecast">
          <font>
@@ -76,4 +76,4 @@
          </menus>
       </MenuBar>
    </children>
-</fx:root>
+</AnchorPane>
