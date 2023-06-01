@@ -307,18 +307,4 @@ public class OverviewController implements Initializable
     viewHandler.openView("Repairs");
   }
 
-  public void loadModels()
-  {
-    viewHandler.openView("Models");
-  }
-
-  public void loadCleaning()
-  {
-    viewHandler.openView("Cleaning");
-  }
-
-  public void loadWeather()
-  {
-    viewHandler.openView("Weather");
-  }
 }

@@ -57,6 +57,7 @@ public class Model
     this.manufacturer = manufacturer;
   }
 
+
   public double getModelNo()
   {
     return modelNo;

@@ -1,10 +1,8 @@
 package Connection;
 
 import DAOTest.*;
-import DAOTest.FactoryDAO;
 import model.*;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -127,7 +125,6 @@ public class Model
     modelDAO.deleteModel(modelNo);
   }
 
-  //-------------------
   public ArrayList<model.Model> getModels() throws SQLException
   {
     ModelDAO models = ModelDAO.getInstance();

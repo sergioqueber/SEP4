@@ -360,39 +360,6 @@ public class SolarPanelDAO
     }
   }
 
-  public void updatePV(double serialNo, int location, String status, int angle, double modelNo, int factoryId,
-      String type) throws SQLException
-  {
-    try (Connection connection = getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?, angle = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
-      statement.setDouble(7, serialNo);
-      statement.setInt(1, location);
-      statement.setString(2, status);
-      statement.setInt(3, angle);
-      statement.setDouble(4,modelNo);
-      statement.setInt(5, factoryId);
-      statement.setString(6, type);
-      statement.executeUpdate();
-    }
-  }
 
-  public void updateTH(double serialNo, int location, String status, int angle, double modelNo, int factoryId,
-      String type) throws SQLException
-  {
-    try (Connection connection = getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?, angle = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
-      statement.setDouble(7, serialNo);
-      statement.setInt(1, location);
-      statement.setString(2, status);
-      statement.setInt(3, angle);
-      statement.setDouble(4,modelNo);
-      statement.setInt(5, factoryId);
-      statement.setString(6, type);
-      statement.executeUpdate();
-    }
-  }
+
 }

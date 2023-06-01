@@ -91,18 +91,7 @@ public class ModelDAO
       }
     }
   }
-  public void deleteModel(double modelNo) throws SQLException
-  {
-    try (Connection connection = getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "DELETE FROM solarex.model WHERE model_no = ?");
-      {
-        statement.setDouble(1,  modelNo);
-        statement.executeUpdate();
-      }
-    }
-  }
+
 
   public SolarPanel deleteModel(double modelNo) throws SQLException
   {
