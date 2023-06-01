@@ -27,16 +27,18 @@ public class ModelDAO
 
   public Model createModel(double modelNo, double length, double width, Manufacturer manufacturer, double efficiency) throws SQLException
   {
+    Model model = new Model(modelNo, length, width, manufacturer, efficiency);
     try (Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.model('model_no', 'area(m^2)', 'length(m)', 'width(m)', 'efficiency(%)', 'manufacturer_name') VALUES (?, ?, ?, ?, ?, ?)" );
-      statement.setDouble(1, modelNo);
-      statement.setDouble(3, length);
-      statement.setDouble(4, width);
-      statement.setString(6, manufacturer.getName());
-      statement.setDouble(5, efficiency);
+      PreparedStatement statement = connection.prepareStatement("INSERT INTO solarex.model(model_no, \"area(m^2)\", \"length(m)\", \"width(m)\", \"manufacturer_name\", \"efficiency(%)\") VALUES (?, ?, ?, ?, ?, ?)" );
+      statement.setDouble(1, model.getModelNo());
+      statement.setDouble(2, model.getArea());
+      statement.setDouble(3, model.getLength());
+      statement.setDouble(4, model.getWidth());
+      statement.setString(5, model.getManufacturer().getName());
+      statement.setDouble(6, model.getEfficiency());
       statement.executeUpdate();
-      return new Model(modelNo, length, width, manufacturer, efficiency);
+      return model;
     }
   }
 
@@ -80,6 +82,18 @@ public class ModelDAO
       else
       {
         return null;
+      }
+    }
+  }
+  public void deleteModel(double modelNo) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM solarex.model WHERE model_no = ?");
+      {
+        statement.setDouble(1,  modelNo);
+        statement.executeUpdate();
       }
     }
   }

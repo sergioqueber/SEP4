@@ -15,35 +15,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RepairsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="174.0" layoutX="412.0" layoutY="326.0" stroke="BLACK" strokeType="INSIDE" width="209.0" />
-      <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="25.0" prefWidth="655.0">
-         <menus>
-            <Menu fx:id="overview" mnemonicParsing="false" text="Overview">
-               <items>
-                  <MenuItem fx:id="openOverview" mnemonicParsing="false" text="Open" />
-               </items>
-            </Menu>
-            <Menu fx:id="setTargets" mnemonicParsing="false" text="Set Targets">
-               <items>
-                  <MenuItem fx:id="openSetTargets" mnemonicParsing="false" text="Open" />
-               </items>
-            </Menu>
-            <Menu fx:id="cleaning" mnemonicParsing="false" text="Cleaning">
-               <items>
-                  <MenuItem fx:id="openCleaning" mnemonicParsing="false" text="Open" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Repairs">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Weather">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
       <TextField fx:id="searchTextField" layoutX="89.0" layoutY="47.0" prefHeight="26.0" prefWidth="112.0" promptText="Seach" />
       <TextField fx:id="dateTextField" layoutX="364.0" layoutY="253.0" prefHeight="26.0" prefWidth="140.0" promptText="Date" />
       <TableView fx:id="solarPanelsTable" layoutX="26.0" layoutY="84.0" prefHeight="395.0" prefWidth="318.0">
@@ -74,5 +45,49 @@
       <CheckBox fx:id="locationCheckbox" layoutX="276.0" layoutY="52.0" mnemonicParsing="false" text="Location" />
       <Button fx:id="refreshButton" layoutX="26.0" layoutY="487.0" mnemonicParsing="false" onAction="#fillRepairsTable" text="Refresh" />
       <Button fx:id="refreshRepairsButton" layoutX="565.0" layoutY="293.0" mnemonicParsing="false" onAction="#fillRepairsTable" text="Refresh" />
+      <MenuBar fx:id="menu" layoutY="1.0" prefHeight="26.0" prefWidth="655.0">
+         <menus>
+            <Menu fx:id="overview" mnemonicParsing="false" text="Overview">
+               <items>
+                  <MenuItem fx:id="openOverview" mnemonicParsing="false" onAction="#loadOverview" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="setTargets" mnemonicParsing="false" text="Set targets">
+               <items>
+                  <MenuItem fx:id="openSetTargets" mnemonicParsing="false" onAction="#loadSetTargets" text="open" />
+               </items>
+            </Menu>
+            <Menu fx:id="cleaning" mnemonicParsing="false" text="Cleaning">
+               <items>
+                  <MenuItem fx:id="openCleaning" mnemonicParsing="false" onAction="#loadCleaning" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="repairs" disable="true" mnemonicParsing="false" text="Repairs">
+               <items>
+                  <MenuItem fx:id="openRepairs" mnemonicParsing="false" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu fx:id="weather" mnemonicParsing="false" text="Weather">
+               <items>
+                  <MenuItem fx:id="openWeather" mnemonicParsing="false" onAction="#loadWeather" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu fx:id="managePanels" mnemonicParsing="false" text="Manage Panels">
+               <items>
+                  <MenuItem fx:id="openManagePanels" mnemonicParsing="false" onAction="#loadManagePanels" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="models" mnemonicParsing="false" text="Models">
+               <items>
+                  <MenuItem fx:id="openModels" mnemonicParsing="false" onAction="#loadModels" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="manufacturers" mnemonicParsing="false" text="Manufacturers">
+               <items>
+                  <MenuItem fx:id="openManufacturers" mnemonicParsing="false" onAction="#loadManufacturers" text="Open" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

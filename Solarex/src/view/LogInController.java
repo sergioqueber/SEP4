@@ -79,11 +79,13 @@ public class LogInController
     String password = passwordTextField.getText();
     if(model.logInCheck(id,password)){
       if(model.getEmployee(id).getRole().getId() == 1){
-        viewHandler.openView("OverviewAn");
         model.setLastOverview("OverviewAn");
+        viewHandler.openView("OverviewAn");
+
       }else if(model.getEmployee(id).getRole().getId() == 2){
-        viewHandler.openView("OverviewTe");
         model.setLastOverview("OverviewTe");
+        viewHandler.openView("OverviewAn");
+
       }
     }
     else {

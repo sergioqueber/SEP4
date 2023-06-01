@@ -1,4 +1,5 @@
 package view;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,101 +24,87 @@ import model.Alerts;
 import model.Notification;
 import model.Repairs;
 import model.SolarPanel;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class RepairsController
 {
-  @FXML
-  private Button applyButton;
+  @FXML private Button applyButton;
+  @FXML private TableColumn<?, ?> dateColumn;
 
-  @FXML
-  private Menu cleaning;
+  @FXML private Button editButton;
 
-  @FXML
-  private TableColumn<?, ?> dateColumn;
+  @FXML private TableColumn<?, ?> employeeIdColumn;
 
-  @FXML
-  private Button editButton;
+  @FXML private TextField endDateTextField;
 
-  @FXML
-  private TableColumn<?, ?> employeeIdColumn;
+  @FXML private CheckBox locationCheckbox;
 
-  @FXML
-  private TextField endDateTextField;
+  @FXML private TableColumn<?, ?> locationColumn;
 
-  @FXML
-  private CheckBox locationCheckbox;
+  @FXML private TableView<Repairs> repairsTable;
 
-  @FXML
-  private TableColumn<?, ?> locationColumn;
+  @FXML private Button saveButton;
 
-  @FXML
-  private MenuBar menuBar;
+  @FXML private Button seachButton;
 
-  @FXML
-  private MenuItem openCleaning;
+  @FXML private TextField searchTextField;
 
-  @FXML
-  private MenuItem openOverview;
+  @FXML private CheckBox snCheckBox;
 
-  @FXML
-  private MenuItem openSetTargets;
+  @FXML private TableColumn<?, ?> snColumn;
 
-  @FXML
-  private Menu overview;
+  @FXML private TableColumn<?, ?> snColumnRepairs;
 
-  @FXML
-  private TableView<Repairs> repairsTable;
+  @FXML private TableView<SolarPanel> solarPanelsTable;
 
-  @FXML
-  private Button saveButton;
+  @FXML private TextField startDateTextField;
 
-  @FXML
-  private Button seachButton;
+  @FXML private TableColumn<?, ?> statusColumn;
 
-  @FXML
-  private TextField searchTextField;
+  @FXML private TableColumn<?, ?> typeColumn;
+  @FXML private Button refreshButton;
+  @FXML private Button refreshRepairsButton;
+  @FXML private TextField employeeIdTextField;
+  @FXML private TextField dateTextField;
+  @FXML private MenuBar menu;
 
-  @FXML
-  private Menu setTargets;
+  @FXML private TableColumn<?, ?> notificationTable;
 
+  @FXML private Label notificationsLabel;
+  @FXML private Menu overview;
+  @FXML private MenuItem openOverview;
+  @FXML private Menu setTargets;
+  @FXML private MenuItem openSetTargets;
+  @FXML private Menu cleaning;
+  @FXML private MenuItem openCleaning;
+  @FXML private Menu repairs;
+  @FXML private MenuItem openRepairs;
+  @FXML private Menu managePanels;
+  @FXML private MenuItem openManagePanels;
+  @FXML private Menu weather;
+  @FXML private MenuItem openWeather;
+  @FXML private Menu manufacturers;
+  @FXML private MenuItem openManufacturers;
   @FXML
-  private CheckBox snCheckBox;
-
+  private Menu models;
   @FXML
-  private TableColumn<?, ?> snColumn;
-
-  @FXML
-  private TableColumn<?, ?> snColumnRepairs;
-
-  @FXML
-  private TableView<SolarPanel> solarPanelsTable;
-
-  @FXML
-  private TextField startDateTextField;
-
-  @FXML
-  private TableColumn<?, ?> statusColumn;
-
-  @FXML
-  private TableColumn<?, ?> typeColumn;
-  @FXML
-  private Button refreshButton;
-  @FXML
-  private Button refreshRepairsButton;
-  @FXML
-  private TextField employeeIdTextField;
-  @FXML
-  private TextField dateTextField;
+  private MenuItem openModels;
 
   private Region root;
   private ViewHandler viewHandler;
   private Model model;
 
-  public RepairsController(){};
+  public RepairsController()
+  {
+  }
+
+  ;
+
   public void init(ViewHandler viewHandler, Region root, Model model)
       throws SQLException
   {
@@ -126,12 +113,19 @@ public class RepairsController
     this.model = model;
     fillSolarPanelsTable();
     fillRepairsTable();
+    if(model.getLastOverview().equals("OverviewAn")){
+      manufacturers.setDisable(true);
+      models.setDisable(true);
+      managePanels.setDisable(true);
+    }
   }
-  public Region getRoot(){
+
+  public Region getRoot()
+  {
     return root;
   }
 
-  public void fillSolarPanelsTable () throws SQLException
+  public void fillSolarPanelsTable() throws SQLException
   {
 
     snColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
@@ -139,79 +133,139 @@ public class RepairsController
     locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
     typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
     solarPanelsTable.getItems().clear();
-    for (int i = 0; i < model.getAllPanels().size() ; i++)
+    for (int i = 0; i < model.getAllPanels().size(); i++)
     {
       solarPanelsTable.getItems().add(model.getAllPanels().get(i));
     }
   }
+
   public void search() throws SQLException
   {
-    if(snCheckBox.isSelected()){
+    if (snCheckBox.isSelected())
+    {
       int sn = Integer.parseInt(searchTextField.getText());
       snColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
       statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-      locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+      locationColumn.setCellValueFactory(
+          new PropertyValueFactory<>("location"));
       typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
       solarPanelsTable.getItems().clear();
-      for (int i = 0; i < model.getPanelsBySn(sn).size() ; i++)
+      for (int i = 0; i < model.getPanelsBySn(sn).size(); i++)
       {
         //System.out.println(model.getAllPanels().get(i));
         solarPanelsTable.getItems().add(model.getPanelsBySn(sn).get(i));
       }
     }
-    else if (locationCheckbox.isSelected()){
+    else if (locationCheckbox.isSelected())
+    {
       int location = Integer.parseInt(searchTextField.getText());
       snColumn.setCellValueFactory(new PropertyValueFactory<>("serial_number"));
       statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-      locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+      locationColumn.setCellValueFactory(
+          new PropertyValueFactory<>("location"));
       typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
       solarPanelsTable.getItems().clear();
-      for (int i = 0; i < model.getPanelsByLocation(location).size() ; i++)
+      for (int i = 0; i < model.getPanelsByLocation(location).size(); i++)
       {
-        solarPanelsTable.getItems().add(model.getPanelsByLocation(location).get(i));
+        solarPanelsTable.getItems()
+            .add(model.getPanelsByLocation(location).get(i));
       }
     }
     resetFields();
   }
+
   public void fillRepairsTable() throws SQLException
   {
     dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
-    snColumnRepairs.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
-    employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
+    snColumnRepairs.setCellValueFactory(
+        new PropertyValueFactory<>("serialNumber"));
+    employeeIdColumn.setCellValueFactory(
+        new PropertyValueFactory<>("employee"));
     repairsTable.getItems().clear();
-    for(int i = 0; i < model.getRepairs().size(); i++){
+    for (int i = 0; i < model.getRepairs().size(); i++)
+    {
       repairsTable.getItems().add(model.getRepairs().get(i));
     }
   }
 
-  public void filterRepairsTable() throws SQLException{
+  public void filterRepairsTable() throws SQLException
+  {
     String startDate = startDateTextField.getText();
     String endDate = endDateTextField.getText();
     dateColumn.setCellValueFactory(new PropertyValueFactory<>("repairDate"));
-    snColumnRepairs.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
-    employeeIdColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
+    snColumnRepairs.setCellValueFactory(
+        new PropertyValueFactory<>("serialNumber"));
+    employeeIdColumn.setCellValueFactory(
+        new PropertyValueFactory<>("employee"));
     repairsTable.getItems().clear();
-    for(int i = 0; i < model.getRepairsByDate(startDate,endDate).size(); i++){
-      repairsTable.getItems().add(model.getRepairsByDate(startDate,endDate).get(i));
+    for (int i = 0; i < model.getRepairsByDate(startDate, endDate).size(); i++)
+    {
+      repairsTable.getItems()
+          .add(model.getRepairsByDate(startDate, endDate).get(i));
     }
     resetFields();
   }
-  public void addNewRepair() throws SQLException{
+
+  public void addNewRepair() throws SQLException
+  {
     int employeeId = Integer.parseInt(employeeIdTextField.getText());
     String date = dateTextField.getText();
-    double sn = solarPanelsTable.getSelectionModel().getSelectedItem().getSerial_number();
-    model.registerNewRepair(employeeId,date,sn);
+    double sn = solarPanelsTable.getSelectionModel().getSelectedItem()
+        .getSerial_number();
+    model.registerNewRepair(employeeId, date, sn);
     fillRepairsTable();
     resetFields();
   }
-  public void removeRepair() throws SQLException{
-    int id = model.getRepairs().get(repairsTable.getSelectionModel().getSelectedIndex()).getId();
+
+  public void removeRepair() throws SQLException
+  {
+    int id = model.getRepairs()
+        .get(repairsTable.getSelectionModel().getSelectedIndex()).getId();
     model.deleteRepairById(id);
     fillRepairsTable();
   }
-  public void resetFields(){
+
+  public void resetFields()
+  {
     searchTextField.setText("");
     locationCheckbox.setSelected(false);
     snCheckBox.setSelected(false);
+    dateTextField.setText("");
+    employeeIdTextField.setText("");
+  }
+
+  public void loadOverview()
+  {
+    viewHandler.openView(model.getLastOverview());
+  }
+
+  public void loadSetTargets()
+  {
+    viewHandler.openView("Set Targets");
+  }
+
+  public void loadManufacturers()
+  {
+    viewHandler.openView("Manufacturers");
+  }
+
+  public void loadManagePanels()
+  {
+    viewHandler.openView("Manage Panels");
+  }
+
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadModels()
+  {
+    viewHandler.openView("Models");
   }
 }

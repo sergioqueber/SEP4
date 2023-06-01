@@ -26,6 +26,7 @@ public class ViewHandler
   private ManagePanelsController managePanelsController;
   private RepairsController repairsController;
   private ModelsController modelsController;
+  private CleaningController cleaningController;
 
   public ViewHandler(Model model){
     this.currentScene =  new Scene(new Region());
@@ -47,9 +48,6 @@ public class ViewHandler
       case "LogIn":
         root = loadLogIn("login.fxml");
         break;
-      case "OverviewTe":
-        root = loadOverviewView("OverviewTe.fxml");
-        break;
       case "New User":
         root = loadNewUser("CreateNewUser.fxml");
         break;
@@ -68,6 +66,9 @@ public class ViewHandler
       case "Models":
         root = loadModelsController("Models.fxml");
         break;
+      case "Cleaning":
+        root = loadCleaning("Cleaning.fxml");
+        break;
     }
     currentScene.setRoot(root);
     String title = "";
@@ -83,7 +84,7 @@ public class ViewHandler
 
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    openView("Models");
+    openView("LogIn");
   }
   private Region loadOverviewView(String fxmlFile){
     if(overviewController == null)
@@ -362,6 +363,35 @@ public class ViewHandler
       {
         root =  modelsController.getRoot();
         modelsController.init(this,root, model);
+      }
+      catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    return root;
+  }
+  private Region loadCleaning(String fxmlFile)
+  {
+    if(cleaningController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlFile));
+        root = loader.load();
+        cleaningController = loader.getController();
+        cleaningController.init(this, root, model);
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else{
+      try
+      {
+        root =  cleaningController.getRoot();
+        cleaningController.init(this,root, model);
       }
       catch (Exception e){
         e.printStackTrace();

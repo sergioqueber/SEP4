@@ -89,6 +89,17 @@ public class Model
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readPv();
   }
+  public void editPVpanel(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    solarPanelDAO.updatePV(serialNo, location, status, angle, modelNo, factoryId, type);
+  }
+
+  public void editTHpanel(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    solarPanelDAO.updateTH(serialNo, location, status, angle, modelNo, factoryId, type);
+  }
   public PhotovoltaicPanel addPhotovoltaicPanel(double serialNo, int location, String status, int angle, double modelNo, int factoryId, String type) throws SQLException
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
@@ -103,6 +114,17 @@ public class Model
   {
     SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
     return solarPanelDAO.readTh();
+  }
+  public ArrayList<SolarPanel> getPanelsByTime(String startDate, String endDate)
+      throws SQLException
+  {
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    return cleaningLogDAO.getAllCleaningLogByTime(startDate, endDate);
+  }
+  public void removeModel(double modelNo) throws SQLException
+  {
+    ModelDAO modelDAO = ModelDAO.getInstance();
+    modelDAO.deleteModel(modelNo);
   }
 
   //-------------------
@@ -323,6 +345,30 @@ public class Model
   {
     CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
     return cleaningLogDAO.readCleaningLog(sn);
+
+  }
+  public ArrayList<SolarPanel> getCleaningLog() throws SQLException
+  {
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    return cleaningLogDAO.readCleaningLog();
+  }
+
+  public void addCleaning(double sn, String date) throws SQLException
+  {
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    cleaningLogDAO.addCleaningTime(sn, date);
+  }
+
+  public void editLogCleaning(double sn, String date) throws SQLException
+  {
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    cleaningLogDAO.editCleaningLogTime(sn, date);
+  }
+
+  public ArrayList<SolarPanel> getLastCleaning() throws SQLException
+  {
+    CleaningLogDAO cleaningLogDAO = CleaningLogDAO.getInstance();
+    return cleaningLogDAO.getCleaningTimes();
   }
 
   public void newPvLecture(double intensity, double voltage, double solar_flux,

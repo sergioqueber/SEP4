@@ -60,14 +60,6 @@ public class ManufacturersController
   @FXML
   private TextField searchField;
   @FXML
-  private Menu overview;
-  @FXML
-  private MenuItem openOverview;
-  @FXML
-  private Menu setTargets;
-  @FXML
-  private MenuItem openSetTargets;
-  @FXML
   private TableColumn<?, ?> emailColumn1;
   @FXML
   private TableColumn<?, ?> manufacturerColumn1;
@@ -77,7 +69,42 @@ public class ManufacturersController
   private TableView<Manufacturer> manufacturerTable1;
   @FXML
   private Button refresh;
+  @FXML
+  private MenuBar menu;
 
+  @FXML
+  private TableColumn<?, ?> notificationTable;
+
+  @FXML
+  private Label notificationsLabel;
+  @FXML
+  private Menu overview;
+  @FXML
+  private MenuItem openOverview;
+  @FXML
+  private Menu setTargets;
+  @FXML
+  private MenuItem openSetTargets;
+  @FXML
+  private Menu cleaning;
+  @FXML
+  private MenuItem openCleaning;
+  @FXML
+  private Menu repairs;
+  @FXML
+  private MenuItem openRepairs;
+  @FXML
+  private Menu managePanels;
+  @FXML
+  private MenuItem openManagePanels;
+  @FXML
+  private Menu weather;
+  @FXML
+  private MenuItem openWeather;
+  @FXML
+  private Menu manufacturers;
+  @FXML
+  private MenuItem openManufacturers;
 
   private ViewHandler viewHandler;
   private Model model;
@@ -268,11 +295,32 @@ public class ManufacturersController
   {
     return edit;
   }
+
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
   }
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
+  }
+  public void loadModels(){
+    viewHandler.openView("Models");
+  }
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
   }
 
 }

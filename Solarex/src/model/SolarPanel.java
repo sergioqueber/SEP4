@@ -36,6 +36,10 @@ public class SolarPanel
   public SolarPanel(String timestamp){
     this.timestamp = timestamp;
   }
+  public SolarPanel(String timestamp, String status){
+    this.timestamp = timestamp;
+    this.status = status;
+  }
   public SolarPanel(double serialNo){
     this.serialNo = serialNo;
   }
@@ -60,6 +64,14 @@ public class SolarPanel
 
   public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory)
   {
+  }
+
+  public SolarPanel(double serialNo, String cleaningDate, int location, String type)
+  {
+    this.serialNo = serialNo;
+    cleaningTime = cleaningDate;
+    this.location = location;
+    this.type = type;
   }
 
   public double getSerial_number()

@@ -15,70 +15,33 @@
 
 <AnchorPane prefHeight="497.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ManagePanelsController">
    <children>
-      <MenuBar layoutX="-3.0" layoutY="1.0" prefHeight="26.0" prefWidth="707.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="Overview">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Set Targets">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Cleaning">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Repairs">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Weather">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Manage Panels">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Manufacturers">
-               <items>
-                  <MenuItem fx:id="manufacturersItem" mnemonicParsing="false" onAction="#loadManufacturersView" text="Open" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
       <Label fx:id="pvLabel" layoutX="25.0" layoutY="74.0" text="Photovoltaic panels" />
       <TableView fx:id="pvPanelTable" layoutX="25.0" layoutY="132.0" prefHeight="164.0" prefWidth="317.0">
          <columns>
-            <TableColumn fx:id="pvSNC" prefWidth="79.99997329711914" text="Serial number" />
-            <TableColumn fx:id="pvLocationC" prefWidth="66.39996337890625" text="Location" />
-            <TableColumn fx:id="pvStatusC" prefWidth="49.60003662109375" text="Status" />
-            <TableColumn fx:id="pvTypeC" prefWidth="46.40000915527344" text="Type " />
-            <TableColumn fx:id="pvModelC" prefWidth="71.199951171875" text="Model" />
+            <TableColumn fx:id="pvSNC" prefWidth="61.599979400634766" text="Serial number" />
+            <TableColumn fx:id="pvLocationC" prefWidth="62.4000244140625" text="Location" />
+            <TableColumn fx:id="pvStatusC" prefWidth="54.4000244140625" text="Status" />
+            <TableColumn fx:id="pvTypeC" prefWidth="43.20001220703125" text="Type " />
+            <TableColumn fx:id="pvModelC" prefWidth="44.00004577636719" text="Model" />
+            <TableColumn fx:id="pvAngleC" prefWidth="48.00002441406252" text="Angle" />
          </columns>
       </TableView>
       <Label fx:id="tpLabel" layoutX="599.0" layoutY="74.0" text="Thermal panels" />
       <TableView fx:id="thPanelTable" layoutX="363.0" layoutY="132.0" prefHeight="164.0" prefWidth="318.0">
          <columns>
-            <TableColumn fx:id="tpSNC" prefWidth="79.20001220703125" text="Serial number" />
-            <TableColumn fx:id="tpLocationC" prefWidth="68.0" text="Location" />
-            <TableColumn fx:id="tpStatusC" prefWidth="49.60003662109375" text="Status" />
-            <TableColumn fx:id="tpTypeC" prefWidth="52.79998779296875" text="Type " />
-            <TableColumn fx:id="tpModelC" prefWidth="64.0" text="Model" />
+            <TableColumn fx:id="tpSNC" prefWidth="55.20001220703125" text="Serial number" />
+            <TableColumn fx:id="tpLocationC" prefWidth="66.39996337890625" text="Location" />
+            <TableColumn fx:id="tpStatusC" prefWidth="46.39990234375" text="Status" />
+            <TableColumn fx:id="tpTypeC" prefWidth="36.800048828125" text="Type " />
+            <TableColumn fx:id="tpModelC" prefWidth="55.9998779296875" text="Model" />
+            <TableColumn fx:id="tpAngleC" prefWidth="55.19998779296873" text="Angle" />
          </columns>
       </TableView>
       <TextField fx:id="pvText" layoutX="25.0" layoutY="99.0" prefHeight="26.0" prefWidth="129.0" promptText="Search" />
       <TextField fx:id="tpText" layoutX="550.0" layoutY="99.0" prefHeight="26.0" prefWidth="130.0" promptText="Search" />
       <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
-      <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" text="Search" />
-      <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onAddNewPanelButton" prefHeight="26.0" prefWidth="52.0" text="Add" />
+      <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" onAction="#onTHSearchButton" text="Search" />
+      <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onSavePanelButton" prefHeight="26.0" prefWidth="52.0" text="Save" />
       <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
       <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
          <font>
@@ -146,5 +109,50 @@
       <ChoiceBox fx:id="factoryChoiceBox" layoutX="334.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
       <ChoiceBox fx:id="modelChoiceBox" layoutX="334.0" layoutY="377.0" prefHeight="26.0" prefWidth="121.0" />
       <ChoiceBox fx:id="statusChoiceBox" layoutX="26.0" layoutY="430.0" prefHeight="26.0" prefWidth="121.0" />
+      <MenuBar fx:id="menu" layoutY="1.0" prefHeight="26.0" prefWidth="707.0">
+         <menus>
+            <Menu fx:id="overview" mnemonicParsing="false" text="Overview">
+               <items>
+                  <MenuItem fx:id="openOverview" mnemonicParsing="false" onAction="#loadOverview" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="setTargets" mnemonicParsing="false" text="Set targets">
+               <items>
+                  <MenuItem fx:id="openSetTargets" mnemonicParsing="false" onAction="#loadSetTargets" text="open" />
+               </items>
+            </Menu>
+            <Menu fx:id="cleaning" mnemonicParsing="false" text="Cleaning">
+               <items>
+                  <MenuItem fx:id="openCleaning" mnemonicParsing="false" onAction="#loadCleaning" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="repairs" mnemonicParsing="false" text="Repairs">
+               <items>
+                  <MenuItem fx:id="openRepairs" mnemonicParsing="false" onAction="#loadRepairs" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu fx:id="weather" mnemonicParsing="false" text="Weather">
+               <items>
+                  <MenuItem fx:id="openWeather" mnemonicParsing="false" onAction="#loadWeather" text="Action 1" />
+               </items>
+            </Menu>
+            <Menu fx:id="managePanels" disable="true" mnemonicParsing="false" text="Manage Panels">
+               <items>
+                  <MenuItem fx:id="openManagePanels" mnemonicParsing="false" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="models" mnemonicParsing="false" text="Models">
+               <items>
+                  <MenuItem fx:id="openModels" mnemonicParsing="false" onAction="#loadModels" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="manufacturers" mnemonicParsing="false" text="Manufacturers">
+               <items>
+                  <MenuItem fx:id="openManufacturers" mnemonicParsing="false" onAction="#loadManufacturers" text="Open" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label fx:id="messageField" layoutX="26.0" layoutY="321.0" textFill="RED" />
    </children>
 </AnchorPane>

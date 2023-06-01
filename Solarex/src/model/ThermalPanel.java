@@ -29,6 +29,10 @@ public class ThermalPanel extends SolarPanel
     super(serialNo,location,status,angle,model,factory,type);
   }
 
+  public ThermalPanel(SolarPanel th){
+    super(th.getSerial_number(),th.getLocation(),th.getStatus(),th.getAngle(),th.getModel(),th.getFactory(),th.getType());
+  }
+
   public double getInitialTemp()
   {
     return initialTemp;

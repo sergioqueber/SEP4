@@ -85,6 +85,30 @@ public class SinglePanelThermalController implements Initializable
   private Menu setTargets;
   @FXML
   private MenuItem openSetTargets;
+  @FXML
+  private Menu cleaning;
+  @FXML
+  private MenuItem openCleaning;
+  @FXML
+  private Menu repairs;
+  @FXML
+  private MenuItem openRepairs;
+  @FXML
+  private Menu managePanels;
+  @FXML
+  private MenuItem openManagePanels;
+  @FXML
+  private Menu weather;
+  @FXML
+  private MenuItem openWeather;
+  @FXML
+  private Menu manufacturers;
+  @FXML
+  private MenuItem openManufacturers;
+  @FXML
+  private Menu models;
+  @FXML
+  private MenuItem openModels;
 
 
 
@@ -101,6 +125,12 @@ public class SinglePanelThermalController implements Initializable
     getRepairs();
     fillPanelData();
     fillCleaningTable();
+    if(model.getLastOverview().equals("OverviewAn")){
+      manufacturers.setDisable(true);
+      models.setDisable(true);
+      managePanels.setDisable(true);
+    }
+
   }
 
   public void initialize(URL url, ResourceBundle rb)
@@ -173,5 +203,28 @@ public class SinglePanelThermalController implements Initializable
   }
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");
+  }
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
+  }
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
+  }
+  public void loadModels(){
+    viewHandler.openView("Models");
   }
 }

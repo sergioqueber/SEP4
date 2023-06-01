@@ -38,18 +38,6 @@ public class OverviewController implements Initializable
   @FXML
   private Button applyButton;
 
-  @FXML
-  private Menu setTargets;
-  @FXML
-  private MenuItem setTargetsItem;
-  @FXML
-  private Menu manufacturers;
-  @FXML
-  private MenuItem manufacturerItem;
-  @FXML
-  private Menu managePanels;
-  @FXML
-  private MenuItem openManagePanels;
 
   @FXML
   private Label consumptionLabel;
@@ -71,9 +59,39 @@ public class OverviewController implements Initializable
 
   @FXML
   private Label notificationsLabel;
-
   @FXML
   private Menu overview;
+  @FXML
+  private MenuItem openOverview;
+  @FXML
+  private Menu setTargets;
+  @FXML
+  private MenuItem openSetTargets;
+  @FXML
+  private Menu cleaning;
+  @FXML
+  private MenuItem openCleaning;
+  @FXML
+  private Menu repairs;
+  @FXML
+  private MenuItem openRepairs;
+  @FXML
+  private Menu managePanels;
+  @FXML
+  private MenuItem openManagePanels;
+  @FXML
+  private Menu weather;
+  @FXML
+  private MenuItem openWeather;
+  @FXML
+  private Menu manufacturers;
+  @FXML
+  private MenuItem openManufacturers;
+  @FXML
+  private Menu models;
+  @FXML
+  private MenuItem openModels;
+
 
   @FXML
   private TextField savings;
@@ -163,6 +181,11 @@ public class OverviewController implements Initializable
     electricityValueConsumption.setText(String.valueOf(model.getElectricityConsumption()));
     heatingValueConsumption.setText(String.valueOf(model.getHeatingConsumption()));
     savingsValueLabel.setText(String.valueOf(model.getSavings(2.8,1.8)));
+    if(model.getLastOverview().equals("OverviewAn")){
+      manufacturers.setDisable(true);
+      models.setDisable(true);
+      managePanels.setDisable(true);
+    }
 
   }
 
@@ -275,6 +298,25 @@ public class OverviewController implements Initializable
     {
       viewHandler.openView("Single Panel Th");
     }
+
+  }
+  public void loadModels(){
+    viewHandler.openView("Models");
+  }
+
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
   }
 
 }

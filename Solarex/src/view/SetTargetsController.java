@@ -42,13 +42,39 @@ public class SetTargetsController
   private CheckBox criticalVoltageCheckbox;
 
   @FXML
-  private Menu managePanels;
-
-  @FXML
   private MenuBar menu;
-
   @FXML
   private Menu overview;
+  @FXML
+  private MenuItem openOverview;
+  @FXML
+  private Menu setTargets;
+  @FXML
+  private MenuItem openSetTargets;
+  @FXML
+  private Menu cleaning;
+  @FXML
+  private MenuItem openCleaning;
+  @FXML
+  private Menu repairs;
+  @FXML
+  private MenuItem openRepairs;
+  @FXML
+  private Menu managePanels;
+  @FXML
+  private MenuItem openManagePanels;
+  @FXML
+  private Menu weather;
+  @FXML
+  private MenuItem openWeather;
+  @FXML
+  private Menu manufacturers;
+  @FXML
+  private MenuItem openManufacturers;
+  @FXML
+  private Menu models;
+  @FXML
+  private MenuItem openModels;
 
   @FXML
   private Label pvLabel;
@@ -80,7 +106,11 @@ public class SetTargetsController
     this.viewHandler = viewHandler;
     this.root = root;
     this.model = model;
-
+    if(model.getLastOverview().equals("OverviewAn")){
+      manufacturers.setDisable(true);
+      models.setDisable(true);
+      managePanels.setDisable(true);
+    }
   }
 
   public void setCriticalValue() throws SQLException
@@ -100,6 +130,29 @@ public class SetTargetsController
 
   public void loadOverview(){
     viewHandler.openView(model.getLastOverview());
+  }
+  public void loadManufacturers(){
+    viewHandler.openView("Manufacturers");
+  }
+  public void loadManagePanels(){
+    viewHandler.openView("Manage Panels");
+  }
+  public void loadCleaning()
+  {
+    viewHandler.openView("Cleaning");
+  }
+
+  public void loadWeather()
+  {
+    viewHandler.openView("Weather");
+  }
+
+  public void loadRepairs()
+  {
+    viewHandler.openView("Repairs");
+  }
+  public void loadModels(){
+    viewHandler.openView("Models");
   }
 
   public void resetField(){
