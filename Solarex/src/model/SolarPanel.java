@@ -69,6 +69,50 @@ public class SolarPanel
     return installationTime;
   }
 
+  public void setType(String type)
+  {
+    this.type = type;
+  }
+
+  public void setModel(Model model)
+  {
+    this.model = model;
+  }
+
+  public void setSolarFlux(double solarFlux)
+  {
+    this.solarFlux = solarFlux;
+  }
+
+  public double getAmbientTemp()
+  {
+    return ambientTemp;
+  }
+
+  public void setAmbientTemp(double ambientTemp)
+  {
+    this.ambientTemp = ambientTemp;
+  }
+
+  public void setSerialNo(double serialNo)
+  {
+    this.serialNo = serialNo;
+  }
+
+  public void setTimestamp(String timestamp)
+  {
+    this.timestamp = timestamp;
+  }
+
+  public void setFactory(Factory factory)
+  {
+    this.factory = factory;
+  }
+
+  public double getSerialNo()
+  {
+    return serialNo;
+  }
 
   public void setStatus(String status)
   {
@@ -161,5 +205,10 @@ public class SolarPanel
   public String getStatus()
   {
     return status;
+  }
+
+  public String toString()
+  {
+    return "" + getSerial_number();
   }
 }

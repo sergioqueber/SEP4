@@ -138,7 +138,7 @@ public class ModelsController
   {
     if(modelsTable.getSelectionModel().getSelectedItem() == null)
     {
-      messageText.setText("Please select a manufacturer from the table to continue.");
+      messageText.setText("Please select an item from the table to continue.");
     }
     else
     {

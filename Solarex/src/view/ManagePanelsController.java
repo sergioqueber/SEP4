@@ -255,6 +255,8 @@ public class ManagePanelsController
       modelChoiceBox.getSelectionModel().clearSelection();
       factoryChoiceBox.getSelectionModel().clearSelection();
       statusChoiceBox.getSelectionModel().clearSelection();
+      thCheckBox.setSelected(false);
+      pvCheckBox.setSelected(false);
   }
 
 

@@ -30,8 +30,7 @@
             <TableColumn fx:id="cleaningLogColumn" prefWidth="106.66665077209473" text="Date of cleaning" />
             <TableColumn fx:id="snLogCOlumn" prefWidth="100.66668701171875" text="Serial number" />
             <TableColumn fx:id="locationLogColumn" prefWidth="74.0" text="Location" />
-            <TableColumn fx:id="typeLogColumn" prefWidth="48.800048828125" text="Type " />
-            <TableColumn fx:id="idColumn" prefWidth="28.800012207031273" text="ID" />
+            <TableColumn fx:id="typeLogColumn" prefWidth="78.39998779296877" text="Type " />
          </columns>
       </TableView>
       <Button fx:id="saveAddButton" layoutX="568.0" layoutY="47.0" mnemonicParsing="false" onAction="#onSaveAddButtonClicked" text="Save/Add" />

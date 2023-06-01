@@ -33,4 +33,10 @@ public class Role
   public Role(int id){
     this.id = id;
   }
+
+  public String toString()
+  {
+    return "" + getId();
+  }
+
 }

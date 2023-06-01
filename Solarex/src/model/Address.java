@@ -69,6 +69,6 @@ public class Address
 
   public String toString()
   {
-    return "Address: " + getStreet() + " " + getNumber() + ", " + getCity() + " " + getPostcode() + ", adress id: " + getId();
+    return "Address: " + getStreet() + " " + getNumber() + ", " + getCity() + " " + getPostcode() + ", address id: " + getId();
   }
 }

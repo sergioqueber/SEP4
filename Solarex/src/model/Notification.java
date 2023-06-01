@@ -31,5 +31,10 @@ public class Notification
     this.name = name;
   }
 
+  public String toString()
+  {
+    return "" + getId();
+  }
+
 
 }

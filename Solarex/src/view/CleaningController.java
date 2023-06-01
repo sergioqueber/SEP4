@@ -162,6 +162,8 @@ public class CleaningController{
     }
     else
       messageLogField.setText("");
+      startDateField.clear();
+      endDateField.clear();
   }
 
   public void onSaveAddButtonClicked() throws SQLException

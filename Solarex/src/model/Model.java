@@ -88,7 +88,7 @@ public class Model
   }
 
   public String toString(){
-    return "" + modelNo;
+    return "" + getModelNo();
   };
 
 }

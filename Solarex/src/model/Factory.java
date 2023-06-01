@@ -47,6 +47,11 @@ public class Factory
     this.id = id;
   }
 
+  public String toString()
+  {
+    return "" + getId();
+  }
+
 
 }
 
