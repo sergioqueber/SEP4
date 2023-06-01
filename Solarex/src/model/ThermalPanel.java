@@ -5,28 +5,26 @@ public class ThermalPanel extends SolarPanel
   private double initialTemp;
   private double finalTemp;
   private double ambientTemp;
-  private double solarFlux;
 
-  public ThermalPanel(double serialNo, int location, String installationTime,
+  public ThermalPanel(double serialNo, int location,
       String status, int angle, Model model,Factory factory,String type )
   {
-    super(serialNo,location,installationTime, status,angle,model,factory,type);
+    super(serialNo,location, status,angle,model,factory,type);
     this.initialTemp = initialTemp;
     this.finalTemp = finalTemp;
     this.ambientTemp = ambientTemp;
   }
-  public ThermalPanel(double initialTemp, double finalTemp, double ambientTemp, double solarFlux, String timestamp){
+
+  public ThermalPanel(double initialTemp, double finalTemp, double ambientTemp, double solarFlux, String timestamp)
+  {
     super(timestamp);
     this.initialTemp = initialTemp;
     this.finalTemp = finalTemp;
-    this.ambientTemp =ambientTemp;
-    this.solarFlux = solarFlux;
+    this.ambientTemp = ambientTemp;
   }
 
-  public ThermalPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
-      String type)
-  {
-    super(serialNo,location,status,angle,model,factory,type);
+  public ThermalPanel(SolarPanel th){
+    super(th.getSerial_number(),th.getLocation(),th.getStatus(),th.getAngle(),th.getModel(),th.getFactory(),th.getType());
   }
 
   public ThermalPanel(SolarPanel th){
@@ -62,4 +60,10 @@ public class ThermalPanel extends SolarPanel
   {
     this.ambientTemp = ambientTemp;
   }
+
+  public String toString()
+  {
+    return "" + getSerial_number();
+  }
+
 }

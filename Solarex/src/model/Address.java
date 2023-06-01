@@ -32,4 +32,43 @@ public class Address
     this.city = city;
   }
 
+  public City getCity()
+  {
+    return city;
+  }
+
+  public void setCity(City city)
+  {
+    this.city = city;
+  }
+
+  public void setPostcode(int postcode)
+  {
+    this.postcode = postcode;
+  }
+
+  public void setNumber(int number)
+  {
+    this.number = number;
+  }
+
+  public void setStreet(String street)
+  {
+    this.street = street;
+  }
+
+  public int getId()
+  {
+    return id;
+  }
+
+  public void setId(int id)
+  {
+    this.id = id;
+  }
+
+  public String toString()
+  {
+    return "Address: " + getStreet() + " " + getNumber() + ", " + getCity() + " " + getPostcode() + ", address id: " + getId();
+  }
 }

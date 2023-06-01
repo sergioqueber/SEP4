@@ -1,7 +1,9 @@
 package DAOTest;
+
+import model.Factory;
+
 import java.sql.*;
-import model.*;
-import java.util.*;
+import java.util.ArrayList;
 public class FactoryDAO
 {
   private static FactoryDAO instance;

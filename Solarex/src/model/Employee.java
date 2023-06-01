@@ -145,6 +145,7 @@ public class Employee
   }
 
   public String toString(){
-    return "" + id;
+    return "Employee id: " + getId() + ", cpr: " + getCPR() + ", name: " + getFName() + " " + getFName() + ", phone number: " + getPhoneNo() + ", employment date: " + getEmploymentDate() + ", role: " + getRole() + ", workplace: " + getWorkPlace();
   }
+
 }

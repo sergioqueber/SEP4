@@ -1,7 +1,5 @@
 package model;
 
-import java.time.*;
-
 public class SolarPanel
 {
   private double serialNo;
@@ -17,7 +15,7 @@ public class SolarPanel
   private Factory factory;
   private String type;
 
-  public SolarPanel(double serialNo, int location, String installationTime, String status, int angle, Model model, Factory factory, String type)
+  public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory, String type)
   {
     this.serialNo = serialNo;
     this.location = location;
@@ -33,46 +31,28 @@ public class SolarPanel
     this.type = type;
   }
 
-  public SolarPanel(String timestamp){
-    this.timestamp = timestamp;
-  }
-  public SolarPanel(String timestamp, String status){
-    this.timestamp = timestamp;
-    this.status = status;
-  }
-  public SolarPanel(double serialNo){
-    this.serialNo = serialNo;
-  }
-  public SolarPanel(double serialNo, String cleaningTime){
+  public SolarPanel(double serialNo, String cleaningTime)
+  {
     this.serialNo = serialNo;
     this.cleaningTime = cleaningTime;
   }
 
-  public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory,
-      String type)
+  public SolarPanel(double serialNo, String cleaningTime, int location, String type)
   {
     this.serialNo = serialNo;
     this.location = location;
-    this.cleaningTime = null;
-    this.status = status;
-    this.angle = angle;
-    this.model = model;
-    this.timestamp = null;
-    this.factory = factory;
+    this.cleaningTime = cleaningTime;
     this.type = type;
   }
 
-  public SolarPanel(double serialNo, int location, String status, int angle, Model model, Factory factory)
-  {
-  }
-
-  public SolarPanel(double serialNo, String cleaningDate, int location, String type)
+  public SolarPanel(double serialNo)
   {
     this.serialNo = serialNo;
-    cleaningTime = cleaningDate;
-    this.location = location;
-    this.type = type;
   }
+  public SolarPanel(String timestamp){
+    this.timestamp = timestamp;
+  }
+
 
   public double getSerial_number()
   {
@@ -89,9 +69,49 @@ public class SolarPanel
     return installationTime;
   }
 
-  public String getStatus()
+  public void setType(String type)
   {
-    return status;
+    this.type = type;
+  }
+
+  public void setModel(Model model)
+  {
+    this.model = model;
+  }
+
+  public void setSolarFlux(double solarFlux)
+  {
+    this.solarFlux = solarFlux;
+  }
+
+  public double getAmbientTemp()
+  {
+    return ambientTemp;
+  }
+
+  public void setAmbientTemp(double ambientTemp)
+  {
+    this.ambientTemp = ambientTemp;
+  }
+
+  public void setSerialNo(double serialNo)
+  {
+    this.serialNo = serialNo;
+  }
+
+  public void setTimestamp(String timestamp)
+  {
+    this.timestamp = timestamp;
+  }
+
+  public void setFactory(Factory factory)
+  {
+    this.factory = factory;
+  }
+
+  public double getSerialNo()
+  {
+    return serialNo;
   }
 
   public void setStatus(String status)
@@ -180,5 +200,15 @@ public class SolarPanel
   public String getTimestamp()
   {
     return timestamp;
+  }
+
+  public String getStatus()
+  {
+    return status;
+  }
+
+  public String toString()
+  {
+    return "" + getSerial_number();
   }
 }

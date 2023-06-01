@@ -2,6 +2,7 @@ package DAOTest;
 
 import model.Manufacturer;
 import model.Model;
+import model.SolarPanel;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,6 +19,11 @@ public class ModelDAO
       instance = new ModelDAO();
     }
     return instance;
+  }
+
+  private ModelDAO() throws SQLException
+  {
+    DriverManager.registerDriver(new org.postgresql.Driver());
   }
 
   private Connection getConnection() throws SQLException
@@ -47,7 +53,7 @@ public class ModelDAO
   {
     try(Connection connection = getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("SELECT \"model_no\", \"area(m^2)\", \"length(m)\", \"width(m)\", \"efficiency(%)\", \"manufacturer_name\" FROM solarex.model ");
+      PreparedStatement statement = connection.prepareStatement("SELECT model_no, \"area(m^2)\", \"length(m)\", \"width(m)\", \"efficiency(%)\", \"manufacturer_name\" FROM solarex.model ");
       ResultSet resultSet = statement.executeQuery();
       ArrayList<Model> result = new ArrayList<>();
       while (resultSet.next())
@@ -98,5 +104,18 @@ public class ModelDAO
     }
   }
 
+  public SolarPanel deleteModel(double modelNo) throws SQLException
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM solarex.model WHERE model_no = ?");
+      {
+        statement.setDouble(1,  modelNo);
+        statement.executeUpdate();
+      }
+    }
+    return null;
+  }
 
 }

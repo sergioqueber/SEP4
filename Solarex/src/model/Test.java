@@ -1,13 +1,15 @@
 package model;
 
+import DAOTest.ManufacturerDAO;
+
+import java.sql.SQLException;
+
 public class Test
 {
-  public static void main(String[] args)
+  public static void main(String[] args) throws SQLException
   {
-    Manufacturer manufacturer = new Manufacturer("name","email",55213877);
-
-    Model model = new Model(354,5,5, manufacturer,10);
-
-    System.out.println(model);
+    ManufacturerDAO manufacturerDAO = ManufacturerDAO.getInstance();
+    manufacturerDAO.readByName("H");
+    System.out.println();
   }
 }

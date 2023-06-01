@@ -1,10 +1,7 @@
-import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Date;
-import  Connection.Connector;
+
 import Connection.Model;
-import model.PhotovoltaicPanel;
-import model.SolarPanel;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;

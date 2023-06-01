@@ -43,12 +43,17 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Weather">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadWeather" text="Action 1" />
                </items>
             </Menu>
             <Menu fx:id="managePanels" mnemonicParsing="false" text="Manage Panels">
                <items>
                   <MenuItem fx:id="openManagePanels" mnemonicParsing="false" onAction="#loadManagePanels" text="Open" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuuu" mnemonicParsing="false" text="Models">
+               <items>
+                  <MenuItem fx:id="modelsItem" mnemonicParsing="false" onAction="#loadModels" text="Open" />
                </items>
             </Menu>
             <Menu fx:id="manufacturers" mnemonicParsing="false" text="Manufacturers">

@@ -168,8 +168,7 @@ public class SinglePanelController implements Initializable
 
   public void fillCleaningTable()throws SQLException{
     cleaningDate.setCellValueFactory(new PropertyValueFactory<>("cleaningTime"));
-    cleaningTable.getItems().clear();
-    for (int i = 0; i < model.getCleaningLogBySn(model.getSelectedSn()).size(); i++){
+    cleaningTable.getItems().clear();for (int i = 0; i < model.getCleaningLogBySn(model.getSelectedSn()).size(); i++){
       cleaningTable.getItems().add(model.getCleaningLogBySn(model.getSelectedSn()).get(i));
     }
   }

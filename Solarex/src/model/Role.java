@@ -15,6 +15,16 @@ public class Role
     return type;
   }
 
+  public void setId(int id)
+  {
+    this.id = id;
+  }
+
+  public void setType(String type)
+  {
+    this.type = type;
+  }
+
   public Role(int id, String type)
   {
     this.id = id;
@@ -23,4 +33,10 @@ public class Role
   public Role(int id){
     this.id = id;
   }
+
+  public String toString()
+  {
+    return "" + getId();
+  }
+
 }
