@@ -107,7 +107,7 @@ public class SolarPanelDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT serial_number,location,status,\"angle(°)\",model_no,factory_id,type,installation_time, \"initial_temp(°C)\",\"final_temp(°C)\",tp.\"ambient_temp(°C)\" FROM solarex.solar_panel JOIN thermal_panel tp ON solar_panel.serial_number = tp.solar_panel_sn");
+          "SELECT serial_number,location,status,\"angle(°)\",model_no,factory_id,type,installation_time, \"initial_temp(°C)\",\"final_temp(°C)\",tp.\"ambient_temp(°C)\" FROM solarex.solar_panel JOIN solarex.thermal_panel tp ON solar_panel.serial_number = tp.solar_panel_sn");
       ResultSet resultSet = statement.executeQuery();
       ArrayList<ThermalPanel> result = new ArrayList<>();
       while (resultSet.next())
@@ -364,7 +364,7 @@ public class SolarPanelDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?, angle = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
+          "UPDATE solarex.solar_panel SET location = ?, status = ?, \"angle(°)\" = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
       statement.setDouble(7, serialNo);
       statement.setInt(1, location);
       statement.setString(2, status);
@@ -382,7 +382,7 @@ public class SolarPanelDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE solarex.solar_panel SET location = ?, status = ?, angle = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
+          "UPDATE solarex.solar_panel SET location = ?, status = ?, \"angle(°)\" = ?, model_no = ?, factory_id = ?, type = ? WHERE serial_number = ?");
       statement.setDouble(7, serialNo);
       statement.setInt(1, location);
       statement.setString(2, status);

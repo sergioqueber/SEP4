@@ -40,6 +40,11 @@ public class SetTargetsController
 
   @FXML
   private CheckBox criticalVoltageCheckbox;
+  @FXML
+  private CheckBox criticalMaxTempCheckBox;
+
+  @FXML
+  private CheckBox criticalMinTempCheckbox;
 
   @FXML
   private MenuBar menu;
@@ -122,6 +127,13 @@ public class SetTargetsController
     else if (criticalVoltageCheckbox.isSelected()){
       model.setAlertVoltage(Double.parseDouble(pvTargetTextField.getText()));
     }
+    else if(criticalMaxTempCheckBox.isSelected()){
+      model.setAlertMaxTemp(Double.parseDouble(thTargetTextField.getText()));
+
+    }
+    else if (criticalMinTempCheckbox.isSelected()){
+      model.setAlertMinTemp(Double.parseDouble(thTargetTextField.getText()));
+    }
   }
 
   public Region getRoot(){
@@ -129,7 +141,7 @@ public class SetTargetsController
   }
 
   public void loadOverview(){
-    viewHandler.openView(model.getLastOverview());
+    viewHandler.openView("OverviewAn");
   }
   public void loadManufacturers(){
     viewHandler.openView("Manufacturers");

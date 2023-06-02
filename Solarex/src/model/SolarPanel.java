@@ -32,7 +32,6 @@ public class SolarPanel
     this.factory = factory;
     this.type = type;
   }
-
   public SolarPanel(String timestamp){
     this.timestamp = timestamp;
   }
@@ -73,6 +72,53 @@ public class SolarPanel
     this.location = location;
     this.type = type;
   }
+
+  public void setSerialNo(double serialNo)
+  {
+    this.serialNo = serialNo;
+  }
+
+  public void setAmbientTemp(double ambientTemp)
+  {
+    this.ambientTemp = ambientTemp;
+  }
+
+  public void setSolarFlux(double solarFlux)
+  {
+    this.solarFlux = solarFlux;
+  }
+
+  public void setModel(Model model)
+  {
+    this.model = model;
+  }
+
+  public void setTimestamp(String timestamp)
+  {
+    this.timestamp = timestamp;
+  }
+
+  public void setFactory(Factory factory)
+  {
+    this.factory = factory;
+  }
+
+  public void setType(String type)
+  {
+    this.type = type;
+  }
+
+  public double getSerialNo()
+  {
+    return serialNo;
+  }
+
+  public double getAmbientTemp()
+  {
+    return ambientTemp;
+  }
+
+
 
   public double getSerial_number()
   {

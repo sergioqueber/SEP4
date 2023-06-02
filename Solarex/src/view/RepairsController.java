@@ -234,9 +234,8 @@ public class RepairsController
     employeeIdTextField.setText("");
   }
 
-  public void loadOverview()
-  {
-    viewHandler.openView(model.getLastOverview());
+  public void loadOverview(){
+    viewHandler.openView("OverviewAn");
   }
 
   public void loadSetTargets()

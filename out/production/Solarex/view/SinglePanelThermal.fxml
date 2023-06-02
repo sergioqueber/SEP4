@@ -97,7 +97,7 @@
       <Label layoutX="653.0" layoutY="93.0" text="Select Time Period" />
       <Label layoutX="657.0" layoutY="134.0" text="Start" />
       <Label layoutX="659.0" layoutY="177.0" text="End" />
-      <Button fx:id="graphButton" layoutX="706.0" layoutY="217.0" mnemonicParsing="false" text="Graph" />
+      <Button fx:id="graphButton" layoutX="706.0" layoutY="217.0" mnemonicParsing="false" onAction="#selectTimePeriod" text="Graph" />
       <Label layoutX="31.0" layoutY="69.0" text="Serial Number">
          <font>
             <Font name="System Bold" size="12.0" />

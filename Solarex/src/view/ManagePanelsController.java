@@ -135,6 +135,11 @@ public class ManagePanelsController
   private TableColumn<PhotovoltaicPanel, Integer> tpAngleC;
   @FXML
   private Label messageField;
+  @FXML
+  private Button updatePv;
+  @FXML
+  private Button updateTh;
+
   public void setEdit(boolean edit)
   {
     this.edit = edit;
@@ -350,7 +355,7 @@ public class ManagePanelsController
   }
 
   public void loadOverview(){
-    viewHandler.openView(model.getLastOverview());
+    viewHandler.openView("OverviewAn");
   }
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");

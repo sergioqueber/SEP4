@@ -42,7 +42,7 @@
       <Button fx:id="pvSearch" layoutX="158.0" layoutY="99.0" mnemonicParsing="false" onAction="#onPVSearchButton" text="Search" />
       <Button fx:id="tpSearch" layoutX="494.0" layoutY="99.0" mnemonicParsing="false" onAction="#onTHSearchButton" text="Search" />
       <Button fx:id="addNewButton" layoutX="629.0" layoutY="402.0" mnemonicParsing="false" onAction="#onSavePanelButton" prefHeight="26.0" prefWidth="52.0" text="Save" />
-      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Edit" />
+      <Button fx:id="editButton" layoutX="629.0" layoutY="303.0" mnemonicParsing="false" onAction="#onEditButtonClicked" prefHeight="26.0" prefWidth="52.0" text="Edit" />
       <Label layoutX="289.0" layoutY="342.0" text="Add A New Panel">
          <font>
             <Font size="14.0" />
@@ -154,5 +154,7 @@
          </menus>
       </MenuBar>
       <Label fx:id="messageField" layoutX="26.0" layoutY="321.0" textFill="RED" />
+      <Button fx:id="updatePv" layoutX="213.0" layoutY="99.0" mnemonicParsing="false" onAction="#fillPVPanels" text="Update" />
+      <Button fx:id="updateTh" layoutX="435.0" layoutY="99.0" mnemonicParsing="false" onAction="#fillTHPanels" text="Update" />
    </children>
 </AnchorPane>

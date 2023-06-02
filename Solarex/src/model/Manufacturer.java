@@ -10,6 +10,14 @@ public class Manufacturer
   {
 
   }
+
+  public Manufacturer(String name, String email, double phoneNumber)
+  {
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.name = name;
+  }
+
   public Manufacturer(String name)
   {
     this.name = name;
@@ -45,12 +53,8 @@ public class Manufacturer
     return phoneNumber;
   }
 
-  public Manufacturer(String name, String email,double phoneNumber){
-    this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.name = name;
-  }
-  public String toString(){
+  public String toString()
+  {
     return "" + name;
   }
 

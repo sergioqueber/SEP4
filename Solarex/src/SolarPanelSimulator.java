@@ -28,7 +28,7 @@ public class SolarPanelSimulator extends Thread
       try
       {
         model.newPvLecture(intensity,voltage,solarFlux,timestamp,111111.0);
-        model.newThLecture(initialTemp,finalTemp,ambientTemp,solarFlux,timestamp,524651.0);
+        model.newThLecture(initialTemp,finalTemp,ambientTemp,solarFlux2,timestamp,524651.0);
       }
       catch (SQLException e)
       {

@@ -7,6 +7,14 @@ public class Repairs
   private String repairDate;
   private SolarPanel solarPanel;
   private double serialNumber;
+  public Repairs(int id, Employee employee, String date, SolarPanel solarPanel)
+  {
+    this.id = id;
+    this.employee = employee;
+    this.repairDate = date;
+    this.solarPanel = solarPanel;
+    serialNumber = solarPanel.getSerial_number();
+  }
 
   public int getId()
   {
@@ -38,19 +46,22 @@ public class Repairs
     return serialNumber;
   }
 
+  public void setEmployee(Employee employee)
+  {
+    this.employee = employee;
+  }
+
+  public void setRepairDate(String repairDate)
+  {
+    this.repairDate = repairDate;
+  }
+
   public void setSerialNumber(double serialNumber)
   {
     this.serialNumber = serialNumber;
   }
 
-  public Repairs(int id, Employee employee, String date, SolarPanel solarPanel)
-  {
-    this.id = id;
-    this.employee = employee;
-    this.repairDate = date;
-    this.solarPanel = solarPanel;
-    serialNumber = solarPanel.getSerial_number();
-  }
+
 
 
 }

@@ -256,7 +256,16 @@ public class Model
     AlertsDAO alertsDAO = AlertsDAO.getInstance();
     alertsDAO.createNotificationVoltage(voltage);
   }
-
+  public void setAlertMaxTemp(double maxTemp) throws SQLException
+  {
+    AlertsDAO alertsDAO = AlertsDAO.getInstance();
+    alertsDAO.createNotificationMaxTemp(maxTemp);
+  }
+  public void setAlertMinTemp(double minTemp) throws SQLException
+  {
+    AlertsDAO alertsDAO = AlertsDAO.getInstance();
+    alertsDAO.createNotificationMinTemp(minTemp);
+  }
   public ArrayList<Alerts> getAlerts() throws SQLException
   {
     AlertsDAO alertsDAO = AlertsDAO.getInstance();

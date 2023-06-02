@@ -297,7 +297,7 @@ public class ManufacturersController
   }
 
   public void loadOverview(){
-    viewHandler.openView(model.getLastOverview());
+    viewHandler.openView("OverviewAn");
   }
   public void loadSetTargets(){
     viewHandler.openView("Set Targets");

@@ -5,6 +5,12 @@ public class City
   private int id;
   private String name;
 
+  public City()
+  {
+    this.id = id;
+    this.name = name;
+  }
+
   public int getId()
   {
     return id;
@@ -15,10 +21,5 @@ public class City
     return name;
   }
 
-  public City()
-  {
-    this.id = id;
-    this.name = name;
-  }
 }
 

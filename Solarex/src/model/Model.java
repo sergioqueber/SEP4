@@ -79,6 +79,10 @@ public class Model
     return efficiency;
   }
 
+  public void setArea(double area)
+  {
+    this.area = area;
+  }
 
   public String toString(){
     return "" + modelNo;

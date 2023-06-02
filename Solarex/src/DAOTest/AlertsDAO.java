@@ -3,6 +3,7 @@ package DAOTest;
 import model.Alerts;
 import model.Notification;
 import model.PhotovoltaicPanel;
+import model.ThermalPanel;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -85,6 +86,48 @@ public class AlertsDAO
               "INSERT INTO solarex.alert(notification_id, solar_panel_sn) VALUES (?,?)");
           statement.setInt(1,2);
           statement.setDouble(2,panels.get(i).getSerial_number());
+          statement.executeUpdate();
+        }
+      }
+    }
+  }
+  public void createNotificationMaxTemp(double maxTemp) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    ArrayList<ThermalPanel> panels = solarPanelDAO.readThValues();
+
+    for (int i = 0; i < panels.size(); i++)
+    {
+      if (panels.get(i).getFinalTemp() > maxTemp
+          || panels.get(i).getInitialTemp() > maxTemp)
+      {
+        try (Connection connection = getConnection())
+        {
+          PreparedStatement statement = connection.prepareStatement(
+              "INSERT INTO solarex.alert(notification_id, solar_panel_sn) VALUES (?,?)");
+          statement.setInt(1, 4);
+          statement.setDouble(2, panels.get(i).getSerial_number());
+          statement.executeUpdate();
+        }
+      }
+    }
+  }
+  public void createNotificationMinTemp(double minTemp) throws SQLException
+  {
+    SolarPanelDAO solarPanelDAO = SolarPanelDAO.getInstance();
+    ArrayList<ThermalPanel> panels = solarPanelDAO.readThValues();
+
+    for (int i = 0; i < panels.size(); i++)
+    {
+      if (panels.get(i).getFinalTemp() < minTemp
+          || panels.get(i).getInitialTemp() < minTemp)
+      {
+        try (Connection connection = getConnection())
+        {
+          PreparedStatement statement = connection.prepareStatement(
+              "INSERT INTO solarex.alert(notification_id, solar_panel_sn) VALUES (?,?)");
+          statement.setInt(1, 5);
+          statement.setDouble(2, panels.get(i).getSerial_number());
           statement.executeUpdate();
         }
       }
